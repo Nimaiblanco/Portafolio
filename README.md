@@ -1,8 +1,8 @@
 <div align="center">
   <br>
   
-  <h1>**It's-a-me [Seu Nome/Nickname]**</h1>
-  <p>A passionate [Seu Foco Técnico] developer from Brazil</p>
+  <h1>**It's-a-me Nimai**</h1>
+  <p>A passionate System developer</p>
   
   <p>
     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)]([Seu Link do LinkedIn])
