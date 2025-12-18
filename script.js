@@ -1,39 +1,42 @@
 const cursor = document.getElementById('cursor');
+const cursorZoom = document.getElementById('cursor-zoom');
+const mainWrapper = document.getElementById('main-wrapper');
 
-// Movimiento ultra fluido
+// Sincronizar contenido para la lupa al cargar
+window.onload = () => {
+    cursorZoom.innerHTML = mainWrapper.innerHTML;
+};
+
 document.addEventListener('mousemove', (e) => {
-    // Usamos requestAnimationFrame para que el cursor no tenga lag al aumentar
-    window.requestAnimationFrame(() => {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-    });
+    const x = e.clientX;
+    const y = e.clientY;
+    const scrollY = window.scrollY;
+
+    // Mover el contenedor del cursor
+    cursor.style.left = `${x}px`;
+    cursor.style.top = `${y}px`;
+
+    // Calcular el efecto de aumento (1.2x)
+    const zoom = 1.2;
+    const moveX = -x * zoom + (cursor.offsetWidth / 2);
+    const moveY = -(y + scrollY) * zoom + (cursor.offsetHeight / 2);
+
+    cursorZoom.style.transform = `translate(${moveX}px, ${moveY}px) scale(${zoom})`;
 });
 
-// Configurar el aumento en los elementos con clase .hover-trigger
-const setupMagnifier = () => {
-    const interactiveElements = document.querySelectorAll('.hover-trigger');
-    
-    interactiveElements.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            cursor.classList.add('active');
-        });
-        item.addEventListener('mouseleave', () => {
-            cursor.classList.remove('active');
-        });
-    });
-};
+// Activar lupa en elementos hover-trigger
+document.querySelectorAll('.hover-trigger').forEach(item => {
+    item.addEventListener('mouseenter', () => cursor.classList.add('active'));
+    item.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+});
 
-window.onload = () => {
-    setupMagnifier();
-};
-
-// Partículas de fondo (sin cambios, mantienen la estética profesional)
+// Partículas
 particlesJS('particles-js', {
     "particles": {
         "number": { "value": 80 },
         "color": { "value": "#38bdf8" },
-        "size": { "value": 5, "random": true },
+        "size": { "value": 6, "random": true },
         "line_linked": { "enable": true, "distance": 150, "color": "#38bdf8", "opacity": 0.3, "width": 1.5 },
-        "move": { "enable": true, "speed": 1.2 }
+        "move": { "enable": true, "speed": 1 }
     }
 });
