@@ -4,74 +4,51 @@
     --text-main: #ffffff;
 }
 
-/* Scroll Suave */
+/* Redirección con desplazamiento suave */
 html { scroll-behavior: smooth; }
 
-* { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
-
-body { 
-    background-color: var(--bg); 
-    font-family: 'Inter', sans-serif; 
-    color: var(--text-main); 
-    overflow-x: hidden;
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    cursor: none !important; /* Mantenemos el cursor oculto para usar la lupa */
 }
 
-/* NAVBAR PROFESIONAL */
+body { background-color: var(--bg); font-family: 'Inter', sans-serif; color: var(--text-main); }
+
+/* NAVBAR - CORREGIDA INTERACTIVIDAD */
 .navbar { 
-    position: fixed; 
-    top: 40px; 
-    right: 50px; 
-    display: flex; 
-    gap: 25px; 
-    z-index: 1000; 
+    position: fixed; top: 40px; right: 50px; 
+    display: flex; gap: 25px; 
+    z-index: 20000; /* Por encima de la lupa */
 }
 
 .navbar a { 
-    color: #fff; 
-    text-decoration: none; 
-    font-size: 10px; 
-    letter-spacing: 2px; 
-    font-weight: 900;
-    opacity: 0.6;
-    transition: opacity 0.3s;
+    color: #fff; text-decoration: none; font-size: 10px; 
+    letter-spacing: 2px; font-weight: 900; opacity: 0.6;
+    pointer-events: auto; /* Permite clics */
 }
-
 .navbar a:hover { opacity: 1; color: var(--accent); }
-
-#particles-js { position: fixed; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 
 /* LUPA */
 #lupa-wrapper {
-    position: fixed;
-    width: 40px; height: 40px;
-    border: 1px solid var(--accent);
-    border-radius: 50%;
-    overflow: hidden;
-    z-index: 10000;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    background: var(--bg);
+    position: fixed; z-index: 10000; pointer-events: none;
+    width: 40px; height: 40px; border: 1px solid var(--accent);
+    border-radius: 50%; overflow: hidden; background: var(--bg);
 }
-
-#lupa-wrapper.active { width: 180px; height: 180px; box-shadow: 0 0 50px rgba(56, 189, 248, 0.4); }
-
+#lupa-wrapper.active { width: 180px; height: 180px; }
 #lupa-content { position: absolute; width: 100vw; pointer-events: none; }
 
-/* LAYOUT */
-#main-wrapper { position: relative; z-index: 10; }
+/* CONTACTO - EFECTO DE MOVIMIENTO RESTAURADO */
+.contact-links { display: flex; flex-direction: column; z-index: 20000; position: relative; }
+.contact-links a { 
+    font-size: 5rem; color: #fff; text-decoration: none; font-weight: 900; 
+    line-height: 0.9; transition: 0.3s ease;
+    pointer-events: auto; /* Permite clics y hover */
+    width: fit-content;
+}
+.contact-links a:hover { transform: translateX(30px); color: var(--accent); }
+
+/* SECCIONES */
+section { padding: 100px 15%; min-height: 80vh; }
+.section-title { color: var(--accent); font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 40px; }
 .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 8vw; line-height: 0.8; text-transform: uppercase; color: #fff !important; text-align: center; letter-spacing: -2px; }
-.hero p { letter-spacing: 5px; font-weight: 900; color: var(--accent); font-size: 0.7rem; margin-top: 15px; }
-
-section { padding: 120px 15%; min-height: 60vh; }
-.section-title { color: var(--accent); font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 40px; font-weight: 900; }
-
-.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-.skill-item h3 { font-size: 2.2rem; color: var(--accent); margin-bottom: 15px; font-family: 'Archivo Narrow', sans-serif; }
-
-/* CONTACTO */
-.contact-links { display: flex; flex-direction: column; }
-.contact-links a { font-size: 5rem; color: #fff; text-decoration: none; font-weight: 900; line-height: 1; transition: 0.3s; }
-.contact-links a:hover { transform: translateX(20px); color: var(--accent); }
-
-footer { padding: 80px; text-align: center; opacity: 0.2; font-size: 0.7rem; }
+.hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 8vw; line-height: 0.8; text-align: center; }
