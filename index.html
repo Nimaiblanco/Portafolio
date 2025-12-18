@@ -6,9 +6,41 @@
     <title>Blanco Nimai | Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Crítico para el funcionamiento de la lupa */
+        body { overflow-x: hidden; margin: 0; }
+        
+        .cursor-lupa {
+            position: fixed;
+            width: 120px; /* Tamaño del círculo */
+            height: 120px;
+            border: 2px solid #38bdf8;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 9999;
+            pointer-events: none;
+            transform: translate(-50%, -50%); /* Centra el círculo en el mouse */
+            background: #000; /* Fondo para que no sea transparente */
+            display: none; /* Se activa al mover el mouse */
+        }
+
+        .lupa-content {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            transform-origin: 0 0;
+            pointer-events: none;
+        }
+
+        #main-content {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
-    <div class="cursor-lupa">
+    <div class="cursor-lupa" id="lupa-wrapper">
         <div class="lupa-content" id="lupa-content">
             </div>
     </div>
@@ -27,7 +59,7 @@
             <p class="reveal">SOFTWARE DEVELOPER</p>
         </div>
 
-        <section id="experiencia" class="reveal">
+        <section id="experiencia" class="reveal active">
             <h2 class="section-title">EXPERIÊNCIA TÉCNICA</h2>
             <div class="cv-item">
                 <h3>Desenvolvedor Full Stack</h3>
@@ -36,7 +68,7 @@
             </div>
         </section>
 
-        <section id="skills" class="reveal">
+        <section id="skills" class="reveal active">
             <h2 class="section-title">SKILLS</h2>
             <div class="skills-grid">
                 <div class="skill-tag">JAVA</div>
@@ -51,32 +83,54 @@
     <script>
         const mainContent = document.getElementById('main-content');
         const lupaContent = document.getElementById('lupa-content');
-        const cursor = document.querySelector('.cursor-lupa');
+        const lupaWrapper = document.getElementById('lupa-wrapper');
 
-        // Clonar el contenido para que la lupa tenga qué mostrar
-        lupaContent.innerHTML = mainContent.innerHTML;
+        // Función para clonar contenido incluyendo el estado de las partículas
+        function updateLupa() {
+            lupaContent.innerHTML = mainContent.innerHTML;
+        }
+        updateLupa();
 
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
+            const scrollY = window.scrollY;
 
-            // Mover el círculo
-            cursor.style.transform = `translate(${x - 50}px, ${y - 50}px)`;
+            lupaWrapper.style.display = 'block';
+            
+            // 1. Mover el círculo contenedor (fijo en pantalla)
+            lupaWrapper.style.left = x + 'px';
+            lupaWrapper.style.top = y + 'px';
 
-            // Mover el contenido dentro de la lupa de forma invertida y con zoom (1.5x)
-            // El 1.5 es el nivel de aumento
-            lupaContent.style.transform = `translate3d(${-x * 1.5 + 50}px, ${-y * 1.5 + 50}px, 0) scale(1.5)`;
+            // 2. Lógica de la Lupa (Zoom real)
+            const zoom = 1.5; // Nivel de aumento
+            
+            // Calculamos el desfase para que el contenido de la lupa coincida con el real
+            // Restamos la mitad del tamaño del círculo (60px) para centrar el aumento
+            const offsetX = (x * zoom) - 60;
+            const offsetY = ((y + scrollY) * zoom) - 60;
+
+            lupaContent.style.transform = `translate(${-offsetX}px, ${-offsetY}px) scale(${zoom})`;
         });
 
-        /* PARTÍCULAS */
+        /* PARTÍCULAS - Solo en el fondo principal para no sobrecargar */
         particlesJS('particles-js', {
             "particles": {
-                "number": { "value": 50 },
+                "number": { "value": 40 },
                 "color": { "value": "#38bdf8" },
-                "line_linked": { "enable": true, "color": "#38bdf8", "opacity": 0.2 },
+                "opacity": { "value": 0.3 },
+                "line_linked": { "enable": true, "color": "#38bdf8", "opacity": 0.1 },
                 "move": { "enable": true, "speed": 1 }
             }
         });
+
+        // Revelado simple para las secciones
+        const reveal = () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+        };
+        window.addEventListener('scroll', reveal);
     </script>
 </body>
 </html>
