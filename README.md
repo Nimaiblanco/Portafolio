@@ -1,4 +1,6 @@
-![Mi Avatar](https://github.com/user-attachments/assets/ebc8616b-48f5-4fba-90c0-7f890426165d)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5f81058f-587d-4bd4-b345-a480839e5679" width="300" alt="Avatar Nimai">
+</p>
 
 
 <!--
