@@ -5,15 +5,13 @@
 
 <br>
 
-<img src="https://raw.githubusercontent.com/Nimaiblanco/Nimaiblanco/main/assets/Apocalipsis.jpg" width="100%" style="border-radius: 10px; border: 2px solid #38bdf8;" />
+<a href="https://nimaiblanco.github.io/Nimaiblanco/">
+  <img src="https://raw.githubusercontent.com/Nimaiblanco/Nimaiblanco/main/assets/Apocalipsis.jpg" width="100%" style="border-radius: 10px; border: 2px solid #38bdf8;" alt="Visitar Portafólio" />
+</a>
 
 ---
 
-## 🌐 Portfólio (...on constrution)
-
-<a href="https://nimaiblanco.github.io/Nimaiblanco/">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=Nimaiblanco&repo=Nimaiblanco&theme=tokyonight" width="400px" />
-</a>
+## 🌐 [CLIQUE AQUI PARA VISITAR O PORTFÓLIO](https://nimaiblanco.github.io/Nimaiblanco/)
 
 <br><br>
 
