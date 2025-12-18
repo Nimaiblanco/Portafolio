@@ -5,14 +5,19 @@
     --border: #1a1a1a;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* 1. CORRECCIÓN GLOBAL: Ocultar cursor en TODO, incluidos enlaces */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    cursor: none !important; /* Fuerza la desaparición de la manito */
+}
 
 body {
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    cursor: none; /* Oculta el puntero estándar */
     scroll-behavior: smooth;
 }
 
@@ -27,7 +32,7 @@ body {
     border: 2px solid var(--accent);
     border-radius: 50%;
     z-index: 10000;
-    pointer-events: none;
+    pointer-events: none; /* Permite hacer click a través del círculo */
     transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
     will-change: transform;
 }
@@ -54,6 +59,7 @@ body {
     font-weight: 400;
     letter-spacing: 1.5px;
     transition: 0.3s;
+    cursor: none !important; /* Refuerzo para enlaces específicos */
 }
 
 .navbar a:hover { color: var(--text); }
@@ -98,10 +104,25 @@ section {
 .date { color: #64748b; margin-bottom: 20px; display: block; font-weight: bold; }
 
 .skills-grid { display: flex; flex-wrap: wrap; gap: 15px; }
-.skill-tag { border: 1px solid var(--border); padding: 12px 30px; font-weight: 900; font-size: 0.8rem; transition: 0.3s; }
+.skill-tag { 
+    border: 1px solid var(--border); 
+    padding: 12px 30px; 
+    font-weight: 900; 
+    font-size: 0.8rem; 
+    transition: 0.3s;
+    cursor: none !important; 
+}
 .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
 
-.contact-links a { font-size: 3.5rem; color: var(--text); text-decoration: none; font-weight: 900; display: block; transition: 0.4s; }
+.contact-links a { 
+    font-size: 3.5rem; 
+    color: var(--text); 
+    text-decoration: none; 
+    font-weight: 900; 
+    display: block; 
+    transition: 0.4s;
+    cursor: none !important; 
+}
 .contact-links a:hover { padding-left: 20px; color: var(--accent); }
 
 /* ANIMACIÓN REVEAL */
