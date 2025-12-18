@@ -1,46 +1,44 @@
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/be839c96-683c-408c-9656-509d5e6b15d0" width="100%" alt="Nimai Blanco Horizon" style="border-radius: 10px;">
 
+# Olá, eu sou o [Seu Nome]! 👋
 
-  # Nimai Blanco👋
-  ### **Full Stack Developer | Java Specialist | Software Architecture**
+<img src="https://capsule-render.vercel.app/render?type=soft&color=020617&height=200&section=header&text=BIO-DATA%20ENGINEER&fontSize=70&animation=fadeIn&fontColor=38bdf8" width="100%" />
 
-  ---
+### 🧬 Desenvolvedor Fullstack | Biohacking & Performance Humana
 
-  "Especialista em construir sistemas resilientes e arquiteturas de alto desempenho."
+---
 
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nimaiblanco108)
-  [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Nimaiblanco)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](LINK_DO_SEU_LINKEDIN)
+[![Portfolio](https://img.shields.io/badge/Portfolio-38bdf8?style=for-the-badge&logo=ko-fi&logoColor=020617)](LINK_DO_SEU_PORTFOLIO)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:seuemail@gmail.com)
+
 </div>
 
+## 🚀 Sobre Mim
+Desenvolvedor focado em criar soluções de **Inteligência em Saúde**. Atualmente liderando o projeto **BioPulse Evolution**, uma plataforma de monitoramento de biomarcadores desenvolvida com **Java Spring Boot**.
+
+* 🔭 Trabalhando atualmente no: **BioPulse Evolution**
+* 🌱 Estudando: **Arquitetura de Sistemas e Data Science**
+* ⚡ Curiosidade: Entusiasta de **Biohacking** e Otimização Humana.
+
+## 🛠️ Tecnologias & Skills
+<p align="left">
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" />
+  <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" />
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+</p>
+
+## 📊 GitHub Stats
+<p align="center">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=SEU_USUARIO&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=SEU_USUARIO&layout=compact&langs_count=7&theme=tokyonight"/>
+</p>
+
 ---
 
-### 💻 Experiência & Entrega
-Minha trajetória é definida pela resolução de problemas complexos e pela implementação de padrões de projeto que garantem a escalabilidade do software.
-
-- 🚀 **Main Project:** [BioPulse](https://github.com/Nimaiblanco/BioPulse) — Uma solução de monitoramento crítico desenvolvida com **Spring Boot 3** e **Elm**, priorizando tipos fortes e erro zero em produção.
-- 🛠️ **Full Stack Mastery:** Sólido domínio em **Java 21** para o core business, com flexibilidade total no frontend utilizando **Angular**, **React** ou **Elm**, conforme a necessidade da arquitetura.
-- ☁️ **DevOps & Infra:** Experiência prática em conteinerização com **Docker** e orquestração de ambientes para microsserviços.
-
----
-
-### 🛠️ Expertise Técnica
-
-| Camada | Stack Principal |
-| :--- | :--- |
-| **Backend** | `Java 21`, `Spring Boot 3`, `Spring Data JPA`, `Microservices` |
-| **Frontend** | `Elm (Functional Architecture)`, `Angular`, `React`, `TypeScript` |
-| **Infra & DB** | `Docker`, `PostgreSQL`, `Software Architecture` |
-
----
-
-### 📊 Visão Geral do Perfil
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Nimaiblanco&show_icons=true&theme=tokyonight&count_private=true" alt="Estatísticas de Nimai" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=SEU_USUARIO&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
 </div>
-
----
-
-### 📫 Contato Profissional
-- 💼 [LinkedIn Profile](https://www.linkedin.com/in/nimaiblanco108)
-- 📍 São Paulo, Brasil
