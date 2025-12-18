@@ -44,7 +44,7 @@
         const lupaContent = document.getElementById('lupa-content');
         const lupaWrapper = document.getElementById('lupa-wrapper');
 
-        // Clonamos el contenido de texto pero NO las partículas
+        // Clonamos el contenido una sola vez al cargar
         lupaContent.innerHTML = contentToCopy.innerHTML;
 
         document.addEventListener('mousemove', (e) => {
@@ -57,13 +57,14 @@
             lupaWrapper.style.top = `${y}px`;
 
             const zoom = 1.6;
-            const moveX = -(x * zoom) + 60;
+            // Cálculo para centrar el aumento exactamente en el mouse
+            const moveX = -(x * zoom) + 60; // 60 es la mitad del ancho de la lupa (120/2)
             const moveY = -((y + scrollY) * zoom) + 60;
 
             lupaContent.style.transform = `translate(${moveX}px, ${moveY}px) scale(${zoom})`;
         });
 
-        /* CONFIGURACIÓN DE PARTÍCULAS (Idéntica a tu foto vieja) */
+        /* PARTÍCULAS - Configuración foto vieja */
         particlesJS('particles-js', {
             "particles": {
                 "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
