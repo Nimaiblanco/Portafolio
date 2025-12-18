@@ -1,6 +1,6 @@
 <div align="center">
 
-# Blanco Nimai 👋
+# Blanco Nimai 
 
 <img src="https://capsule-render.vercel.app/render?type=terminal&color=000000&height=150&section=header&text=FULL%20STACK%20DEVELOPER&fontSize=40&fontColor=38bdf8" width="100%" />
 
