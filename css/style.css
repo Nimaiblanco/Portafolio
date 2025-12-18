@@ -1,51 +1,45 @@
-:root {
-    --bg: #000000;
-    --accent: #38bdf8;
-    --text-main: #ffffff;
+/* ESTRUTURA DAS SEÇÕES */
+section { 
+    padding: 100px 10%; /* Espaço interno equilibrado */
+    min-height: 100vh;  /* Cada seção ocupa a tela inteira */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    position: relative;
+    z-index: 5;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
-body { background-color: var(--bg); font-family: 'Inter', sans-serif; color: var(--text-main); overflow-x: hidden; }
-
-/* NAVBAR */
-.navbar { position: fixed; top: 40px; right: 50px; display: flex; gap: 25px; z-index: 1000; }
-.navbar a { color: #fff; text-decoration: none; font-size: 11px; letter-spacing: 2px; font-weight: 900; opacity: 0.6; pointer-events: auto; }
-
-/* CURSOR CIRCULAR (NADA DE ZOOM) */
-#cursor {
-    position: fixed;
-    width: 25px;
-    height: 25px;
-    border: 1.5px solid var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    background: transparent;
-    transition: background 0.3s ease; /* Solo transiciona el color de fondo */
+/* AJUSTE DO SCROLL E COMPORTAMENTO DO MENU */
+html { 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 120px; /* Evita que o título da seção fique "colado" no topo ao clicar no menu */
 }
 
-/* Efecto visual sutil al tocar texto */
-#cursor.active {
-    background: rgba(56, 189, 248, 0.3);
+/* TÍTULOS DAS SEÇÕES */
+.section-title {
+    color: var(--accent);
+    font-size: 0.75rem; /* Um pouco menor para parecer mais elegante/minimalista */
+    letter-spacing: 6px;
+    margin-bottom: 60px; /* Mais espaço abaixo do título */
+    text-transform: uppercase;
+    font-weight: 900;
+    opacity: 0.9;
 }
 
-/* HERO */
-.hero { height: 100vh; display: flex; align-items: center; justify-content: center; }
-.hero-content { text-align: center; }
-.hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 9vw; line-height: 0.85; }
-
-/* SOFTWARE DEVELOPER ABAJO Y AZUL */
-.software-dev { 
-    color: var(--accent); 
-    letter-spacing: 6px; 
-    margin-top: 15px; 
-    font-weight: 900; 
-    font-size: 0.8rem; 
+/* ESTILO DOS ITENS DENTRO DAS SEÇÕES */
+.skill-item {
+    margin-bottom: 50px; /* Espaço entre os blocos de texto */
+    max-width: 700px;    /* Evita que o texto estique demais em telas grandes */
 }
 
-/* SECCIONES Y EMAIL */
-section { padding: 100px 10%; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
-.contact-links a { font-size: clamp(2rem, 5vw, 3rem); color: #fff; text-decoration: none; font-weight: 900; pointer-events: auto; }
+.skill-item h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 900;
+}
 
-#particles-js { position: fixed; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.skill-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.6; /* Texto de descrição mais suave para dar contraste com o título */
+}
