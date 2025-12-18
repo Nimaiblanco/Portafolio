@@ -1,13 +1,12 @@
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/d93a1914-2936-460d-b0da-c53ba89331a5" width="100%" alt="Nimai Blanco Workspace" style="border-radius: 10px;">
-
+  <img src="https://github.com/user-attachments/assets/0b613142-a94b-41bd-8d09-f0643a630dfe" width="100%" alt="Nimai Blanco Horizon" style="border-radius: 10px;">
 
   # Nimai Pandit Blanco Perez 👋
-  ### **Engenheiro de Software | Graduado em ADS pela FIAP**
+  ### **Full Stack Developer | Java Specialist | Software Architecture**
 
   ---
 
-  "Especialista Full Stack: Transformando requisitos complexos em sistemas escaláveis e resilientes."
+  "Especialista em construir sistemas resilientes e arquiteturas de alto desempenho."
 
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nimaiblanco108)
   [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Nimaiblanco)
@@ -15,33 +14,32 @@
 
 ---
 
-### 🎓 Formação & Carreira
-Concluí em 2025 a graduação em **Análise e Desenvolvimento de Sistemas** pela **FIAP**, onde desenvolvi uma base sólida em arquitetura de software, padrões de projeto e metodologias ágeis.
+### 💻 Experiência & Entrega
+Minha trajetória é definida pela resolução de problemas complexos e pela implementação de padrões de projeto que garantem a escalabilidade do software.
 
-- 🏆 **FIAP Experience:** Participei de desafios reais (Next, Challenge) focados em soluções para o mercado financeiro e saúde mental.
-- 🔭 **Projeto em Destaque:** [BioPulse](https://github.com/Nimaiblanco/BioPulse) — Sistema de monitoramento crítico utilizando **Spring Boot 3** e **Elm**, aplicando conceitos de arquitetura funcional e microsserviços.
-- 💡 **Diferencial:** Domínio do ecossistema **Java 21** e versatilidade no Frontend, transitando entre **React**, **Angular** e a segurança do **Elm**.
+- 🚀 **Main Project:** [BioPulse](https://github.com/Nimaiblanco/BioPulse) — Uma solução de monitoramento crítico desenvolvida com **Spring Boot 3** e **Elm**, priorizando tipos fortes e erro zero em produção.
+- 🛠️ **Full Stack Mastery:** Sólido domínio em **Java 21** para o core business, com flexibilidade total no frontend utilizando **Angular**, **React** ou **Elm**, conforme a necessidade da arquitetura.
+- ☁️ **DevOps & Infra:** Experiência prática em conteinerização com **Docker** e orquestração de ambientes para microsserviços.
 
 ---
 
 ### 🛠️ Expertise Técnica
 
-| Categoria | Tecnologias |
+| Camada | Stack Principal |
 | :--- | :--- |
-| **Backend** | `Java 21`, `Spring Boot 3`, `Data JPA`, `Spring Security`, `Microservices` |
-| **Frontend** | `Angular`, `React`, `Elm (Arquitetura Funcional)`, `TypeScript`, `PicoCSS` |
-| **Mobile** | `Kotlin` (Android Development) |
-| **Infra & DB** | `Docker`, `Docker Compose`, `PostgreSQL`, `Arquitetura de Soluções` |
+| **Backend** | `Java 21`, `Spring Boot 3`, `Spring Data JPA`, `Microservices` |
+| **Frontend** | `Elm (Functional Architecture)`, `Angular`, `React`, `TypeScript` |
+| **Infra & DB** | `Docker`, `PostgreSQL`, `Software Architecture` |
 
 ---
 
-### 📈 Estatísticas
+### 📊 Visão Geral do Perfil
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=Nimaiblanco&show_icons=true&theme=tokyonight&count_private=true" alt="Estatísticas de Nimai" />
 </div>
 
 ---
 
-### 📫 Vamos nos conectar?
-- 📍 Localização: São Paulo, Brasil
-- 💼 Busco oportunidades como Desenvolvedor Java / Full Stack para aplicar a excelência técnica desenvolvida na FIAP.
+### 📫 Contato Profissional
+- 💼 [LinkedIn Profile](https://www.linkedin.com/in/nimaiblanco108)
+- 📍 São Paulo, Brasil
