@@ -65,4 +65,14 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
 }
 #cursor.active { background: rgba(56, 189, 248, 0.3); transform: translate(-50%, -50%) scale(1.5); }
 
+footer {
+    padding: 60px 10%;
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: 0.3;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
