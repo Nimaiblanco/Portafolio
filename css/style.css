@@ -6,7 +6,7 @@
 
 html { 
     scroll-behavior: smooth; 
-    scroll-padding-top: 100px; /* Evita que el menú tape el título al scrollear */
+    scroll-padding-top: 100px;
 }
 
 * { 
@@ -21,14 +21,14 @@ body {
     overflow-x: hidden;
 }
 
-/* NAVBAR CORREGIDA */
+/* NAVBAR */
 .navbar { 
     position: fixed; 
     top: 40px; 
     right: 50px; 
     display: flex; 
     gap: 25px; 
-    z-index: 999999; /* Valor máximo para asegurar clics */
+    z-index: 999999; 
 }
 
 .navbar a { 
@@ -38,14 +38,13 @@ body {
     letter-spacing: 2px; 
     font-weight: 900; 
     opacity: 0.6;
-    pointer-events: auto; /* Habilita interacción */
+    pointer-events: auto;
     transition: 0.3s;
 }
 
 .navbar a:hover { opacity: 1; color: var(--accent); }
 
-/* CURSOR */
-/* CURSOR CON EFECTO LUPA REAL */
+/* CURSOR LUPA - CORREGIDO PARA ZOOM REAL */
 #cursor {
     position: fixed;
     width: 30px;
@@ -55,23 +54,34 @@ body {
     pointer-events: none;
     z-index: 100000;
     transform: translate(-50%, -50%);
+    overflow: hidden; /* Necesario para el efecto lente */
+    background: var(--bg); /* Evita que se vea el fondo duplicado */
     transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
-                height 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
-                backdrop-filter 0.3s;
-    backdrop-filter: blur(0px) brightness(1); /* Estado inicial */
+                height 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 #cursor.active {
-    width: 140px; 
-    height: 140px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(56, 189, 248, 0.5);
-    /* El truco del aumento visual */
-    backdrop-filter: blur(0px) brightness(1.2) contrast(1.2);
-    transform: translate(-50%, -50%) scale(1.1); /* Aumenta un 10% el tamaño visual */
+    width: 160px; 
+    height: 160px;
+    border: 1px solid rgba(56, 189, 248, 0.8);
 }
 
-/* SECCIONES Y TEXTOS */
+/* Contenedor interno del Zoom */
+#cursor-zoom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    pointer-events: none;
+}
+
+#cursor.active #cursor-zoom {
+    display: block;
+}
+
+/* SECCIONES */
 #main-wrapper { position: relative; z-index: 10; }
 section { padding: 100px 10%; min-height: 80vh; }
 
@@ -93,6 +103,7 @@ section { padding: 100px 10%; min-height: 80vh; }
     font-size: clamp(3rem, 10vw, 6rem); 
     color: #fff; text-decoration: none; font-weight: 900; 
     line-height: 1; transition: 0.4s; pointer-events: auto;
+    width: fit-content;
 }
 .contact-links a:hover { transform: translateX(30px); color: var(--accent); }
 
