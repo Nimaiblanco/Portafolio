@@ -1,8 +1,7 @@
 <div align="center">
 
 # Blanco Nimai 👋
-
-<img src="https://capsule-render.vercel.app/render?type=terminal&color=000000&height=150&section=header&text=FULL%20STACK%20DEVELOPER&fontSize=40&fontColor=38bdf8" width="100%" />
+### FULL STACK DEVELOPER
 
 <br>
 
@@ -11,7 +10,7 @@
 ---
 
 ## 🌐 Portfólio Interativo
-<p>Clique no card abaixo para acessar a experiência completa</p>
+<p>Clique no card abaixo para acessar a experiência completa com partículas e cursor neón</p>
 
 <a href="https://nimaiblanco.github.io/Nimaiblanco/">
   <img src="https://github-readme-stats.vercel.app/api/pin/?username=Nimaiblanco&repo=Nimaiblanco&theme=tokyonight" width="400px" />
