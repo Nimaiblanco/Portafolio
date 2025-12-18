@@ -9,8 +9,7 @@
 
 ---
 
-## 🌐 Portfólio (In Construction)
-<p>Clique no card abaixo para acessar a experiência completa</p>
+## 🌐 Portfólio (..im working on it)
 
 <a href="https://nimaiblanco.github.io/Nimaiblanco/">
   <img src="https://github-readme-stats.vercel.app/api/pin/?username=Nimaiblanco&repo=Nimaiblanco&theme=tokyonight" width="400px" />
