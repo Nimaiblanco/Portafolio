@@ -9,10 +9,10 @@
 ---
 
 ## 💻 Portfólio Interativo
-<p>Clique na tela abaixo para abrir meu currículo digital</p>
+<p>Clique no card abaixo para abrir meu currículo digital em tela cheia</p>
 
 <a href="https://nimaiblanco.github.io/Nimaiblanco/">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=Nimaiblanco&repo=Nimaiblanco&theme=tokyonight&show_owner=true" width="400px" />
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=Nimaiblanco&repo=Nimaiblanco&theme=tokyonight&show_owner=true" width="450px" />
 </a>
 
 <br>
