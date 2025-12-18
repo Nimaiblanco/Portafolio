@@ -9,7 +9,7 @@
 
 ---
 
-## 🌐 Portfólio (..im working on it)
+## 🌐 Portfólio (...on constrution)
 
 <a href="https://nimaiblanco.github.io/Nimaiblanco/">
   <img src="https://github-readme-stats.vercel.app/api/pin/?username=Nimaiblanco&repo=Nimaiblanco&theme=tokyonight" width="400px" />
