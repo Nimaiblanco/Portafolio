@@ -2,11 +2,11 @@
   <img src="https://github.com/user-attachments/assets/5e955c20-0228-4be4-9e1f-eba900dbaf8f" width="220" alt="Nimai Blanco Avatar" style="border-radius: 20px;">
 
   # Hola, soy Nimai Pandit Blanco Perez 👋
-  ### **Full Stack Developer | Java & Elm Enthusiast | DevOps Learner**
+  ### **Full Stack Developer | Java Specialist | Frontend Explorer**
 
   ---
 
-  "Transformando ideas complejas en código limpio y funcional."
+  "Especialista en Backend con dominio de arquitecturas modernas en el Frontend."
 
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nimaiblanco108)
   [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Nimaiblanco)
@@ -15,36 +15,38 @@
 ---
 
 ### 🚀 Sobre Mí
-Soy un desarrollador apasionado por la arquitectura de software y la eficiencia operativa. Mi enfoque principal es crear aplicaciones **Full Stack** escalables utilizando tecnologías de vanguardia como **Java 21** y **Elm**.
+Desarrollador enfocado en la creación de sistemas robustos y escalables. Mi fortaleza reside en el ecosistema **Java/Spring**, complementado con una sólida comprensión de las principales librerías y frameworks modernos de interfaz.
 
-- 🔭 **Proyecto Destacado:** Actualmente desarrollo [BioPulse](https://github.com/Nimaiblanco/BioPulse), un sistema de monitoreo inteligente con microservicios dockerizados.
-- 🌱 **En constante evolución:** Perfeccionando mi dominio en **Arquitectura Funcional** y orquestación de contenedores.
-- 🧘 **Dato Personal:** Practico la meditación y la cultura védica, lo que me aporta disciplina y un enfoque analítico ante los desafíos técnicos.
-
----
-
-### 🛠️ Mi Arsenal Técnico
-
-| Camada | Tecnologías |
-| :--- | :--- |
-| **Backend** | `Java 21`, `Spring Boot 3`, `Spring Data JPA`, `Maven` |
-| **Frontend** | `Elm 0.19.1`, `JavaScript`, `PicoCSS`, `HTML5/CSS3` |
-| **Infraestructura** | `Docker`, `Docker Compose`, `Git`, `NGINX` |
-| **Base de Datos** | `H2`, `PostgreSQL` |
+- 🔭 **Proyecto Principal:** [BioPulse](https://github.com/Nimaiblanco/BioPulse) - Un sistema de monitoreo crítico desarrollado con **Spring Boot** y **Elm** para garantizar cero errores en producción.
+- 💡 **Filosofía:** Aunque trabajo con **React** y **Angular**, me apasiona explorar lenguajes funcionales como **Elm** para elevar el estándar de fiabilidad del software.
 
 ---
 
-### 📊 Mis Estadísticas de GitHub
+### 🛠️ Ecosistema Técnico
+
+#### **Frontend Mastery**
+* **React & Angular:** Capacidad para desarrollar SPAs (Single Page Applications) dinámicas y modulares siguiendo las mejores prácticas de la industria.
+* **Elm:** Especialización en arquitectura funcional para proyectos que requieren máxima estabilidad.
+* **Styling:** Experiencia con **PicoCSS**, Tailwind y CSS avanzado para interfaces minimalistas y eficientes.
+
+#### **Backend & Cloud**
+* **Java 21:** Dominio de las últimas funcionalidades del lenguaje y el framework **Spring Boot 3**.
+* **DevOps:** Orquestación de servicios mediante **Docker** y **Docker Compose**.
+* **Bases de Datos:** Gestión de persistencia con **PostgreSQL** y Spring Data JPA.
+
+---
+
+### 📈 Actividad en GitHub
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=Nimaiblanco&show_icons=true&theme=tokyonight&count_private=true" alt="Estadísticas de Nimai" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Nimaiblanco&layout=compact&theme=tokyonight" alt="Lenguajes más usados" />
 </div>
 
 ---
 
-### 📫 Contacto
+### 📫 Hablemos
+Si buscas un desarrollador que entienda tanto la robustez del servidor como la agilidad del cliente, ¡contáctame!
+
 - 💼 **LinkedIn:** [Nimaiblanco108](https://www.linkedin.com/in/nimaiblanco108)
-- 📧 **Email:** [Tu email aquí]
 - 📍 **Localización:** São Paulo, Brasil
 
 ---
