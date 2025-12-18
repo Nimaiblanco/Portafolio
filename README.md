@@ -9,7 +9,7 @@
 
 ---
 
-## 🌐 Portfólio Interativo
+## 🌐 Portfólio (In Construction)
 <p>Clique no card abaixo para acessar a experiência completa</p>
 
 <a href="https://nimaiblanco.github.io/Nimaiblanco/">
