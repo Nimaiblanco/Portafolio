@@ -1,250 +1,145 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blanco Nimai | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #000000;
-            --accent: #38bdf8;
-            --text: #ffffff;
-        }
+:root {
+    --bg: #000000;
+    --accent: #38bdf8;
+    --text-dim: #1a1a1a; /* Texto casi invisible fuera de la lupa */
+}
 
-        * { 
-            margin: 0; padding: 0; box-sizing: border-box; 
-            cursor: none !important; 
-        }
+/* 1. RESET Y CURSOR */
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    cursor: none !important; 
+}
 
-        html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 
-        body {
-            background-color: var(--bg);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            width: 100%;
-        }
+body {
+    background-color: var(--bg);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+}
 
-        #particles-js {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 1;
-        }
+/* 2. FONDO DE PARTÍCULAS */
+#particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+}
 
-        /* LUPA (Círculo de revelación) */
-        #lupa-wrapper {
-            position: fixed;
-            width: 160px; height: 160px;
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            overflow: hidden;
-            z-index: 10000;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            background: #000;
-            opacity: 0;
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
-        }
+/* 3. LUPA DINÁMICA (Efecto de crecimiento corregido) */
+#lupa-wrapper {
+    position: fixed;
+    width: 30px;   /* Tamaño inicial elegante */
+    height: 30px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 10000;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    background: #000;
+    opacity: 0;
+    /* Transición fluida para que no sea brusco */
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+                height 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+                box-shadow 0.4s ease,
+                border-width 0.3s ease;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
 
-        #lupa-content {
-            position: absolute;
-            width: 100vw;
-            color: #ffffff; /* Texto blanco dentro de la lupa */
-            transform-origin: 0 0;
-            background: #000;
-        }
+/* Clase que se activa mediante JS al pasar sobre .hover-trigger */
+#lupa-wrapper.active {
+    width: 120px;  /* Tamaño de reveal moderado */
+    height: 120px;
+    border-width: 1px; /* Borde más fino al ser más grande */
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+}
 
-        /* Ajuste para elementos fijos dentro del clon */
-        #lupa-content .navbar { position: absolute !important; }
+#lupa-content {
+    position: absolute;
+    width: 100vw;
+    height: auto;
+    color: #ffffff; /* Texto que se revela en blanco */
+    transform-origin: 0 0;
+    background: #000;
+}
 
-        /* CONTENIDO BASE (Invisible fuera de la lupa) */
-        #main-wrapper {
-            position: relative;
-            z-index: 10;
-            background: transparent;
-            color: #1a1a1a; /* Texto casi negro para que solo la lupa lo revele */
-        }
+/* Fix para que la navbar clonada no flote mal */
+#lupa-content .navbar {
+    position: absolute !important; 
+}
 
-        /* NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 40px; right: 60px;
-            display: flex; gap: 30px;
-            z-index: 1000;
-        }
-        .navbar a {
-            color: inherit; text-decoration: none;
-            font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-        }
+/* 4. CONTENIDO BASE */
+#main-wrapper {
+    position: relative;
+    z-index: 10;
+    background: transparent;
+    width: 100%;
+    color: var(--text-dim); /* Texto oscuro fuera de la lupa */
+    user-select: none;
+}
 
-        /* HERO */
-        .hero {
-            height: 100vh;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            text-align: center;
-        }
-        .hero h1 {
-            font-family: 'Archivo Narrow', sans-serif;
-            font-size: 11vw; line-height: 0.85; text-transform: uppercase;
-        }
-        .hero p {
-            color: var(--accent) !important; /* Siempre visible */
-            letter-spacing: 5px; font-weight: 900; margin-top: 20px;
-        }
+/* 5. DISEÑO VISUAL */
+.navbar {
+    position: fixed;
+    top: 40px; right: 60px;
+    display: flex; gap: 30px;
+    z-index: 1000;
+}
 
-        /* SECCIONES */
-        section { padding: 150px 15%; }
-        .section-title { color: var(--accent) !important; margin-bottom: 50px; letter-spacing: 3px; }
+.navbar a {
+    color: inherit; text-decoration: none;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+}
 
-        /* GRID DE SKILLS (Tu nuevo CSS) */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 60px;
-            margin-top: 40px;
-        }
+.hero {
+    height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+}
 
-        .skill-item h3 {
-            color: var(--accent);
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-            padding-bottom: 15px;
-            text-transform: uppercase;
-            font-family: 'Archivo Narrow', sans-serif;
-        }
+.hero h1 {
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 11vw; line-height: 0.85; text-transform: uppercase;
+}
 
-        .skill-item p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
+.hero p {
+    color: var(--accent) !important; /* El subtítulo siempre brilla */
+    letter-spacing: 5px; font-weight: 900; margin-top: 20px; font-size: 1rem;
+}
 
-        /* CONTACTO (Tu nuevo CSS) */
-        .contact-links {
-            display: flex; flex-wrap: wrap; gap: 40px; margin-top: 30px;
-        }
-        .contact-links a {
-            color: inherit; text-decoration: none;
-            font-size: 4rem; font-weight: 900; letter-spacing: -2px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        /* El hover solo es funcional si el mouse realmente está ahí */
-        .contact-links a:hover { color: var(--accent) !important; transform: skewX(-10deg); }
+section { padding: 150px 15%; }
+.section-title { color: var(--accent) !important; margin-bottom: 50px; font-size: 1rem; letter-spacing: 3px; }
 
-        /* FOOTER (Tu nuevo CSS) */
-        footer {
-            padding: 100px 15% 60px;
-            font-size: 0.7rem; letter-spacing: 3px;
-            opacity: 0.4; text-transform: uppercase;
-        }
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px;
+}
 
-        @media (max-width: 768px) {
-            .contact-links a { font-size: 2.5rem; }
-            .skill-item h3 { font-size: 1.8rem; }
-            .navbar { right: 20px; gap: 15px; }
-        }
-    </style>
-</head>
-<body>
+.skill-item h3 {
+    color: var(--accent);
+    font-size: 2.5rem; margin-bottom: 20px;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    padding-bottom: 15px; text-transform: uppercase;
+    font-family: 'Archivo Narrow', sans-serif;
+}
 
-    <div id="particles-js"></div>
+.skill-item p { font-size: 1.2rem; line-height: 1.6; }
 
-    <div id="lupa-wrapper">
-        <div id="lupa-content"></div>
-    </div>
+.contact-links { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 30px; }
+.contact-links a {
+    color: inherit; text-decoration: none;
+    font-size: 4rem; font-weight: 900; letter-spacing: -2px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.contact-links a:hover { color: var(--accent) !important; transform: skewX(-10deg); }
 
-    <div id="main-wrapper">
-        <div id="content-to-copy">
-            <nav class="navbar">
-                <a href="#experiencia">EXPERIÊNCIA</a>
-                <a href="#skills">SKILLS</a>
-                <a href="#contato">CONTATO</a>
-            </nav>
+footer { padding: 80px 15%; font-size: 0.7rem; letter-spacing: 3px; opacity: 0.4; }
 
-            <div class="hero">
-                <h1>BLANCO<br>NIMAI</h1>
-                <p>SOFTWARE DEVELOPER</p>
-            </div>
-
-            <section id="experiencia">
-                <h2 class="section-title">01. EXPERIÊNCIA</h2>
-                <div class="skill-item">
-                    <h3>Full Stack Developer</h3>
-                    <p>Especialista em Java e Spring Boot, focado em arquitetura escalável e interfaces de alto impacto visual.</p>
-                </div>
-            </section>
-
-            <section id="skills">
-                <h2 class="section-title">02. SKILLS</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <h3>Backend</h3>
-                        <p>Java, Spring Boot, Node.js, PostgreSQL.</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Frontend</h3>
-                        <p>React, Next.js, GSAP, CSS Advanced.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contato">
-                <h2 class="section-title">03. CONTATO</h2>
-                <div class="contact-links">
-                    <a href="mailto:hola@tuweb.com">EMAIL</a>
-                    <a href="#">LINKEDIN</a>
-                </div>
-            </section>
-
-            <footer>© 2025 BLANCO NIMAI</footer>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        const contentOriginal = document.getElementById('content-to-copy');
-        const lupaContent = document.getElementById('lupa-content');
-        const lupaWrapper = document.getElementById('lupa-wrapper');
-
-        lupaContent.innerHTML = contentOriginal.innerHTML;
-
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            const scrollY = window.scrollY;
-
-            lupaWrapper.style.opacity = '1';
-            lupaWrapper.style.left = `${x}px`;
-            lupaWrapper.style.top = `${y}px`;
-
-            const zoom = 1.6;
-            const radius = 80; 
-
-            const moveX = -(x * zoom) + radius;
-            const moveY = -((y + scrollY) * zoom) + radius;
-
-            lupaContent.style.transform = `translate(${moveX}px, ${moveY}px) scale(${zoom})`;
-        });
-
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 110, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#38bdf8" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.4 },
-                "size": { "value": 1.2, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#38bdf8", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 1 }
-            },
-            "interactivity": {
-                "events": { "onhover": { "enable": true, "mode": "grab" } },
-                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } }
-            },
-            "retina_detect": true
-        });
-    </script>
-</body>
-</html>
+@media (max-width: 768px) {
+    .contact-links a { font-size: 2.5rem; }
+    .skill-item h3 { font-size: 1.8rem; }
+    .navbar { right: 20px; gap: 15px; }
+}
