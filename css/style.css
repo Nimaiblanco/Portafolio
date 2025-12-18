@@ -1,33 +1,56 @@
-/* ... (Manten tus variables :root igual) */
+/* ... (Mantén tus variables :root igual) */
 
+/* 1. FONDO DE PARTÍCULAS: Debe ser el nivel más bajo */
 #particles-js {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: #000000; /* El fondo negro ahora vive aquí */
-    z-index: 0; /* Al fondo de todo */
+    background-color: #000000; /* El color negro base del sitio */
+    z-index: -1; /* Cambiado a -1 para asegurar que esté detrás de TODO */
     top: 0;
     left: 0;
+    pointer-events: none; /* Para que no interfiera con clicks */
 }
 
+/* 2. CONTENIDO PRINCIPAL: Debe ser transparente para dejar ver el fondo */
 #main-wrapper {
     position: relative;
-    z-index: 1; /* El texto por encima de las partículas */
-    background: transparent; /* IMPORTANTE: Para que se vea el fondo */
+    z-index: 1; /* Por encima de las partículas */
+    background: transparent !important; /* Fuerza la transparencia */
+    width: 100%;
+    min-height: 100vh;
 }
 
+/* 3. EL CÍRCULO LUPA: Capa superior absoluta */
 .cursor-lupa {
     position: fixed;
     width: 120px;
     height: 120px;
     border: 2px solid var(--accent);
     border-radius: 50%;
-    overflow: hidden;
-    z-index: 10000; /* Por encima de todo */
+    overflow: hidden; 
+    z-index: 99999; /* El valor más alto posible */
     pointer-events: none;
     transform: translate(-50%, -50%);
     opacity: 0;
-    background: #000; /* La lupa tiene su propio fondo negro para que el zoom sea legible */
+    background: #000000; /* Fondo negro sólido dentro de la lupa para legibilidad */
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2); /* Brillo sutil azul */
+    transition: opacity 0.3s ease;
 }
 
-/* El resto de tus estilos (.hero, .navbar, etc.) se mantienen igual */
+/* 4. CONTENIDO INTERNO DE LA LUPA */
+.lupa-content {
+    position: absolute;
+    width: 100vw;
+    height: auto;
+    background: #000000;
+    transform-origin: 0 0;
+}
+
+/* IMPORTANTE: Asegúrate de que el body no tenga otro fondo */
+body {
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    cursor: none !important;
+}
