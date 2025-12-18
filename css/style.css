@@ -1,59 +1,48 @@
-/* ESTRUTURA DAS SEÇÕES - CORRIGIDO */
-section { 
-    padding: 100px 10%;
-    min-height: 100vh;
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center;
-    position: relative;
-    z-index: 5;
-    width: 100%; /* Garante que ocupe a largura total */
+:root {
+    --bg: #000000;
+    --accent: #38bdf8;
+    --text-main: #ffffff;
 }
 
-/* AJUSTE DO SCROLL E COMPORTAMENTO DO MENU */
-html { 
-    scroll-behavior: smooth; 
-    scroll-padding-top: 120px; 
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
+body { background-color: var(--bg); font-family: 'Inter', sans-serif; color: var(--text-main); overflow-x: hidden; }
+
+/* PARTICULAS NO FUNDO */
+#particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1; /* Fica atrás */
+    background-color: #000;
 }
 
-/* TÍTULOS DAS SEÇÕES */
-.section-title {
-    color: var(--accent);
-    font-size: 0.75rem; 
-    letter-spacing: 6px;
-    margin-bottom: 60px; 
-    text-transform: uppercase;
-    font-weight: 900;
-    opacity: 0.9;
-}
+/* CONTEÚDO NA FRENTE */
+#main-wrapper { position: relative; z-index: 10; width: 100%; }
+.navbar { position: fixed; top: 40px; right: 50px; display: flex; gap: 25px; z-index: 1000; }
+.navbar a { color: #fff; text-decoration: none; font-size: 11px; letter-spacing: 2px; font-weight: 900; opacity: 0.6; pointer-events: auto; }
 
-/* ESTILO DOS ITENS DENTRO DAS SEÇÕES */
-.skill-item {
-    margin-bottom: 60px; /* Aumentei um pouco para dar mais ar */
-    max-width: 800px;
-}
+/* HERO */
+.hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+.hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 9vw; line-height: 0.85; text-transform: uppercase; }
+.software-dev { color: var(--accent); letter-spacing: 6px; margin-top: 15px; font-weight: 900; font-size: 0.8rem; }
 
-.skill-item h3 {
-    font-size: 2.5rem; /* Ajustado para melhor impacto visual */
-    margin-bottom: 15px;
-    font-weight: 900;
-    color: #ffffff; /* Garante que o título seja branco */
-    text-transform: uppercase;
-}
+/* SEÇÕES */
+section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+.section-title { color: var(--accent); font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 50px; font-weight: 900; }
+.skill-item h3 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 900; }
+.skill-item p { opacity: 0.6; line-height: 1.6; font-size: 1.1rem; }
 
-.skill-item p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #ffffff;
-    opacity: 0.6; /* Efeito minimalista de cinza claro */
+/* CURSOR */
+#cursor {
+    position: fixed;
+    width: 25px; height: 25px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: background 0.3s ease;
 }
+#cursor.active { background: rgba(56, 189, 248, 0.3); }
 
-/* Responsividade Básica para Celular */
-@media (max-width: 768px) {
-    .skill-item h3 {
-        font-size: 1.8rem;
-    }
-    section {
-        padding: 80px 5%;
-    }
-}
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
