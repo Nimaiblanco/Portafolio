@@ -2,77 +2,133 @@
     --bg: #000000;
     --text: #ffffff;
     --accent: #38bdf8;
+    --border: #1a1a1a;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
+/* 1. Reset y eliminación total del cursor del sistema */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    cursor: none !important; 
+}
 
-body {
+html, body {
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
-    overflow: hidden; /* Importante para el efecto lupa */
+    /* Quitamos el overflow: hidden para permitir el scroll normal */
+    overflow-x: hidden; 
+    width: 100%;
 }
 
-/* EL CÍRCULO LUPA */
+/* 2. EL CONTENEDOR CIRCULAR (LUPA) */
 .cursor-lupa {
     position: fixed;
-    width: 100px; /* Tamaño del círculo */
-    height: 100px;
+    width: 120px; /* Tamaño un poco más grande para mejor visibilidad */
+    height: 120px;
     border: 2px solid var(--accent);
     border-radius: 50%;
-    overflow: hidden; /* Corta todo lo que no esté dentro del círculo */
+    overflow: hidden; /* Recorta el contenido espejo */
     z-index: 9999;
-    pointer-events: none;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    pointer-events: none; /* Permite hacer click a través de la lupa */
+    transform: translate(-50%, -50%); /* Crucial para centrar con el JS */
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+    background-color: var(--bg); /* Evita transparencias raras */
 }
 
-/* El contenido clonado dentro del círculo */
+/* 3. EL CONTENIDO CLONADO DENTRO DE LA LUPA */
 .lupa-content {
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    /* No le damos altura fija para que el contenido clonado fluya */
+    min-height: 100vh;
     background: var(--bg);
     transform-origin: 0 0;
+    pointer-events: none;
 }
 
+/* 4. CONTENIDO PRINCIPAL */
 #main-content {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
     position: relative;
+    z-index: 1;
 }
 
-/* ESTILOS VISUALES (Iguales a los anteriores) */
+/* 5. ESTILOS VISUALES (Estilo Matheus Adriel) */
+.navbar {
+    position: fixed;
+    top: 40px;
+    right: 60px;
+    display: flex;
+    gap: 35px;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    transition: 0.3s;
+}
+
+.navbar a:hover { color: var(--text); }
+
 .hero {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
 }
 
 .hero h1 {
     font-family: 'Archivo Narrow', sans-serif;
     font-size: 10vw;
-    line-height: 0.8;
+    line-height: 0.85;
+    text-align: center;
+    letter-spacing: -3px;
     text-transform: uppercase;
 }
 
-.navbar {
-    position: fixed;
-    top: 40px;
-    right: 60px;
-    display: flex;
-    gap: 30px;
-    z-index: 100;
+.hero p {
+    color: var(--accent);
+    letter-spacing: 10px;
+    margin-top: 20px;
+    font-size: 0.9rem;
 }
 
-.navbar a {
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 2px;
+/* SECCIONES PARA PROBAR EL SCROLL */
+section {
+    padding: 120px 15%;
+    border-top: 1px solid var(--border);
 }
 
-section { padding: 100px 10%; }
-.section-title { color: var(--accent); margin-bottom: 30px; }
+.section-title { 
+    color: var(--accent); 
+    letter-spacing: 4px; 
+    margin-bottom: 50px; 
+    font-size: 0.8rem; 
+}
+
+.skill-tag {
+    display: inline-block;
+    border: 1px solid var(--border);
+    padding: 12px 30px;
+    margin: 5px;
+    font-weight: 900;
+    font-size: 0.8rem;
+}
+
+/* Animaciones de revelado */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
