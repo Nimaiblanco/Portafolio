@@ -1,34 +1,11 @@
-:root {
-    --bg: #000000;
-    --accent: #38bdf8;
-    --text-main: #ffffff;
-}
-
-html { 
-    scroll-behavior: smooth; 
-    scroll-padding-top: 100px;
-}
-
-* { 
-    margin: 0; padding: 0; box-sizing: border-box; 
-    cursor: none !important; 
-}
-
-body { 
-    background-color: var(--bg); 
-    font-family: 'Inter', sans-serif; 
-    color: var(--text-main); 
-    overflow-x: hidden;
-}
-
-/* NAVBAR - Prioridad total de clic */
+/* NAVBAR - MÁXIMA PRIORIDAD */
 .navbar { 
     position: fixed; 
     top: 40px; 
     right: 50px; 
     display: flex; 
     gap: 25px; 
-    z-index: 999999; 
+    z-index: 9999999 !important; /* Por encima de todo */
 }
 
 .navbar a { 
@@ -38,55 +15,21 @@ body {
     letter-spacing: 2px; 
     font-weight: 900; 
     opacity: 0.6;
-    pointer-events: auto;
+    pointer-events: auto !important; /* Obliga a recibir clics */
     transition: 0.3s;
+    position: relative;
 }
 
 .navbar a:hover { opacity: 1; color: var(--accent); }
 
-/* CURSOR LENTE - CORRECCIÓN DE BLOQUEO */
+/* CURSOR - DEBE SER INVISIBLE PARA LOS CLICS */
 #cursor {
     position: fixed;
-    width: 30px;
-    height: 30px;
-    border: 1px solid var(--accent);
-    border-radius: 50%;
-    pointer-events: none; /* CLAVE: El mouse "atraviesa" el cursor */
-    z-index: 100000;
+    pointer-events: none !important; /* El clic lo atraviesa */
+    z-index: 100000; 
     transform: translate(-50%, -50%);
     overflow: hidden; 
     background: var(--bg);
-    transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
-                height 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    border: 1px solid var(--accent);
+    border-radius: 50%;
 }
-
-#cursor.active {
-    width: 250px; 
-    height: 250px;
-    border: 1px solid rgba(56, 189, 248, 0.8);
-    box-shadow: 0 0 50px rgba(56, 189, 248, 0.4);
-}
-
-#cursor-zoom {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: none;
-    pointer-events: none;
-}
-
-#cursor.active #cursor-zoom {
-    display: block;
-}
-
-/* SECCIONES */
-#main-wrapper { position: relative; z-index: 10; }
-section { padding: 100px 10%; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
-
-.hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 8vw; line-height: 0.8; text-align: center; text-transform: uppercase; }
-
-.contact-links a { font-size: clamp(3rem, 10vw, 6rem); color: #fff; text-decoration: none; font-weight: 900; pointer-events: auto; }
-#particles-js { position: fixed; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
