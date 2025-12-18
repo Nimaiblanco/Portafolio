@@ -22,12 +22,11 @@ window.onload = () => {
     });
 };
 
-/* PARTÍCULAS GRANDES SEGÚN TU DISEÑO */
 particlesJS('particles-js', {
     "particles": {
         "number": { "value": 100 },
         "color": { "value": "#38bdf8" },
-        "size": { "value": 7, "random": true },
+        "size": { "value": 6, "random": true },
         "line_linked": { "enable": true, "distance": 200, "color": "#38bdf8", "opacity": 0.4, "width": 2 },
         "move": { "enable": true, "speed": 1.5 }
     }
