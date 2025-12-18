@@ -1,56 +1,69 @@
-/* GRID DE SKILLS */
+/* GRID DE SKILLS - Optimizado para la red molecular */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-top: 20px;
+    /* Cambiado para asegurar que en pantallas grandes se vea en columnas claras */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px;
+    margin-top: 40px;
 }
 
-.skill-category h3 {
+/* Ajuste para que el selector coincida con .skill-item de tu HTML */
+.skill-item h3 {
     color: var(--accent);
-    font-size: 1.2rem;
+    font-size: 2.5rem; /* Tamaño grande para impacto visual con lupa */
     margin-bottom: 20px;
-    border-bottom: 1px solid rgba(56, 189, 248, 0.3);
-    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    padding-bottom: 15px;
+    text-transform: uppercase;
+    font-family: 'Archivo Narrow', sans-serif;
 }
 
-.skill-category ul {
-    list-style: none;
+.skill-item p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    color: var(--text);
 }
 
-.skill-category li {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-/* CONTACTO */
+/* CONTACTO - Estilo minimalista y de alto impacto */
 .contact-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 40px;
+    margin-top: 30px;
 }
 
-.contact-btn {
-    padding: 15px 30px;
-    border: 1px solid var(--accent);
-    color: #fff;
+.contact-links a {
+    color: var(--text);
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 700;
-    transition: all 0.3s;
+    font-size: 4rem; /* Texto muy grande según tus imágenes previas */
+    font-weight: 900;
+    letter-spacing: -2px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
 }
 
-.contact-btn:hover {
-    background: var(--accent);
-    color: #000;
+.contact-links a:hover {
+    color: var(--accent);
+    transform: skewX(-10deg); /* Efecto visual moderno al pasar el mouse */
 }
 
-/* FOOTER */
+/* FOOTER - Limpio y discreto al final del scroll */
 footer {
-    padding: 60px 15%;
-    text-align: center;
+    padding: 100px 15% 60px;
+    text-align: left; /* Alineado a la izquierda para mantener la simetría */
     font-size: 0.7rem;
-    letter-spacing: 2px;
-    opacity: 0.5;
+    letter-spacing: 3px;
+    opacity: 0.4;
+    text-transform: uppercase;
+}
+
+/* Media Query para asegurar que en móviles no se rompa el diseño */
+@media (max-width: 768px) {
+    .contact-links a {
+        font-size: 2.5rem;
+    }
+    .skill-item h3 {
+        font-size: 1.8rem;
+    }
 }
