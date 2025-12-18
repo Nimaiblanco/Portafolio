@@ -4,7 +4,7 @@
     --accent: #38bdf8;
 }
 
-/* 1. RESET Y CURSOR */
+/* 1. RESET Y ELIMINACIÓN DE CURSOR */
 * { 
     margin: 0; 
     padding: 0; 
@@ -12,65 +12,84 @@
     cursor: none !important; 
 }
 
-/* 2. BODY TRANSPARENTE */
-body {
-    background-color: transparent; 
+html, body {
+    background-color: #000;
     color: var(--text);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
-/* 3. PARTICULAS AL FONDO ABSOLUTO */
+/* 2. FONDO DE PARTÍCULAS (Capa base) */
 #particles-js {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #000000; /* El color negro vive aquí */
-    z-index: -2; /* Forzado al fondo total */
+    z-index: 0; /* Al fondo */
+    background-color: #000;
 }
 
-/* 4. EL CONTENEDOR PRINCIPAL DEBE SER TRANSPARENTE */
+/* 3. WRAPPER PRINCIPAL (Capa intermedia) */
 #main-wrapper {
     position: relative;
-    z-index: 1; 
-    background: transparent !important;
+    z-index: 10; /* Por encima de las partículas */
     width: 100%;
+    background: transparent; /* Permite ver el fondo */
 }
 
-/* 5. LA LUPA (CAPA SUPERIOR) */
+/* 4. LA LUPA (Capa superior absoluta) */
 .cursor-lupa {
     position: fixed;
     width: 120px;
     height: 120px;
     border: 2px solid var(--accent);
     border-radius: 50%;
-    overflow: hidden;
-    z-index: 9999;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    background: #000000; /* Fondo negro para que el texto clonado sea legible */
+    overflow: hidden; /* Corta el contenido clonado */
+    z-index: 99999; /* Por encima de TODO */
+    pointer-events: none; /* No interfiere con los clicks */
+    transform: translate(-50%, -50%); /* Crucial para el JS */
     opacity: 0;
-    transition: opacity 0.3s ease;
+    background: #000; /* Fondo negro para legibilidad */
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
 }
 
+/* 5. CONTENIDO CLONADO DENTRO DE LA LUPA */
 .lupa-content {
     position: absolute;
-    width: 100vw;
+    width: 100vw; /* Debe tener el mismo ancho que la pantalla */
     height: auto;
-    background: #000000;
-    transform-origin: 0 0;
+    background: #000;
+    transform-origin: 0 0; /* Crucial para el escalado del zoom */
 }
 
-/* ESTILOS VISUALES (RESTAURADOS) */
+/* 6. ESTILOS VISUALES DEL PORTFOLIO */
+.navbar {
+    position: fixed;
+    top: 40px;
+    right: 60px;
+    display: flex;
+    gap: 30px;
+    z-index: 100;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
 .hero {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: transparent;
+    text-align: center;
 }
 
 .hero h1 {
@@ -78,20 +97,27 @@ body {
     font-size: 10vw;
     line-height: 0.85;
     text-transform: uppercase;
+    font-weight: 700;
 }
 
-.navbar {
-    position: fixed;
-    top: 40px;
-    right: 60px;
-    display: flex;
-    gap: 30px;
-    z-index: 500;
+.hero p {
+    color: var(--accent);
+    letter-spacing: 8px;
+    font-size: 0.8rem;
+    margin-top: 10px;
 }
 
-.navbar a {
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 2px;
+section {
+    padding: 100px 15%;
+    position: relative;
 }
+
+.section-title {
+    color: var(--accent);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+}
+
+.cv-item h3 { font-size: 2rem; margin-bottom: 10px; }
+.cv-item p { opacity: 0.7; line-height: 1.6; max-width: 600px; }
