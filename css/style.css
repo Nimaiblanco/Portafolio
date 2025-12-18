@@ -1,10 +1,9 @@
 :root {
     --bg: #000000;
-    --accent: #38bdf8;
-    --text-main: #ffffff;
+    --accent: #38bdf8; /* Azul para detalles y partículas */
+    --text-main: #ffffff; /* Blanco para el nombre y textos */
 }
 
-/* IMPORTANTE: El cursor real desaparece, la lupa lo sustituye */
 * { 
     margin: 0; padding: 0; box-sizing: border-box; 
     cursor: none !important; 
@@ -13,54 +12,70 @@
 body { 
     background-color: var(--bg); 
     font-family: 'Inter', sans-serif; 
+    overflow-x: hidden; 
+    width: 100%; 
     color: var(--text-main); 
-    overflow-x: hidden;
 }
 
-/* Partículas más grandes desde el fondo */
 #particles-js { 
     position: fixed; 
+    top: 0; left: 0; 
     width: 100%; height: 100%; 
     z-index: 1; 
     transform: scale(1.1); 
 }
 
-/* Lupa: Ahora forzamos que se vea */
 #lupa-wrapper {
     position: fixed;
     width: 40px; height: 40px;
-    border: 2px solid var(--accent);
+    border: 1px solid var(--accent);
     border-radius: 50%;
     overflow: hidden;
     z-index: 10000;
     pointer-events: none;
     transform: translate(-50%, -50%);
-    opacity: 1 !important; /* Forzamos visibilidad */
     background: transparent;
-    transition: width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
+    opacity: 1 !important; /* Forzado para que no desaparezca */
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    transition: width 0.3s ease, height 0.3s ease;
 }
 
 #lupa-wrapper.active {
-    width: 180px; height: 180px;
+    width: 170px; height: 170px;
     box-shadow: 0 0 40px rgba(56, 189, 248, 0.6);
 }
 
 #lupa-content {
     position: absolute;
     width: 100vw;
+    color: #ffffff;
+    transform-origin: 0 0;
     background: var(--bg);
 }
 
 #main-wrapper { position: relative; z-index: 10; }
 
 .navbar { position: fixed; top: 40px; right: 60px; display: flex; gap: 30px; z-index: 1000; }
-.navbar a { color: #fff; text-decoration: none; font-size: 11px; letter-spacing: 2px; opacity: 0.7; }
+.navbar a { color: var(--text-main); text-decoration: none; font-size: 11px; letter-spacing: 2px; opacity: 0.7; }
 
 .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 11vw; color: var(--accent); text-transform: uppercase; }
-.hero p { letter-spacing: 5px; font-weight: 900; margin-top: 20px; }
 
-section { padding: 100px 15%; }
-.skill-item h3 { font-size: 3rem; color: var(--accent); border-bottom: 1px solid rgba(56, 189, 248, 0.3); }
+/* NOMBRE EN BLANCO */
+.hero h1 { 
+    font-family: 'Archivo Narrow', sans-serif; 
+    font-size: 11vw; line-height: 0.85; text-transform: uppercase; 
+    color: #ffffff; 
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
 
-.contact-links a { font-size: 4rem; color: #fff; text-decoration: none; font-weight: 900; }
+.hero p { color: var(--accent); letter-spacing: 5px; font-weight: 900; margin-top: 20px; font-size: 1rem; }
+
+section { padding: 150px 15%; }
+.section-title { color: var(--accent) !important; margin-bottom: 50px; letter-spacing: 3px; }
+
+.skill-item h3 { color: var(--accent); font-size: 2.5rem; border-bottom: 1px solid rgba(56, 189, 248, 0.3); padding-bottom: 15px; }
+
+.contact-links a { color: var(--text-main); text-decoration: none; font-size: 4rem; font-weight: 900; }
+.contact-links a:hover { color: var(--accent); }
+
+footer { padding: 80px 15%; font-size: 0.7rem; opacity: 0.4; text-align: center; }
