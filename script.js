@@ -4,7 +4,9 @@ const mainWrapper = document.getElementById('main-wrapper');
 
 // Sincronizar contenido para la lupa al cargar
 window.onload = () => {
-    cursorZoom.innerHTML = mainWrapper.innerHTML;
+    if (mainWrapper && cursorZoom) {
+        cursorZoom.innerHTML = mainWrapper.innerHTML;
+    }
 };
 
 document.addEventListener('mousemove', (e) => {
@@ -16,15 +18,17 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.left = `${x}px`;
     cursor.style.top = `${y}px`;
 
-    // Calcular el efecto de aumento (1.2x)
-    const zoom = 1.2;
+    // Calcular el efecto de aumento (1.25x es el zoom ideal)
+    const zoom = 1.25;
     const moveX = -x * zoom + (cursor.offsetWidth / 2);
     const moveY = -(y + scrollY) * zoom + (cursor.offsetHeight / 2);
 
-    cursorZoom.style.transform = `translate(${moveX}px, ${moveY}px) scale(${zoom})`;
+    if (cursorZoom) {
+        cursorZoom.style.transform = `translate(${moveX}px, ${moveY}px) scale(${zoom})`;
+    }
 });
 
-// Activar lupa en elementos hover-trigger
+// Activar lupa en elementos con clase .hover-trigger
 document.querySelectorAll('.hover-trigger').forEach(item => {
     item.addEventListener('mouseenter', () => cursor.classList.add('active'));
     item.addEventListener('mouseleave', () => cursor.classList.remove('active'));
