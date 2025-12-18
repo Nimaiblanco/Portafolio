@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        /* Refuerzo para que el cursor desaparezca desde el primer segundo */
+        /* Desaparición inmediata del cursor en todo el documento */
         * { cursor: none !important; }
     </style>
 </head>
@@ -55,7 +55,6 @@
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        /* LÓGICA DEL CURSOR GIGANTE */
         const cursor = document.querySelector('.cursor-follower');
         let mouseX = 0;
         let mouseY = 0;
@@ -65,8 +64,8 @@
             mouseY = e.clientY;
         });
 
+        /* ANIMACIÓN DEL CURSOR CON LUPA */
         function animateCursor() {
-            /* Usamos offsetWidth y height para que el centrado sea perfecto incluso al agrandarse */
             const x = mouseX - (cursor.offsetWidth / 2);
             const y = mouseY - (cursor.offsetHeight / 2);
             cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
@@ -74,21 +73,27 @@
         }
         animateCursor();
 
-        /* EFECTO HOVER EN ENLACES - AGRANDA EL CÍRCULO */
-        document.querySelectorAll('a, .skill-tag').forEach(el => {
+        /* EFECTO LUPA DINÁMICO AL PASAR POR ENLACES */
+        document.querySelectorAll('a, .skill-tag, h1, h2, h3, p').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursor.style.width = '100px';
-                cursor.style.height = '100px';
-                cursor.style.backgroundColor = 'rgba(56, 189, 248, 0.2)';
+                cursor.style.width = '120px'; /* Se agranda un poco más para la lupa */
+                cursor.style.height = '120px';
+                cursor.style.backgroundColor = 'rgba(56, 189, 248, 0.05)';
+                // El aumento (lupa) se vuelve más fuerte en elementos interactivos
+                cursor.style.backdropFilter = 'scale(1.4)';
+                cursor.style.webkitBackdropFilter = 'scale(1.4)';
             });
             el.addEventListener('mouseleave', () => {
                 cursor.style.width = '60px';
                 cursor.style.height = '60px';
                 cursor.style.backgroundColor = 'rgba(56, 189, 248, 0.1)';
+                // Zoom normal de la lupa
+                cursor.style.backdropFilter = 'scale(1.2)';
+                cursor.style.webkitBackdropFilter = 'scale(1.2)';
             });
         });
 
-        /* PARTÍCULAS */
+        /* CONFIGURACIÓN DE PARTÍCULAS */
         particlesJS('particles-js', {
             "particles": {
                 "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
@@ -100,7 +105,7 @@
             }
         });
 
-        /* REVEAL AL HACER SCROLL */
+        /* ANIMACIÓN DE REVELACIÓN */
         const reveal = () => {
             document.querySelectorAll('.reveal').forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
