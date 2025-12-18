@@ -11,45 +11,25 @@
             --accent: #38bdf8;
         }
 
-        /* 1. RESET Y CURSOR */
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            cursor: none !important; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
+        body { background-color: #000; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-        html { scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--bg);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* 2. FONDO DE MOLÉCULAS */
+        /* 1. FONDO DE PARTÍCULAS */
         #particles-js {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1; /* Al fondo */
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
         }
 
-        /* 3. CONTENIDO BASE (Invisible fuera de la lupa) */
+        /* 2. CAPA DE CONTENIDO BASE */
         #main-wrapper {
             position: relative;
             z-index: 10;
+            color: #fff;
             background: transparent;
-            width: 100%;
-            /* El texto es NEGRO para que no se vea sobre el fondo negro */
-            color: #000000; 
-            user-select: none;
         }
 
-        /* 4. LA LUPA (Revelador y Aumento) */
+        /* 3. CONTENEDOR DE LA LUPA */
         #lupa-wrapper {
             position: fixed;
             width: 160px; 
@@ -57,84 +37,38 @@
             border: 2px solid var(--accent);
             border-radius: 50%;
             overflow: hidden;
-            z-index: 10000;
+            z-index: 10000; /* Por encima de todo */
             pointer-events: none;
             transform: translate(-50%, -50%);
-            background: #000; /* Fondo negro sólido para que no se vea el texto negro de abajo */
             opacity: 0;
             box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            /* Importante: fondo negro para que no se vea "vacío" */
+            background: #000; 
         }
 
-        /* Contenido blanco dentro de la lupa */
+        /* El contenido clonado dentro de la lupa */
         #lupa-content {
             position: absolute;
             width: 100vw;
             height: auto;
-            color: #ffffff; /* Aquí el texto sí es BLANCO */
+            color: #fff;
             transform-origin: 0 0;
-            background: #000;
+            /* Aseguramos que el fondo dentro de la lupa sea negro sólido */
+            background: #000; 
         }
 
-        /* 5. DISEÑO VISUAL */
-        .navbar {
-            position: fixed;
-            top: 40px;
-            right: 60px;
-            display: flex;
-            gap: 30px;
-            z-index: 1000;
-        }
-
-        .navbar a {
-            color: inherit; /* Seguirá la lógica de invisibilidad/revelación */
-            text-decoration: none;
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-family: 'Archivo Narrow', sans-serif;
-            font-size: 11vw;
-            line-height: 0.85;
-            text-transform: uppercase;
-        }
-
-        .hero p {
-            color: var(--accent) !important; /* El subtítulo siempre visible */
-            letter-spacing: 5px;
-            font-weight: 900;
-            margin-top: 20px;
-            font-size: 1rem;
-        }
-
+        /* ESTILOS VISUALES (Basados en tu video/fotos) */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 11vw; line-height: 0.85; text-transform: uppercase; }
+        .hero p { letter-spacing: 5px; font-weight: 900; margin-top: 20px; font-size: 1rem; color: var(--accent); }
+        
         section { padding: 150px 15%; }
-
-        .section-title {
-            color: var(--accent) !important; /* Títulos de sección siempre visibles */
-            margin-bottom: 50px;
-            letter-spacing: 3px;
-            font-size: 1rem;
-        }
-
+        .section-title { color: var(--accent); font-size: 1rem; margin-bottom: 40px; text-transform: uppercase; }
         .skill-item h3 { font-size: 3rem; text-transform: uppercase; margin-bottom: 15px; }
-        .skill-item p { font-size: 1.2rem; line-height: 1.6; }
+        .skill-item p { font-size: 1.2rem; opacity: 0.8; line-height: 1.6; }
 
-        footer {
-            padding: 100px 15%;
-            font-size: 10px;
-            letter-spacing: 2px;
-            color: #222; /* Casi invisible fuera de lupa */
-        }
+        .navbar { position: fixed; top: 40px; right: 60px; display: flex; gap: 30px; z-index: 1000; }
+        .navbar a { color: #fff; text-decoration: none; font-size: 11px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
@@ -165,7 +99,7 @@
                     <p>Especialista em Java e Spring Boot, focado em arquitetura escalável e interfaces de alto impacto visual.</p>
                 </div>
             </section>
-            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -174,7 +108,7 @@
         const lupaContent = document.getElementById('lupa-content');
         const lupaWrapper = document.getElementById('lupa-wrapper');
 
-        // Clonamos el contenido para la lupa
+        // Sincronización inicial
         lupaContent.innerHTML = contentOriginal.innerHTML;
 
         document.addEventListener('mousemove', (e) => {
@@ -186,18 +120,19 @@
             lupaWrapper.style.left = `${x}px`;
             lupaWrapper.style.top = `${y}px`;
 
-            // Configuración del aumento (zoom)
+            // EL SECRETO: Ajuste de zoom y posición central
             const zoom = 1.6;
             const radius = 80; // Mitad del ancho del círculo (160/2)
 
-            // Alineación matemática exacta para el efecto de lupa
+            // Calculamos la posición para que el punto central del mouse 
+            // coincida exactamente con el centro del texto aumentado
             const moveX = -(x * zoom) + radius;
             const moveY = -((y + scrollY) * zoom) + radius;
 
             lupaContent.style.transform = `translate(${moveX}px, ${moveY}px) scale(${zoom})`;
         });
 
-        /* PARTÍCULAS (MOLÉCULAS AZULES) */
+        // Partículas (Red Molecular Azul)
         particlesJS('particles-js', {
             "particles": {
                 "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
