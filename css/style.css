@@ -19,18 +19,38 @@ body { background-color: var(--bg); font-family: 'Inter', sans-serif; color: var
 /* CONTEÚDO NA FRENTE */
 #main-wrapper { position: relative; z-index: 10; width: 100%; }
 .navbar { position: fixed; top: 40px; right: 50px; display: flex; gap: 25px; z-index: 1000; }
-.navbar a { color: #fff; text-decoration: none; font-size: 11px; letter-spacing: 2px; font-weight: 900; opacity: 0.6; pointer-events: auto; }
+.navbar a { color: #fff; text-decoration: none; font-size: 11px; letter-spacing: 2px; font-weight: 900; opacity: 0.6; pointer-events: auto; transition: 0.3s; }
+.navbar a:hover { opacity: 1; color: var(--accent); }
 
 /* HERO */
 .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
 .hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 9vw; line-height: 0.85; text-transform: uppercase; }
 .software-dev { color: var(--accent); letter-spacing: 6px; margin-top: 15px; font-weight: 900; font-size: 0.8rem; }
 
-/* SEÇÕES */
+/* SEÇÕES GERAIS */
 section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
 .section-title { color: var(--accent); font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 50px; font-weight: 900; }
 .skill-item h3 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 900; }
-.skill-item p { opacity: 0.6; line-height: 1.6; font-size: 1.1rem; }
+.skill-item p { opacity: 0.6; line-height: 1.6; font-size: 1.1rem; max-width: 600px; }
+
+/* --- SEÇÃO DE CONTATO (EMAIL GIGANTE) --- */
+#contato { align-items: center; text-align: center; }
+.contact-links { width: 100%; display: flex; justify-content: center; margin-top: 20px; }
+
+.contact-links a { 
+    font-size: clamp(3rem, 10vw, 8rem); /* Fica gigante e responsivo */
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 900;
+    letter-spacing: -3px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: auto; /* Permite clicar */
+}
+
+.contact-links a:hover {
+    color: var(--accent);
+    letter-spacing: 10px; /* Efeito de expansão ao passar o mouse */
+}
 
 /* CURSOR */
 #cursor {
@@ -41,8 +61,8 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
-#cursor.active { background: rgba(56, 189, 248, 0.3); }
+#cursor.active { background: rgba(56, 189, 248, 0.3); transform: translate(-50%, -50%) scale(1.5); }
 
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
