@@ -1,11 +1,11 @@
 <div align="center">
 
-# [Seu Nome] | Full Stack Developer 👋
+# [Blanco Nimai] | Full Stack Developer
 
 <img src="https://capsule-render.vercel.app/render?type=rect&color=0d1117&height=120&section=header&text=FULL%20STACK%20DEVELOPER&fontSize=50&fontColor=38bdf8" width="100%" />
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](SEU_LINK_DO_LINKEDIN)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/SEU_USUARIO)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/nimaiblanco108)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Nimaiblanco)
 
 </div>
 
