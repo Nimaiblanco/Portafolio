@@ -6,131 +6,77 @@
     <title>Blanco Nimai | Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
-    <style>
-        /* CSS Crítico para el funcionamiento de la lupa */
-        body { overflow-x: hidden; margin: 0; }
-        
-        .cursor-lupa {
-            position: fixed;
-            width: 120px; /* Tamaño del círculo */
-            height: 120px;
-            border: 2px solid #38bdf8;
-            border-radius: 50%;
-            overflow: hidden;
-            z-index: 9999;
-            pointer-events: none;
-            transform: translate(-50%, -50%); /* Centra el círculo en el mouse */
-            background: #000; /* Fondo para que no sea transparente */
-            display: none; /* Se activa al mover el mouse */
-        }
-
-        .lupa-content {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            transform-origin: 0 0;
-            pointer-events: none;
-        }
-
-        #main-content {
-            width: 100%;
-            min-height: 100vh;
-            position: relative;
-        }
-    </style>
 </head>
 <body>
+    <div id="particles-js"></div>
+
     <div class="cursor-lupa" id="lupa-wrapper">
-        <div class="lupa-content" id="lupa-content">
-            </div>
+        <div class="lupa-content" id="lupa-content"></div>
     </div>
 
-    <div id="main-content">
-        <div id="particles-js"></div>
+    <div id="main-wrapper">
+        <div id="content-to-copy">
+            <nav class="navbar">
+                <a href="#experiencia">EXPERIÊNCIA</a>
+                <a href="#skills">SKILLS</a>
+                <a href="#contato">CONTATO</a>
+            </nav>
 
-        <nav class="navbar">
-            <a href="#experiencia">EXPERIÊNCIA</a>
-            <a href="#skills">SKILLS</a>
-            <a href="#contato">CONTATO</a>
-        </nav>
+            <div class="hero">
+                <h1 class="reveal">BLANCO<br>NIMAI</h1>
+                <p class="reveal">SOFTWARE DEVELOPER</p>
+            </div>
 
-        <div class="hero">
-            <h1 class="reveal">BLANCO<br>NIMAI</h1>
-            <p class="reveal">SOFTWARE DEVELOPER</p>
+            <section id="experiencia" class="reveal active">
+                <h2 class="section-title">EXPERIÊNCIA TÉCNICA</h2>
+                <div class="cv-item">
+                    <h3>Desenvolvedor Full Stack</h3>
+                    <span class="date">Atualmente</span>
+                    <p>Especialista em Java e Spring Boot, focado em arquitetura escalável e interfaces de alto impacto visual.</p>
+                </div>
+            </section>
         </div>
-
-        <section id="experiencia" class="reveal active">
-            <h2 class="section-title">EXPERIÊNCIA TÉCNICA</h2>
-            <div class="cv-item">
-                <h3>Desenvolvedor Full Stack</h3>
-                <span class="date">Atualmente</span>
-                <p>Especialista em Java e Spring Boot, focado em arquitetura escalável e interfaces de alto impacto visual.</p>
-            </div>
-        </section>
-
-        <section id="skills" class="reveal active">
-            <h2 class="section-title">SKILLS</h2>
-            <div class="skills-grid">
-                <div class="skill-tag">JAVA</div>
-                <div class="skill-tag">SPRING</div>
-                <div class="skill-tag">MYSQL</div>
-                <div class="skill-tag">JS</div>
-            </div>
-        </section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        const mainContent = document.getElementById('main-content');
+        const contentToCopy = document.getElementById('content-to-copy');
         const lupaContent = document.getElementById('lupa-content');
         const lupaWrapper = document.getElementById('lupa-wrapper');
 
-        // Función para clonar contenido incluyendo el estado de las partículas
-        function updateLupa() {
-            lupaContent.innerHTML = mainContent.innerHTML;
-        }
-        updateLupa();
+        // Clonamos el contenido de texto pero NO las partículas
+        lupaContent.innerHTML = contentToCopy.innerHTML;
 
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
             const scrollY = window.scrollY;
 
-            lupaWrapper.style.display = 'block';
-            
-            // 1. Mover el círculo contenedor (fijo en pantalla)
-            lupaWrapper.style.left = x + 'px';
-            lupaWrapper.style.top = y + 'px';
+            lupaWrapper.style.opacity = '1';
+            lupaWrapper.style.left = `${x}px`;
+            lupaWrapper.style.top = `${y}px`;
 
-            // 2. Lógica de la Lupa (Zoom real)
-            const zoom = 1.5; // Nivel de aumento
-            
-            // Calculamos el desfase para que el contenido de la lupa coincida con el real
-            // Restamos la mitad del tamaño del círculo (60px) para centrar el aumento
-            const offsetX = (x * zoom) - 60;
-            const offsetY = ((y + scrollY) * zoom) - 60;
+            const zoom = 1.6;
+            const moveX = -(x * zoom) + 60;
+            const moveY = -((y + scrollY) * zoom) + 60;
 
-            lupaContent.style.transform = `translate(${-offsetX}px, ${-offsetY}px) scale(${zoom})`;
+            lupaContent.style.transform = `translate(${moveX}px, ${moveY}px) scale(${zoom})`;
         });
 
-        /* PARTÍCULAS - Solo en el fondo principal para no sobrecargar */
+        /* CONFIGURACIÓN DE PARTÍCULAS (Idéntica a tu foto vieja) */
         particlesJS('particles-js', {
             "particles": {
-                "number": { "value": 40 },
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#38bdf8" },
-                "opacity": { "value": 0.3 },
-                "line_linked": { "enable": true, "color": "#38bdf8", "opacity": 0.1 },
-                "move": { "enable": true, "speed": 1 }
-            }
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": false },
+                "size": { "value": 2, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#38bdf8", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": false } } },
+            "retina_detect": true
         });
-
-        // Revelado simple para las secciones
-        const reveal = () => {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
-            });
-        };
-        window.addEventListener('scroll', reveal);
     </script>
 </body>
 </html>
