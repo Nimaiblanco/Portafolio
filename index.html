@@ -6,113 +6,77 @@
     <title>Blanco Nimai | Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
-    <style>
-        /* Desaparición inmediata del cursor en todo el documento */
-        * { cursor: none !important; }
-    </style>
 </head>
 <body>
-    <div class="cursor-follower"></div>
-    <div id="particles-js"></div>
-
-    <nav class="navbar">
-        <a href="#experiencia">EXPERIÊNCIA</a>
-        <a href="#skills">SKILLS</a>
-        <a href="#contato">CONTATO</a>
-    </nav>
-
-    <div class="hero">
-        <h1 class="reveal">BLANCO<br>NIMAI</h1>
-        <p class="reveal">SOFTWARE DEVELOPER</p>
+    <div class="cursor-lupa">
+        <div class="lupa-content" id="lupa-content">
+            </div>
     </div>
 
-    <section id="experiencia" class="reveal">
-        <h2 class="section-title">EXPERIÊNCIA TÉCNICA</h2>
-        <div class="cv-item">
-            <h3>Desenvolvedor Full Stack</h3>
-            <span class="date">Atualmente</span>
-            <p>Especialista em Java e Spring Boot, focado em arquitetura escalável e interfaces de alto impacto visual.</p>
-        </div>
-    </section>
+    <div id="main-content">
+        <div id="particles-js"></div>
 
-    <section id="skills" class="reveal">
-        <h2 class="section-title">SKILLS</h2>
-        <div class="skills-grid">
-            <div class="skill-tag">JAVA</div>
-            <div class="skill-tag">SPRING BOOT</div>
-            <div class="skill-tag">MYSQL</div>
-            <div class="skill-tag">JAVASCRIPT</div>
-        </div>
-    </section>
+        <nav class="navbar">
+            <a href="#experiencia">EXPERIÊNCIA</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#contato">CONTATO</a>
+        </nav>
 
-    <section id="contato" class="reveal">
-        <h2 class="section-title">CONTATO</h2>
-        <div class="contact-links">
-            <a href="https://www.linkedin.com/in/nimaiblanco108/" target="_blank">LINKEDIN</a>
-            <a href="mailto:nimaiblanco@ejemplo.com">EMAIL</a>
+        <div class="hero">
+            <h1 class="reveal">BLANCO<br>NIMAI</h1>
+            <p class="reveal">SOFTWARE DEVELOPER</p>
         </div>
-    </section>
+
+        <section id="experiencia" class="reveal">
+            <h2 class="section-title">EXPERIÊNCIA TÉCNICA</h2>
+            <div class="cv-item">
+                <h3>Desenvolvedor Full Stack</h3>
+                <span class="date">Atualmente</span>
+                <p>Especialista em Java e Spring Boot, focado em arquitetura escalável e interfaces de alto impacto visual.</p>
+            </div>
+        </section>
+
+        <section id="skills" class="reveal">
+            <h2 class="section-title">SKILLS</h2>
+            <div class="skills-grid">
+                <div class="skill-tag">JAVA</div>
+                <div class="skill-tag">SPRING</div>
+                <div class="skill-tag">MYSQL</div>
+                <div class="skill-tag">JS</div>
+            </div>
+        </section>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        const cursor = document.querySelector('.cursor-follower');
-        let mouseX = 0;
-        let mouseY = 0;
+        const mainContent = document.getElementById('main-content');
+        const lupaContent = document.getElementById('lupa-content');
+        const cursor = document.querySelector('.cursor-lupa');
+
+        // Clonar el contenido para que la lupa tenga qué mostrar
+        lupaContent.innerHTML = mainContent.innerHTML;
 
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            const x = e.clientX;
+            const y = e.clientY;
+
+            // Mover el círculo
+            cursor.style.transform = `translate(${x - 50}px, ${y - 50}px)`;
+
+            // Mover el contenido dentro de la lupa de forma invertida y con zoom (1.5x)
+            // El 1.5 es el nivel de aumento
+            lupaContent.style.transform = `translate3d(${-x * 1.5 + 50}px, ${-y * 1.5 + 50}px, 0) scale(1.5)`;
         });
 
-        /* ANIMACIÓN DEL CURSOR CON LUPA */
-        function animateCursor() {
-            const x = mouseX - (cursor.offsetWidth / 2);
-            const y = mouseY - (cursor.offsetHeight / 2);
-            cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        /* EFECTO LUPA DINÁMICO AL PASAR POR ENLACES */
-        document.querySelectorAll('a, .skill-tag, h1, h2, h3, p').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.width = '120px'; /* Se agranda un poco más para la lupa */
-                cursor.style.height = '120px';
-                cursor.style.backgroundColor = 'rgba(56, 189, 248, 0.05)';
-                // El aumento (lupa) se vuelve más fuerte en elementos interactivos
-                cursor.style.backdropFilter = 'scale(1.4)';
-                cursor.style.webkitBackdropFilter = 'scale(1.4)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.width = '60px';
-                cursor.style.height = '60px';
-                cursor.style.backgroundColor = 'rgba(56, 189, 248, 0.1)';
-                // Zoom normal de la lupa
-                cursor.style.backdropFilter = 'scale(1.2)';
-                cursor.style.webkitBackdropFilter = 'scale(1.2)';
-            });
-        });
-
-        /* CONFIGURACIÓN DE PARTÍCULAS */
+        /* PARTÍCULAS */
         particlesJS('particles-js', {
             "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 50 },
                 "color": { "value": "#38bdf8" },
-                "opacity": { "value": 0.3 },
-                "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#38bdf8", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 1.5 }
+                "line_linked": { "enable": true, "color": "#38bdf8", "opacity": 0.2 },
+                "move": { "enable": true, "speed": 1 }
             }
         });
-
-        /* ANIMACIÓN DE REVELACIÓN */
-        const reveal = () => {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
-            });
-        };
-        window.addEventListener('scroll', reveal);
-        reveal();
     </script>
 </body>
 </html>
