@@ -5,10 +5,8 @@ const mainWrapper = document.getElementById('main-wrapper');
 let mouseX = 0;
 let mouseY = 0;
 
-// 1. Sincronizar contenido para la lupa de forma segura
 const syncContent = () => {
     if (mainWrapper && cursorZoom) {
-        // Clonamos el nodo completo para mantener estilos exactos
         cursorZoom.innerHTML = ''; 
         const clone = mainWrapper.cloneNode(true);
         cursorZoom.appendChild(clone);
@@ -21,10 +19,6 @@ window.addEventListener('load', () => {
     updateLupa();
 });
 
-// Re-sincronizar si el usuario cambia el tamaño de la ventana para evitar desfases
-window.addEventListener('resize', syncContent);
-
-// 2. FUNCIÓN DE NAVEGACIÓN (Corregida para mayor precisión)
 function fixMenuLinks() {
     document.querySelectorAll('.navbar a').forEach(link => {
         link.addEventListener('click', (e) => {
@@ -44,17 +38,14 @@ function fixMenuLinks() {
     });
 }
 
-// 3. Movimiento de Lupa con cálculo matemático preciso
 const updateLupa = () => {
     const scrollY = window.scrollY;
-    const zoom = 1.4; // Nivel de aumento
+    const zoom = 1.4;
 
-    // Posicionamiento suave del cursor circular
     cursor.style.left = `${mouseX}px`;
     cursor.style.top = `${mouseY}px`;
 
-    // Cálculo inverso para que el clon coincida con el fondo
-    // moveX = (CentroLupa) - (PosicionMouse * Zoom)
+    // El cálculo usa el offsetWidth actual para que siempre esté centrado
     const moveX = (cursor.offsetWidth / 2) - (mouseX * zoom);
     const moveY = (cursor.offsetHeight / 2) - ((mouseY + scrollY) * zoom);
 
@@ -70,28 +61,15 @@ document.addEventListener('mousemove', (e) => {
     mouseY = e.clientY;
 });
 
-// 4. Efectos de Hover (Delegación de eventos para eficiencia)
+// Detectar hover de forma global
 document.addEventListener('mouseover', (e) => {
-    if (e.target.classList.contains('hover-trigger')) {
+    if (e.target.closest('.hover-trigger')) {
         cursor.classList.add('active');
     }
 });
 
 document.addEventListener('mouseout', (e) => {
-    if (e.target.classList.contains('hover-trigger')) {
+    if (e.target.closest('.hover-trigger')) {
         cursor.classList.remove('active');
     }
 });
-
-// Configuración de Partículas
-if (typeof particlesJS !== 'undefined') {
-    particlesJS('particles-js', {
-        "particles": {
-            "number": { "value": 70 },
-            "color": { "value": "#38bdf8" },
-            "size": { "value": 4 },
-            "line_linked": { "enable": true, "opacity": 0.2 },
-            "move": { "enable": true, "speed": 1 }
-        }
-    });
-}
