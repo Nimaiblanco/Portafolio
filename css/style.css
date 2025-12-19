@@ -7,7 +7,7 @@
     --card-border: rgba(255, 255, 255, 0.08);
 }
 
-/* 1. RESET & CURSOR BASE */
+/* RESET E CURSOR */
 * { 
     margin: 0; 
     padding: 0; 
@@ -15,41 +15,35 @@
     cursor: none !important; 
 }
 
-body { 
-    background-color: var(--bg); 
-    font-family: 'Inter', sans-serif; 
-    color: var(--text-main); 
-    overflow-x: hidden;
-    line-height: 1.6;
-}
-
 #cursor { 
     position: fixed; 
     width: 20px; 
     height: 20px; 
-    background-color: #fff; 
+    border: 1.5px solid #fff; 
     border-radius: 50%; 
     pointer-events: none; 
     z-index: 10000; 
     transform: translate(-50%, -50%); 
     mix-blend-mode: difference; 
+    background-color: #fff; 
     transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
-                height 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+                height 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
+                background-color 0.3s;
 }
 
-/* Estado expandido para o efeito Raio-X e Hover */
 #cursor.active {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
 }
 
-/* 2. ANIMAÇÕES DE REVELAÇÃO (Scroll) */
+/* --- EFEITO DE REVELAÇÃO --- */
 .reveal {
     opacity: 0;
     transform: translateY(30px); 
     visibility: hidden;
     transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 1s;
 }
 
 .reveal.active {
@@ -58,11 +52,17 @@ body {
     visibility: visible;
 }
 
-.reveal[style*="--i"] {
-    transition-delay: calc(0.1s * var(--i));
+/* --- GERAL --- */
+body { 
+    background-color: var(--bg); 
+    font-family: 'Inter', sans-serif; 
+    color: var(--text-main); 
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* 3. LAYOUT GERAL & NAVBAR */
+#main-wrapper { position: relative; z-index: 10; width: 100%; }
+
 #particles-js {
     position: fixed;
     top: 0; left: 0;
@@ -70,8 +70,7 @@ body {
     z-index: 1;
 }
 
-#main-wrapper { position: relative; z-index: 10; width: 100%; }
-
+/* NAVBAR */
 .navbar { 
     position: fixed; 
     top: 40px; 
@@ -93,128 +92,40 @@ body {
 
 .navbar a:hover { opacity: 1; color: var(--accent); }
 
-/* 4. SEÇÕES */
-section { 
-    padding: 120px 10%; 
-    min-height: 100vh; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-}
+/* SEÇÕES */
+section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
 
-.section-title { 
-    color: var(--accent); 
-    font-size: 0.75rem; 
-    letter-spacing: 6px; 
-    margin-bottom: 60px; 
-    font-weight: 900; 
-    text-transform: uppercase; 
-}
+.section-title { color: var(--accent); font-size: 0.75rem; letter-spacing: 6px; margin-bottom: 60px; font-weight: 900; text-transform: uppercase; }
 
-/* 5. HERO */
-.hero { text-align: center; }
-.hero h1 { 
-    font-family: 'Archivo Narrow', sans-serif; 
-    font-size: 9vw; 
-    line-height: 0.85; 
-    text-transform: uppercase; 
-    letter-spacing: -2px; 
-}
-.software-dev { 
-    color: var(--accent); 
-    letter-spacing: 8px; 
-    margin-top: 20px; 
-    font-weight: 900; 
-    font-size: 0.8rem; 
-}
+/* HERO */
+.hero { height: 100vh; text-align: center; }
+.hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 9vw; line-height: 0.85; text-transform: uppercase; letter-spacing: -2px; }
+.software-dev { color: var(--accent); letter-spacing: 8px; margin-top: 20px; font-weight: 900; font-size: 0.8rem; opacity: 0.8; }
 
-/* 6. SOBRE & EFEITO RAIO-X NA FOTO */
-.sobre-wrapper { 
-    display: grid; 
-    grid-template-columns: 1.2fr 0.8fr; 
-    gap: 80px; 
-    align-items: center; 
-}
-
-.sobre-texto h3 { font-size: 2.8rem; font-weight: 900; margin-bottom: 30px; }
-.sobre-texto p { font-size: 1.05rem; opacity: 0.7; margin-bottom: 25px; }
-.sobre-texto strong { color: var(--accent); }
-
-.sobre-foto { 
-    position: relative; 
-    width: 320px; 
-    height: 400px; 
-    justify-self: center;
-}
-
-.sobre-foto img { 
-    width: 100%; height: 100%; 
-    object-fit: cover; 
-    border-radius: 4px; 
-    position: relative; 
-    z-index: 10; 
-    filter: grayscale(100%) contrast(1.1); /* Efeito base P&B */
-    transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.foto-moldura { 
-    position: absolute; 
-    top: 20px; left: 20px; 
-    width: 100%; height: 100%; 
-    border: 1.5px solid var(--accent); 
-    border-radius: 4px; 
-    z-index: 1; 
-    transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
-}
-
-/* Movimento suave no Hover */
-.sobre-foto:hover img { transform: translate(-10px, -10px); }
-.sobre-foto:hover .foto-moldura { transform: translate(10px, 10px); }
-
-/* 7. SKILLS GRID */
-.skills-container { 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 25px;
-}
-
-.skill-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    padding: 30px 20px; 
-    border-radius: 12px;
-    display: flex; flex-direction: column; align-items: center;
-    transition: 0.4s;
-}
-
-.skill-card:hover { 
-    background: rgba(56, 189, 248, 0.05); 
-    border-color: var(--accent); 
-    transform: translateY(-5px); 
-}
-
-.skill-card img { width: 40px; height: 40px; margin-bottom: 15px; filter: grayscale(100%); transition: 0.3s; }
-.skill-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
-.skill-card span { font-size: 10px; font-weight: 900; opacity: 0.6; letter-spacing: 1.5px; }
-
-/* 8. PROJETOS GRID */
+/* --- PROJETOS (CORREÇÃO DE LAYOUT) --- */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* Aumentado o minmax para evitar que os cards fiquem muito estreitos e amontoados */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
+    width: 100%;
+    align-items: stretch;
 }
 
 .project-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    padding: 45px;
+    padding: 40px;
     border-radius: 16px;
     text-decoration: none;
     color: inherit;
     position: relative;
     transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    /* Flexbox ajuda a manter o conteúdo organizado verticalmente */
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .project-card:hover {
@@ -223,35 +134,67 @@ section {
     transform: translateY(-10px);
 }
 
-/* 9. CONTATO & FOOTER */
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    max-width: 1000px;
-    margin: 0 auto;
+.project-content {
+    flex-grow: 1; /* Faz o conteúdo ocupar o espaço disponível */
+    padding-right: 30px; /* Dá espaço para o ícone do GitHub */
 }
 
-.contact-links a { 
-    display: block; 
-    font-size: 1.4rem; 
-    color: #fff; 
-    text-decoration: none; 
-    margin-bottom: 15px; 
-    font-weight: 900; 
+.project-category { font-size: 9px; letter-spacing: 2px; color: var(--accent); font-weight: 900; margin-bottom: 12px; display: block; }
+.project-card h3 { font-size: 1.6rem; margin-bottom: 15px; font-weight: 900; line-height: 1.2; }
+.project-card p { font-size: 0.95rem; opacity: 0.6; margin-bottom: 25px; }
+
+.project-tags { 
+    display: flex; 
+    gap: 8px; 
+    flex-wrap: wrap; 
+    margin-top: auto; /* Empurra as tags para o fundo do card */
+}
+
+.project-tags span { 
+    font-size: 9px; 
+    padding: 4px 10px; 
+    background: rgba(255,255,255,0.05); 
+    border-radius: 4px; 
+    font-weight: 700; 
+    border: 1px solid rgba(255,255,255,0.1); 
+}
+
+.github-link-icon { 
+    position: absolute; 
+    top: 30px; 
+    right: 30px; 
+    font-size: 1.2rem; 
+    opacity: 0.3; 
     transition: 0.3s; 
 }
 
-.social-icons-minimal { display: flex; gap: 30px; }
-.social-icons-minimal a { color: #fff; font-size: 1.6rem; transition: 0.3s; }
-.social-icons-minimal a:hover { color: var(--accent); transform: translateY(-5px); }
+.project-card:hover .github-link-icon { opacity: 1; color: var(--accent); transform: rotate(15deg) scale(1.1); }
 
-footer { padding: 60px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-footer p { font-size: 9px; opacity: 0.3; letter-spacing: 3px; text-transform: uppercase; }
+/* --- CONTATO (AJUSTE DE ALINHAMENTO) --- */
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 0;
+}
 
-/* 10. RESPONSIVIDADE */
-@media (max-width: 992px) {
-    .sobre-wrapper { grid-template-columns: 1fr; gap: 50px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
+.footer-column h3 { font-size: 0.75rem; letter-spacing: 4px; margin-bottom: 25px; opacity: 0.5; font-weight: 900; }
+.contact-links a { display: block; font-size: 1.2rem; color: #fff; text-decoration: none; margin-bottom: 12px; font-weight: 700; transition: 0.3s; }
+.contact-links a:hover { color: var(--accent); padding-left: 5px; }
+.contact-links p { color: var(--text-dim); margin-bottom: 5px; font-weight: 700; }
+
+.social-icons-minimal { display: flex; gap: 25px; align-items: center; }
+.social-icons-minimal a { color: #fff; font-size: 1.5rem; transition: 0.3s; text-decoration: none; }
+.social-icons-minimal a:hover { color: var(--accent); transform: translateY(-3px); }
+
+footer { padding: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+footer p { font-size: 9px; opacity: 0.3; letter-spacing: 3px; }
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .footer-grid { text-align: center; }
     .social-icons-minimal { justify-content: center; }
 }
