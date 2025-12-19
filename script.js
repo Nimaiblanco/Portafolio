@@ -1,14 +1,10 @@
 const cursor = document.getElementById('cursor');
 
-// 1. CARREGAMENTO INICIAL
-window.addEventListener('load', () => {
-    document.body.classList.add('site-loaded');
-    // Força uma verificação de reveal logo após o carregamento para itens que já estão na tela
-    checkReveal();
-});
-
-// 2. MOVIMENTAÇÃO DO CURSOR (Suavizado com RequestAnimationFrame)
+// 1. MOVIMENTAÇÃO DO CURSOR (Suavizado com RequestAnimationFrame)
 let mouseX = 0, mouseY = 0;
+let ballX = 0, ballY = 0;
+const speed = 0.2; // Ajuste para mais ou menos suavidade (0.1 a 1.0)
+
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
@@ -16,14 +12,17 @@ document.addEventListener('mousemove', (e) => {
 
 function updateCursor() {
     if (cursor) {
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
+        // Interpolação para um movimento mais fluido (o cursor persegue o mouse)
+        ballX += (mouseX - ballX) * speed;
+        ballY += (mouseY - ballY) * speed;
+        
+        cursor.style.transform = `translate(calc(${ballX}px - 50%), calc(${ballY}px - 50%))`;
     }
     requestAnimationFrame(updateCursor);
 }
 requestAnimationFrame(updateCursor);
 
-// 3. EFEITOS DE HOVER (Atualizado para incluir os Project Cards)
+// 2. EFEITOS DE HOVER
 const hoverSelectors = '.hover-trigger, .social-icon, .skill-card, .project-card, .btn-contato, a, button';
 document.addEventListener('mouseover', (e) => {
     if (e.target.closest(hoverSelectors)) cursor.classList.add('active');
@@ -32,31 +31,30 @@ document.addEventListener('mouseout', (e) => {
     if (e.target.closest(hoverSelectors)) cursor.classList.remove('active');
 });
 
-// 4. SCROLL REVEAL (Detecta entrada de elementos na tela)
+// 3. SCROLL REVEAL (Otimizado com Intersection Observer)
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            // Para de observar após animar para economizar recursos
-            revealObserver.unobserve(entry.target);
+            revealObserver.unobserve(entry.target); // Para de observar após animar
         }
     });
 }, { 
-    threshold: 0.1, 
+    threshold: 0.15, // Ativa quando 15% do elemento aparece
     rootMargin: "0px 0px -50px 0px" 
 });
 
-function checkReveal() {
+// Inicializa o Reveal
+function initReveal() {
     const elements = document.querySelectorAll('.reveal');
-    elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        // Se o elemento já estiver visível (ex: topo da página), ativa imediatamente
-        if (rect.top < window.innerHeight) {
-            el.classList.add('active');
-        }
-        revealObserver.observe(el);
-    });
+    elements.forEach(el => revealObserver.observe(el));
 }
+
+// 4. CARREGAMENTO INICIAL
+window.addEventListener('load', () => {
+    document.body.classList.add('site-loaded');
+    initReveal();
+});
 
 // 5. CONFIGURAÇÃO PARTICLES.JS
 if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
@@ -85,8 +83,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
+            const offset = 20;
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = targetElement.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
             window.scrollTo({
-                top: targetElement.offsetTop - 20,
+                top: offsetPosition,
                 behavior: 'smooth'
             });
         }
