@@ -41,7 +41,7 @@ body {
     width: 100%; height: 100%;
     z-index: 1;
     opacity: 1 !important; 
-    pointer-events: none; /* Cambiado a none para no bloquear clics en el contenido */
+    pointer-events: none; 
 }
 
 /* --- CURSOR (Efecto Rayos X) --- */
@@ -66,29 +66,7 @@ body {
     background-color: #fff !important; 
 }
 
-/* --- EFEITO DE REVELAÇÃO --- */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px); 
-    visibility: hidden;
-    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-}
-
-/* ESTRUTURA GERAL */
-#main-wrapper { 
-    position: relative; 
-    z-index: 10; 
-    width: 100%; 
-    isolation: auto !important; 
-}
-
-/* NAVBAR */
+/* --- NAVBAR (Corregida: Letras Azules) --- */
 .navbar { 
     position: fixed; 
     top: 40px; 
@@ -99,18 +77,22 @@ body {
 }
 
 .navbar a { 
-    color: #fff; 
+    color: var(--accent); /* Cambiado de blanco a Azul */
     text-decoration: none; 
     font-size: 10px; 
     letter-spacing: 2.5px; 
     font-weight: 900; 
-    opacity: 0.5; 
+    opacity: 0.7; 
     transition: 0.3s ease; 
+    text-transform: uppercase;
 }
 
-.navbar a:hover { opacity: 1; color: var(--accent); }
+.navbar a:hover { 
+    opacity: 1; 
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.6); 
+}
 
-/* SEÇÕES */
+/* --- SEÇÕES --- */
 section { 
     padding: 120px 10%; 
     min-height: 100vh; 
@@ -128,7 +110,7 @@ section {
     text-transform: uppercase; 
 }
 
-/* HERO */
+/* --- HERO --- */
 .hero { height: 100vh; text-align: center; }
 .hero h1 { 
     font-family: 'Archivo Narrow', sans-serif; 
@@ -138,51 +120,10 @@ section {
     letter-spacing: -2px;
     text-shadow: 0 10px 30px rgba(0,0,0,0.5); 
 }
-.software-dev { 
-    color: var(--accent); 
-    letter-spacing: 8px; 
-    margin-top: 20px; 
-    font-weight: 900; 
-    font-size: 0.8rem; 
-    opacity: 0.8; 
-}
 
-/* --- SOBRE --- */
-.sobre-wrapper { 
-    display: grid; 
-    grid-template-columns: 1.2fr 0.8fr; 
-    gap: 80px; 
-    align-items: center; 
-}
-.sobre-texto h3 { font-size: 2.8rem; font-weight: 900; margin-bottom: 30px; line-height: 1.1; }
-.sobre-texto p { font-size: 1.05rem; opacity: 0.7; margin-bottom: 25px; max-width: 600px; }
-
-.sobre-foto { 
-    position: relative; 
-    width: 100%; 
-    max-width: 320px; 
-    aspect-ratio: 4/5;
-    justify-self: center; 
-    z-index: 5;
-}
-.sobre-foto img { 
-    width: 100%; height: 100%; object-fit: cover; border-radius: 4px; 
-    position: relative; 
-    z-index: 1; 
-    filter: grayscale(100%); 
-    transition: 0.6s var(--ease); 
-}
-.foto-moldura { 
-    position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; 
-    border: 1.5px solid var(--accent); border-radius: 4px; z-index: 0; transition: 0.6s var(--ease); 
-}
-.sobre-foto:hover img { filter: grayscale(0%); transform: translate(-10px, -10px); }
-.sobre-foto:hover .foto-moldura { transform: translate(10px, 10px); }
-
-/* --- SKILLS (Corregido para Grid Horizontal) --- */
+/* --- SKILLS (Grid Horizontal) --- */
 .skills-container { 
     display: grid;
-    /* Esto obliga a los cards a ponerse uno al lado del otro */
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
     gap: 25px;
     width: 100%;
@@ -210,11 +151,7 @@ section {
     transform: translateY(-8px); 
 }
 
-.skill-card img { width: 45px; height: 45px; margin-bottom: 15px; filter: grayscale(100%); transition: 0.3s ease; }
-.skill-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
-.skill-card span { font-size: 11px; font-weight: 900; opacity: 0.7; letter-spacing: 1.5px; text-transform: uppercase; }
-
-/* --- PROJETOS --- */
+/* --- PROJETOS (Títulos Azules y Tags) --- */
 .projects-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -225,13 +162,13 @@ section {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     padding: 40px; 
-    border-radius: 16px;
+    border-radius: 20px;
     text-decoration: none; 
     color: inherit; 
     display: flex; 
     flex-direction: column; 
     height: 100%; 
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
     transition: 0.5s var(--ease);
 }
 
@@ -241,16 +178,53 @@ section {
     transform: translateY(-12px); 
 }
 
+.project-card h3 { 
+    font-size: 1.6rem; 
+    margin-bottom: 15px; 
+    font-weight: 900; 
+    color: var(--accent); /* Títulos en Azul */
+    transition: 0.3s;
+}
+
+.project-tags { 
+    display: flex; 
+    gap: 8px; 
+    flex-wrap: wrap; 
+    margin-top: auto; 
+}
+
+.project-tags span { 
+    font-size: 9px; 
+    padding: 6px 14px; 
+    background: rgba(56, 189, 248, 0.1); 
+    color: var(--accent); 
+    border-radius: 50px; 
+    font-weight: 700; 
+    border: 1px solid rgba(56, 189, 248, 0.3); 
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.project-card:hover .project-tags span {
+    background: var(--accent);
+    color: #000;
+}
+
 /* --- RESPONSIVIDADE --- */
 @media (max-width: 992px) {
     .hero h1 { font-size: 12vw; }
-    .sobre-wrapper { grid-template-columns: 1fr; gap: 50px; }
 }
 
 @media (max-width: 600px) {
-    .navbar { width: 100%; right: 0; justify-content: center; top: 20px; padding: 0 20px; }
+    .navbar { 
+        width: 100%; 
+        right: 0; 
+        justify-content: center; 
+        top: 20px; 
+        padding: 0 20px; 
+        background: rgba(12, 12, 12, 0.7); 
+        backdrop-filter: blur(10px);
+    }
     .hero h1 { font-size: 16vw; }
-    section { padding: 80px 5%; }
-    /* En móvil, las skills ocupan 2 columnas */
     .skills-container { grid-template-columns: repeat(2, 1fr); }
 }
