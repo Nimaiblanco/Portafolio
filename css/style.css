@@ -66,7 +66,7 @@ body {
     background-color: #fff !important; 
 }
 
-/* --- NAVBAR (Letras Azules) --- */
+/* --- NAVBAR --- */
 .navbar { 
     position: fixed; 
     top: 40px; 
@@ -92,7 +92,7 @@ body {
     text-shadow: 0 0 8px rgba(56, 189, 248, 0.6); 
 }
 
-/* --- SEÇÕES GERAL --- */
+/* --- SEÇÕES --- */
 section { 
     padding: 120px 10%; 
     min-height: 100vh; 
@@ -122,16 +122,8 @@ section {
     letter-spacing: -2px;
     text-shadow: 0 10px 30px rgba(0,0,0,0.5); 
 }
-.software-dev {
-    color: var(--accent);
-    letter-spacing: 8px;
-    margin-top: 20px;
-    font-weight: 900;
-    font-size: 0.8rem;
-    opacity: 0.8;
-}
 
-/* --- SOBRE (Restaurado para que la foto no se salga) --- */
+/* --- SOBRE --- */
 .sobre-wrapper { 
     display: grid; 
     grid-template-columns: 1.2fr 0.8fr; 
@@ -141,7 +133,7 @@ section {
 
 .sobre-texto h3 { font-size: 2.8rem; font-weight: 900; margin-bottom: 30px; line-height: 1.1; }
 .sobre-texto p { font-size: 1.05rem; opacity: 0.7; margin-bottom: 25px; max-width: 600px; }
-.sobre-texto strong { color: var(--accent); font-weight: 900; }
+.sobre-texto strong { color: var(--accent); }
 
 .sobre-foto { 
     position: relative; 
@@ -153,10 +145,7 @@ section {
 
 .sobre-foto img { 
     width: 100%; height: 100%; object-fit: cover; border-radius: 4px; 
-    position: relative; 
-    z-index: 1; 
-    filter: grayscale(100%); 
-    transition: 0.6s var(--ease); 
+    position: relative; z-index: 1; filter: grayscale(100%); transition: 0.6s var(--ease); 
 }
 
 .foto-moldura { 
@@ -167,7 +156,7 @@ section {
 .sobre-foto:hover img { filter: grayscale(0%); transform: translate(-10px, -10px); }
 .sobre-foto:hover .foto-moldura { transform: translate(10px, 10px); }
 
-/* --- SKILLS (Grid Horizontal) --- */
+/* --- SKILLS --- */
 .skills-container { 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
@@ -188,7 +177,6 @@ section {
     justify-content: center;
     transition: 0.4s var(--ease);
     backdrop-filter: blur(8px);
-    text-align: center;
 }
 
 .skill-card:hover { 
@@ -197,11 +185,7 @@ section {
     transform: translateY(-8px); 
 }
 
-.skill-card img { width: 45px; height: 45px; margin-bottom: 15px; filter: grayscale(100%); transition: 0.3s ease; }
-.skill-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
-.skill-card span { font-size: 11px; font-weight: 900; opacity: 0.7; letter-spacing: 1.5px; text-transform: uppercase; }
-
-/* --- PROJETOS (Títulos Azules y Tags) --- */
+/* --- PROJETOS (Ajuste del icono de GitHub) --- */
 .projects-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -220,6 +204,7 @@ section {
     height: 100%; 
     backdrop-filter: blur(10px);
     transition: 0.5s var(--ease);
+    position: relative; /* Importante para el icono */
 }
 
 .project-card:hover { 
@@ -233,14 +218,15 @@ section {
     margin-bottom: 15px; 
     font-weight: 900; 
     color: var(--accent); 
-    transition: 0.3s;
 }
 
+/* Etiquetas de tecnologías */
 .project-tags { 
     display: flex; 
     gap: 8px; 
     flex-wrap: wrap; 
     margin-top: auto; 
+    padding-right: 40px; /* Deja espacio para que las tags no choquen con el icono */
 }
 
 .project-tags span { 
@@ -252,31 +238,31 @@ section {
     font-weight: 700; 
     border: 1px solid rgba(56, 189, 248, 0.3); 
     text-transform: uppercase;
-    transition: 0.3s;
 }
 
-.project-card:hover .project-tags span {
-    background: var(--accent);
-    color: #000;
+/* ICONO GITHUB (Separado y posicionado) */
+.github-link-icon { 
+    position: absolute; 
+    bottom: 35px; /* Lo bajamos para alinearlo mejor */
+    right: 35px; 
+    font-size: 1.5rem; 
+    opacity: 0.4; 
+    color: var(--text-main);
+    transition: 0.4s var(--ease); 
+}
+
+.project-card:hover .github-link-icon { 
+    opacity: 1; 
+    color: var(--accent); 
+    transform: scale(1.2) rotate(10deg); 
 }
 
 /* --- RESPONSIVIDADE --- */
 @media (max-width: 992px) {
-    .hero h1 { font-size: 12vw; }
-    .sobre-wrapper { grid-template-columns: 1fr; gap: 50px; text-align: center; }
-    .sobre-texto p { margin: 0 auto 25px auto; }
+    .sobre-wrapper { grid-template-columns: 1fr; text-align: center; }
 }
 
 @media (max-width: 600px) {
-    .navbar { 
-        width: 100%; 
-        right: 0; 
-        justify-content: center; 
-        top: 20px; 
-        padding: 10px 20px; 
-        background: rgba(12, 12, 12, 0.8); 
-        backdrop-filter: blur(10px);
-    }
-    .hero h1 { font-size: 16vw; }
+    .navbar { width: 100%; right: 0; justify-content: center; top: 20px; background: rgba(12, 12, 12, 0.8); padding: 10px; }
     .skills-container { grid-template-columns: repeat(2, 1fr); }
 }
