@@ -7,15 +7,29 @@
     --card-border: rgba(255, 255, 255, 0.08);
 }
 
-/* RESET E CURSOR */
+/* RESET E BASE */
 * { 
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
-    cursor: none !important; 
+    cursor: none !important; /* Esconde o cursor padrão em tudo */
 }
 
-/* --- CURSOR --- */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Compensa a navbar fixa */
+}
+
+body { 
+    background-color: var(--bg); 
+    font-family: 'Inter', sans-serif; 
+    color: var(--text-main); 
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- CURSOR (GPU OPTIMIZED) --- */
 #cursor { 
     position: fixed; 
     width: 20px; 
@@ -24,11 +38,13 @@
     border-radius: 50%; 
     pointer-events: none; 
     z-index: 10000; 
-    transform: translate(-50%, -50%); 
+    /* Usa translate3d para ativar aceleração por hardware */
+    transform: translate3d(-50%, -50%, 0); 
     mix-blend-mode: difference; 
     background-color: #fff; 
     transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
                 height 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    will-change: transform;
 }
 
 #cursor.active {
@@ -41,8 +57,8 @@
     opacity: 0;
     transform: translateY(30px); 
     visibility: hidden;
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.active {
@@ -55,15 +71,7 @@
     transition-delay: calc(0.1s * var(--i));
 }
 
-/* --- GERAL --- */
-body { 
-    background-color: var(--bg); 
-    font-family: 'Inter', sans-serif; 
-    color: var(--text-main); 
-    overflow-x: hidden;
-    line-height: 1.6;
-}
-
+/* ESTRUTURA GERAL */
 #main-wrapper { position: relative; z-index: 10; width: 100%; }
 
 #particles-js {
@@ -90,8 +98,9 @@ body {
     letter-spacing: 2.5px; 
     font-weight: 900; 
     opacity: 0.5; 
-    transition: 0.4s; 
+    transition: 0.3s ease; 
 }
+
 .navbar a:hover { opacity: 1; color: var(--accent); }
 
 /* SEÇÕES */
@@ -119,8 +128,9 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
     text-decoration: none;
     border-bottom: 2px solid var(--accent);
     padding-bottom: 6px;
-    transition: 0.3s;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.btn-contato:hover { letter-spacing: 4px; border-color: #fff; color: #fff; }
 
 .sobre-foto { 
     position: relative; 
@@ -135,7 +145,7 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
 }
 .foto-moldura { 
     position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; 
-    border: 1.5px solid var(--accent); border-radius: 4px; z-index: 1; transition: 0.6s; 
+    border: 1.5px solid var(--accent); border-radius: 4px; z-index: 1; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
 }
 .sobre-foto:hover img { filter: grayscale(0%); transform: translate(-10px, -10px); }
 .sobre-foto:hover .foto-moldura { transform: translate(10px, 10px); }
@@ -154,18 +164,18 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
     padding: 30px 20px; 
     border-radius: 12px;
     display: flex; flex-direction: column; align-items: center;
-    transition: 0.4s;
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .skill-card:hover { 
-    background: rgba(56, 189, 248, 0.05); 
+    background: rgba(56, 189, 248, 0.08); 
     border-color: var(--accent); 
-    transform: translateY(-5px); 
+    transform: translateY(-8px); 
 }
-.skill-card img { width: 40px; height: 40px; margin-bottom: 15px; filter: grayscale(100%); transition: 0.3s; }
+.skill-card img { width: 40px; height: 40px; margin-bottom: 15px; filter: grayscale(100%); transition: 0.3s ease; }
 .skill-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
 .skill-card span { font-size: 10px; font-weight: 900; opacity: 0.6; letter-spacing: 1.5px; }
 
-/* --- PROJETOS (CORREÇÕES AQUI) --- */
+/* --- PROJETOS (OTIMIZADO) --- */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -183,30 +193,30 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
     transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Alinha o conteúdo verticalmente */
     height: 100%;
+    overflow: hidden;
 }
 
 .project-card:hover {
     border-color: var(--accent);
     background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-10px);
-    z-index: 20; /* Garante que fique acima de outros cards no hover */
+    transform: translateY(-12px);
+    z-index: 20;
 }
 
 .project-content {
-    flex-grow: 1; /* Garante que o texto ocupe o espaço e empurre as tags para baixo */
+    flex-grow: 1; /* Empurra o rodapé para baixo */
 }
 
 .project-category { font-size: 9px; letter-spacing: 2px; color: var(--accent); font-weight: 900; margin-bottom: 15px; display: block; }
-.project-card h3 { font-size: 1.6rem; margin-bottom: 15px; font-weight: 900; }
-.project-card p { font-size: 0.95rem; opacity: 0.6; margin-bottom: 25px; }
+.project-card h3 { font-size: 1.6rem; margin-bottom: 15px; font-weight: 900; color: #fff; }
+.project-card p { font-size: 0.95rem; opacity: 0.6; margin-bottom: 25px; color: var(--text-dim); }
 
 .project-tags { 
     display: flex; 
     gap: 8px; 
     flex-wrap: wrap; 
-    margin-top: 20px; 
+    margin-top: auto; /* Alinhamento fixo no fundo */
 }
 
 .project-tags span { 
@@ -217,20 +227,29 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
     font-weight: 700; 
     border: 1px solid rgba(255,255,255,0.1); 
     white-space: nowrap;
+    transition: 0.3s;
+}
+
+.project-card:hover .project-tags span {
+    border-color: rgba(56, 189, 248, 0.3);
 }
 
 .github-link-icon { 
     position: absolute; 
-    top: 30px; 
-    right: 30px; 
+    top: 35px; 
+    right: 35px; 
     font-size: 1.4rem; 
     opacity: 0.2; 
-    transition: 0.3s; 
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
 }
 
-.project-card:hover .github-link-icon { opacity: 1; color: var(--accent); transform: rotate(15deg) scale(1.2); }
+.project-card:hover .github-link-icon { 
+    opacity: 1; 
+    color: var(--accent); 
+    transform: rotate(15deg) scale(1.2); 
+}
 
-/* --- CONTATO --- */
+/* --- CONTATO E RODAPÉ --- */
 .footer-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -243,8 +262,8 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
 .contact-links a:hover { color: var(--accent); transform: translateX(10px); }
 
 .social-icons-minimal { display: flex; gap: 30px; }
-.social-icons-minimal a { color: #fff; font-size: 1.6rem; transition: 0.3s; }
-.social-icons-minimal a:hover { color: var(--accent); transform: translateY(-5px); }
+.social-icons-minimal a { color: #fff; font-size: 1.6rem; transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.social-icons-minimal a:hover { color: var(--accent); transform: translateY(-5px) scale(1.1); }
 
 footer { padding: 60px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 footer p { font-size: 9px; opacity: 0.3; letter-spacing: 3px; text-transform: uppercase; }
@@ -258,8 +277,16 @@ footer p { font-size: 9px; opacity: 0.3; letter-spacing: 3px; text-transform: up
 }
 
 @media (max-width: 600px) {
-    .navbar { width: 100%; right: 0; justify-content: center; top: 20px; padding: 0 20px; }
-    .navbar a { font-size: 8px; }
+    .navbar { 
+        width: 100%; 
+        right: 0; 
+        justify-content: center; 
+        top: 20px; 
+        padding: 0 20px; 
+    }
+    .navbar a { font-size: 8px; letter-spacing: 1.5px; }
+    .hero h1 { font-size: 16vw; }
     section { padding: 80px 5%; }
     .project-card { padding: 30px; }
+    .sobre-texto h3 { font-size: 2rem; }
 }
