@@ -1,5 +1,6 @@
 /**
- * Blanco Nimai Portfolio - Script Final Otimizado
+ * Blanco Nimai Portfolio - Script Otimizado
+ * Alterações: Velocidade do mouse aumentada e seletores de hover atualizados.
  */
 
 const cursor = document.getElementById('cursor');
@@ -7,7 +8,8 @@ const cursor = document.getElementById('cursor');
 // 1. MOVIMENTAÇÃO DO CURSOR (LERP)
 let mouseX = 0, mouseY = 0;
 let ballX = 0, ballY = 0;
-const speed = 0.15; 
+// Aumentado de 0.15 para 0.35 para o mouse ficar muito mais rápido e responsivo
+const speed = 0.35; 
 
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
@@ -26,7 +28,7 @@ if (!isTouchDevice && cursor) {
         ballX += (mouseX - ballX) * speed;
         ballY += (mouseY - ballY) * speed;
         
-        // Importante: impede que o cursor bloqueie o clique e a detecção das partículas
+        // pointer-events: none é vital para que o clique passe através da bolinha do cursor
         cursor.style.pointerEvents = "none";
         cursor.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate(-50%, -50%)`;
         
@@ -37,9 +39,8 @@ if (!isTouchDevice && cursor) {
     cursor.style.display = 'none'; 
 }
 
-// 2. EFEITOS DE HOVER (Atualizado para o novo botão de CV)
-// Adicionamos explicitamente o seletor do botão de currículo
-const hoverSelectors = '.hover-trigger, .skill-card, .project-card, .btn-contato, .social-icons a, .contact-info a, .navbar a, .sobre-foto';
+// 2. EFEITOS DE HOVER (Atualizado com .btn-contato e ícones)
+const hoverSelectors = '.hover-trigger, .skill-card, .project-card, .btn-contato, .social-icons a, .contact-info a, .navbar a, .sobre-foto, .github-link-icon';
 
 if (!isTouchDevice) {
     document.addEventListener('mouseover', (e) => {
