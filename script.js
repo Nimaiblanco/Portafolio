@@ -1,195 +1,140 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blanco Nimai | Software Developer Portfolio</title>
+/**
+ * Blanco Nimai Portfolio - Script Otimizado
+ */
+
+const cursor = document.getElementById('cursor');
+
+// 1. MOVIMENTAÇÃO DO CURSOR (LERP)
+let mouseX = 0, mouseY = 0;
+let ballX = 0, ballY = 0;
+const speed = 0.15; 
+
+// Detecção de Touch (Evita bugs em tablets e celulares)
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+if (!isTouchDevice && cursor) {
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Garante que o cursor apareça no primeiro movimento
+        cursor.style.opacity = "1";
+    });
+
+    // Esconde o cursor quando o mouse sai da janela (ex: mudar de aba)
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = "0";
+    });
+
+    function updateCursor() {
+        // Lógica de interpolação suavizada
+        ballX += (mouseX - ballX) * speed;
+        ballY += (mouseY - ballY) * speed;
+        
+        // Melhoria de performance: evita usar calc() dentro do JS
+        // O translate(-50%, -50%) é melhor gerenciado no CSS inicial
+        cursor.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate(-50%, -50%)`;
+        
+        requestAnimationFrame(updateCursor);
+    }
+    requestAnimationFrame(updateCursor);
+} else if (cursor) {
+    cursor.style.display = 'none'; // Desativa em dispositivos móveis
+}
+
+// 2. EFEITOS DE HOVER (Delegación)
+const hoverSelectors = '.hover-trigger, .skill-card, .project-card, .btn-contato, .social-icons-minimal a, .contact-links a, .navbar a, .sobre-foto';
+
+if (!isTouchDevice) {
+    document.addEventListener('mouseover', (e) => {
+        const target = e.target.closest(hoverSelectors);
+        
+        if (target) {
+            cursor.classList.add('active');
+            
+            // Efeito especial para a foto
+            if (target.classList.contains('sobre-foto')) {
+                cursor.style.width = '120px';
+                cursor.style.height = '120px';
+                cursor.style.backgroundColor = 'transparent';
+                cursor.style.borderColor = 'var(--accent)';
+            }
+        }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+        const target = e.target.closest(hoverSelectors);
+        if (target) {
+            cursor.classList.remove('active');
+            cursor.style.width = ''; 
+            cursor.style.height = '';
+            cursor.style.backgroundColor = '';
+            cursor.style.borderColor = '';
+        }
+    });
+}
+
+// 3. SCROLL REVEAL (Intersection Observer)
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { 
+    threshold: 0.15, 
+    rootMargin: "0px 0px -50px 0px" 
+});
+
+// 4. INICIALIZAÇÃO E PARTÍCULAS
+document.addEventListener('DOMContentLoaded', () => {
+    // Reveal
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     
-    <meta name="description" content="Portfolio de Blanco Nimai - Desenvolvedor Full Stack especializado em Java, Kotlin e Spring Boot.">
-    <meta property="og:title" content="Blanco Nimai | Portfolio">
-    <meta property="og:description" content="Desenvolvedor Full Stack focado no ecossistema JVM e soluções escaláveis.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://raw.githubusercontent.com/Nimaiblanco/Nimaiblanco/main/assets/Perfil.jpg">
+    // Particles.js
+    if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 50, "density": { "enable": true, "value_area": 1000 } },
+                "color": { "value": "#38bdf8" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 1.5 },
+                "line_linked": { 
+                    "enable": true, 
+                    "distance": 150, 
+                    "color": "#38bdf8", 
+                    "opacity": 0.05, 
+                    "width": 1 
+                },
+                "move": { "enable": true, "speed": 0.8 }
+            },
+            "interactivity": { 
+                "events": { 
+                    "onhover": { "enable": !isTouchDevice, "mode": "grab" } 
+                } 
+            },
+            "retina_detect": true
+        });
+    }
+});
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div id="particles-js"></div>
-    <div id="cursor"></div>
-
-    <nav class="navbar" role="navigation" aria-label="Menu principal">
-        <a href="#sobre" class="hover-trigger">SOBRE</a>
-        <a href="#skills" class="hover-trigger">SKILLS</a>
-        <a href="#projetos" class="hover-trigger">PROJETOS</a>
-        <a href="#contato" class="hover-trigger">CONTATO</a>
-    </nav>
-
-    <main id="main-wrapper">
-        <section class="hero">
-            <div class="hero-content reveal"> 
-                <h1 class="hover-trigger">BLANCO<br>NIMAI</h1>
-                <p class="software-dev">SOFTWARE DEVELOPER</p>
-            </div>
-        </section>
-
-        <section id="sobre" class="reveal">
-            <h2 class="section-title">SOBRE</h2>
-            <div class="sobre-wrapper">
-                <article class="sobre-texto">
-                    <h3 class="hover-trigger">Blanco Nimai</h3>
-                    <p>
-                        Sou um desenvolvedor <strong>Full Stack</strong> focado em criar soluções eficientes e escaláveis. 
-                        Com sólida base no ecossistema <strong>JVM (Java e Kotlin)</strong> e <strong>Spring Boot</strong>, transformo problemas complexos 
-                        em experiências digitais de alto desempenho.
-                    </p>
-                    <p>
-                        Especialista em arquiteturas modernas, unindo backends robustos com frontends responsivos, 
-                        sempre priorizando a qualidade de código e a segurança dos dados.
-                    </p>
-                    <div class="contato-btn-container">
-                        <a href="#contato" class="btn-contato hover-trigger">VAMOS CONVERSAR?</a>
-                    </div>
-                </article>
-                
-                <div class="sobre-foto hover-trigger">
-                    <img src="https://raw.githubusercontent.com/Nimaiblanco/Nimaiblanco/main/assets/Perfil.jpg" alt="Foto de perfil de Blanco Nimai">
-                    <div class="foto-moldura"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="reveal">
-            <h2 class="section-title">SKILLS</h2>
-            <div class="skills-container">
-                <div class="skill-card hover-trigger reveal" style="--i: 1">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java Logo" loading="lazy" />
-                    <span>JAVA</span>
-                </div>
-                <div class="skill-card hover-trigger reveal" style="--i: 2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin Logo" loading="lazy" />
-                    <span>KOTLIN</span>
-                </div>
-                <div class="skill-card hover-trigger reveal" style="--i: 3">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Logo" loading="lazy" />
-                    <span>SPRING BOOT</span>
-                </div>
-                <div class="skill-card hover-trigger reveal" style="--i: 4">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle Logo" loading="lazy" />
-                    <span>ORACLE SQL</span>
-                </div>
-                <div class="skill-card hover-trigger reveal" style="--i: 5">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker Logo" loading="lazy" />
-                    <span>DOCKER</span>
-                </div>
-                <div class="skill-card hover-trigger reveal" style="--i: 6">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js Logo" loading="lazy" />
-                    <span>NODE.JS</span>
-                </div>
-                <div class="skill-card hover-trigger reveal" style="--i: 7">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS Logo" loading="lazy" />
-                    <span>JAVASCRIPT</span>
-                </div>
-                <div class="skill-card hover-trigger reveal" style="--i: 8">
-                    <img src="https://img.icons8.com/color/48/000000/shield.png" alt="Security Shield" loading="lazy" />
-                    <span>JWT & SECURITY</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="projetos" class="reveal">
-            <h2 class="section-title">PROJETOS</h2>
-            <div class="projects-grid">
-                
-                <article class="reveal" style="--i: 1">
-                    <a href="https://github.com/Nimaiblanco/BioPulse" target="_blank" rel="noopener noreferrer" class="project-card hover-trigger">
-                        <div class="project-content">
-                            <span class="project-category">Spring Boot / Security</span>
-                            <h3>BioPulse</h3>
-                            <p>API REST de saúde monitorada com autenticação JWT e Spring Security.</p>
-                            <div class="project-tags">
-                                <span>Java</span>
-                                <span>Security</span>
-                                <span>JWT</span>
-                            </div>
-                        </div>
-                        <i class="fab fa-github github-link-icon" aria-hidden="true"></i>
-                    </a>
-                </article>
-
-                <article class="reveal" style="--i: 2">
-                    <a href="https://github.com/Nimaiblanco/Fintech" target="_blank" rel="noopener noreferrer" class="project-card hover-trigger">
-                        <div class="project-content">
-                            <span class="project-category">Java / Oracle SQL</span>
-                            <h3>Fintech System</h3>
-                            <p>Gestão financeira com arquitetura MVC e integração profunda Oracle.</p>
-                            <div class="project-tags">
-                                <span>Java</span>
-                                <span>Oracle SQL</span>
-                                <span>MVC</span>
-                            </div>
-                        </div>
-                        <i class="fab fa-github github-link-icon" aria-hidden="true"></i>
-                    </a>
-                </article>
-
-                <article class="reveal" style="--i: 3">
-                    <a href="https://github.com/Nimaiblanco/Portafolio" target="_blank" rel="noopener noreferrer" class="project-card hover-trigger">
-                        <div class="project-content">
-                            <span class="project-category">Frontend / JS ES6</span>
-                            <h3>Personal Portfolio</h3>
-                            <p>Interface interativa desenvolvida com JS puro e foco em UI/UX moderno.</p>
-                            <div class="project-tags">
-                                <span>JavaScript</span>
-                                <span>UI/UX</span>
-                                <span>GSAP</span>
-                            </div>
-                        </div>
-                        <i class="fab fa-github github-link-icon" aria-hidden="true"></i>
-                    </a>
-                </article>
-
-            </div> 
-        </section>
-
-        <section id="contato" class="reveal">
-            <div class="footer-grid">
-                <div class="footer-column reveal" style="--i: 1">
-                    <h3>CONTATO</h3>
-                    <div class="contact-links">
-                        <p>+55 (11) 95856-1181</p>
-                        <a href="mailto:Blanconimai@gmail.com" class="hover-trigger">Blanconimai@gmail.com</a>
-                    </div>
-                </div>
-
-                <div class="footer-column reveal" style="--i: 2">
-                    <h3>SOCIAL</h3>
-                    <div class="social-icons-minimal">
-                        <a href="https://wa.me/5511958561181" target="_blank" rel="noopener noreferrer" class="hover-trigger" aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="https://github.com/Nimaiblanco" target="_blank" rel="noopener noreferrer" class="hover-trigger" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/blanconimai" target="_blank" rel="noopener noreferrer" class="hover-trigger" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p>Blanco Nimai © 2025</p>
-        </footer>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+// 5. SCROLL SUAVE (Fix para browsers antigos e offset)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            e.preventDefault();
+            const headerOffset = 100;
+            const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+            
+            window.scrollTo({
+                top: elementPosition - headerOffset,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
