@@ -42,8 +42,8 @@ body {
     top: 0; left: 0;
     width: 100%; height: 100%;
     z-index: 1;
-    /* Opacidad aumentada para que las partículas brillen más sobre el fondo */
-    opacity: 0.8; 
+    opacity: 1 !important; /* Forzamos opacidad completa del contenedor */
+    pointer-events: all; /* Permite que la interacción funcione mejor */
 }
 
 /* --- CURSOR (Efecto Rayos X Unificado) --- */
