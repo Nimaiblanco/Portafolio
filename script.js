@@ -1,4 +1,4 @@
-Ajusta mes script, /**
+ /**
  * Blanco Nimai Portfolio - Script Otimizado
  */
 
