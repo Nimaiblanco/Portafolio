@@ -164,6 +164,7 @@ section {
     transform: translateY(-5px);
 }
 
+/* --- FOTO --- */
 .sobre-foto { 
     position: relative; 
     width: 100%; 
@@ -223,7 +224,7 @@ section {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     padding: 40px; 
-    padding-bottom: 110px; /* Garante que o ícone do gatinho tenha seu espaço */
+    padding-bottom: 110px; 
     border-radius: 20px;
     text-decoration: none; 
     color: inherit; 
@@ -282,7 +283,7 @@ section {
     filter: drop-shadow(0 0 10px var(--accent));
 }
 
-/* --- FOOTER (Ajustado para apenas ícones) --- */
+/* --- FOOTER --- */
 .site-footer {
     background-color: #f4f4f4; 
     color: #000;
@@ -307,7 +308,7 @@ section {
     text-transform: uppercase;
 }
 
-/* Estilo para deixar apenas os ícones sociais */
+/* --- SOCIAL ICONS (ATUALIZADO) --- */
 .social-icons { 
     display: flex; 
     gap: 30px; 
@@ -315,9 +316,15 @@ section {
 
 .social-icons a { 
     color: #000; 
-    font-size: 26px; /* Ícones um pouco maiores já que não tem texto */
+    font-size: 26px; 
     transition: 0.3s var(--ease); 
     text-decoration: none;
+    /* ESSA REGRA ESCONDE O TEXTO SE VOCÊ ESQUECER NO HTML */
+    font-size: 0; 
+}
+
+.social-icons a i {
+    font-size: 26px; /* Garante que o ícone apareça mesmo com font-size 0 no pai */
 }
 
 .social-icons a:hover { 
