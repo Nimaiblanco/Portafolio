@@ -73,7 +73,7 @@ const revealObserver = new IntersectionObserver((entries) => {
     rootMargin: "0px 0px -50px 0px" 
 });
 
-// 4. INICIALIZAÇÃO E PARTÍCULAS (Configurações de Brilho e Visibilidade)
+// 4. INICIALIZAÇÃO E PARTÍCULAS (Configuración de Alta Visibilidad)
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     
@@ -81,29 +81,35 @@ document.addEventListener('DOMContentLoaded', () => {
         particlesJS('particles-js', {
             "particles": {
                 "number": { 
-                    "value": 70, // Aumentado para preencher melhor o fundo claro
-                    "density": { "enable": true, "value_area": 900 } 
+                    "value": 80, // Más cantidad para llenar el espacio
+                    "density": { "enable": true, "value_area": 800 } 
                 },
-                "color": { "value": "#38bdf8" },
+                "color": { "value": "#38bdf8" }, // Tu color acento
                 "opacity": { 
-                    "value": 0.5, // Aumentado (antes 0.2) para partículas mais nítidas
-                    "random": true,
-                    "anim": { "enable": true, "speed": 1, "opacity_min": 0.2, "sync": false }
+                    "value": 0.8, // ¡MUCHO MÁS FUERTE! (Antes 0.2/0.5)
+                    "random": false,
+                    "anim": { 
+                        "enable": true, 
+                        "speed": 1, 
+                        "opacity_min": 0.4, 
+                        "sync": false 
+                    }
                 },
                 "size": { 
-                    "value": 2, // Ligeiramente maior para visibilidade
-                    "random": true 
+                    "value": 3, // Partículas más grandes y notables
+                    "random": true,
+                    "anim": { "enable": true, "speed": 2, "size_min": 1, "sync": false }
                 },
                 "line_linked": { 
                     "enable": true, 
                     "distance": 150, 
                     "color": "#38bdf8", 
-                    "opacity": 0.25, // Aumentado (antes 0.05) para ver as conexões claramente
-                    "width": 1 
+                    "opacity": 0.5, // Líneas mucho más visibles (Antes 0.05)
+                    "width": 1.5 // Líneas un poco más gruesas
                 },
                 "move": { 
                     "enable": true, 
-                    "speed": 1.2, // Movimento mais fluido e perceptível
+                    "speed": 2, // Movimiento más dinámico
                     "direction": "none",
                     "random": false,
                     "straight": false,
@@ -116,22 +122,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 "events": { 
                     "onhover": { 
                         "enable": !isTouchDevice, 
-                        "mode": "grab" // As linhas agora brilham e se conectam ao mouse
+                        "mode": "grab" 
                     },
                     "onclick": { "enable": true, "mode": "push" }
                 },
                 "modes": {
                     "grab": { 
-                        "distance": 200, 
-                        "line_linked": { "opacity": 0.6 } // Efeito de conexão forte ao passar o mouse
-                    }
+                        "distance": 250, 
+                        "line_linked": { "opacity": 1 } // Al tocar el mouse, la línea brilla al 100%
+                    },
+                    "push": { "particles_nb": 4 }
                 }
             },
             "retina_detect": true
         });
     }
 });
-
 // 5. SCROLL SUAVE (Melhorado com Offset dinâmico)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
