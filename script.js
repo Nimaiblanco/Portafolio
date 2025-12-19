@@ -1,13 +1,13 @@
 /**
- * Blanco Nimai Portfolio - Script Otimizado (Performance & X-Ray)
+ * Blanco Nimai Portfolio - Script Master (Raio-X & Performance)
  */
 
 const cursor = document.getElementById('cursor');
 
-// 1. MOVIMENTAÇÃO DO CURSOR (LERP - Suavizado)
+// 1. MOVIMENTAÇÃO DO CURSOR (LERP OTIMIZADO)
 let mouseX = 0, mouseY = 0;
 let ballX = 0, ballY = 0;
-const speed = 0.2; // Aumentado levemente para reduzir a sensação de atraso
+const speed = 0.2; // Velocidade ideal para resposta imediata sem perder a suavidade
 
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
@@ -23,32 +23,29 @@ if (!isTouchDevice && cursor) {
     });
 
     function updateCursor() {
-        // Interpolação Linear para suavidade absoluta
+        // Interpolação para movimento fluido
         ballX += (mouseX - ballX) * speed;
         ballY += (mouseY - ballY) * speed;
         
-        // Uso de translate3d para aceleração por GPU
+        // translate3d envia o processamento para a GPU (Placa de Vídeo) eliminando o lag
         cursor.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate(-50%, -50%)`;
         requestAnimationFrame(updateCursor);
     }
-    requestAnimationFrame(updateCursor);
+    updateCursor();
 } else if (cursor) {
-    cursor.style.display = 'none';
+    cursor.style.display = 'none'; // Desativa em telas de toque
 }
 
-// 2. EFEITOS DE HOVER (Delegado e Baseado em Classes)
+// 2. EFEITO RAIO-X UNIFICADO (EXPANSÃO)
+// Seleciona todos os elementos que devem disparar o aumento do círculo
 const hoverSelectors = '.hover-trigger, .skill-card, .project-card, .btn-contato, .social-icons-minimal a, .contact-links a, .navbar a, .sobre-foto';
 
 if (!isTouchDevice) {
     document.addEventListener('mouseover', (e) => {
         const target = e.target.closest(hoverSelectors);
         if (target) {
+            // Ativa a classe unificada de Raio-X definida no CSS
             cursor.classList.add('active');
-            
-            // Efeito Raio-X específico para a foto
-            if (target.classList.contains('sobre-foto')) {
-                cursor.classList.add('x-ray');
-            }
         }
     });
 
@@ -56,12 +53,11 @@ if (!isTouchDevice) {
         const target = e.target.closest(hoverSelectors);
         if (target) {
             cursor.classList.remove('active');
-            cursor.classList.remove('x-ray');
         }
     });
 }
 
-// 3. SCROLL REVEAL (Intersection Observer)
+// 3. SCROLL REVEAL (INTERSECTION OBSERVER)
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -73,8 +69,10 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 // 4. INICIALIZAÇÃO E PARTÍCULAS (VISIBILIDADE MÁXIMA)
 document.addEventListener('DOMContentLoaded', () => {
+    // Inicializa revelação de elementos
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     
+    // Configuração de PartículasJS - Fundo Presente e Vibrante
     if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             "particles": {
@@ -86,10 +84,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     "enable": true, 
                     "distance": 150, 
                     "color": "#38bdf8", 
-                    "opacity": 0.3, // Linhas bem visíveis
+                    "opacity": 0.3, // Linhas de conexão bem visíveis
                     "width": 1 
                 },
-                "move": { "enable": true, "speed": 1.5, "direction": "none", "out_mode": "out" }
+                "move": { 
+                    "enable": true, 
+                    "speed": 1.5, 
+                    "direction": "none", 
+                    "out_mode": "out",
+                    "bounce": false
+                }
             },
             "interactivity": { 
                 "detect_on": "canvas",
@@ -106,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 5. SCROLL SUAVE (Fix para Offset)
+// 5. SCROLL SUAVE (FIX PARA OFFSET DE HEADER)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
