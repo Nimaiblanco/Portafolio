@@ -13,10 +13,10 @@
     cursor: none !important; 
 }
 
-/* --- EFEITO DE REVELAÇÃO --- */
+/* --- EFEITO DE REVELAÇÃO (Otimizado com CSS Variables) --- */
 .reveal {
     opacity: 0;
-    transform: translateY(60px); 
+    transform: translateY(40px); 
     visibility: hidden;
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
                 transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
@@ -31,9 +31,9 @@
     pointer-events: auto;
 }
 
-/* Cascata Skills e Projetos */
-.skill-card.reveal:nth-child(n), .project-card.reveal:nth-child(n) { 
-    transition-delay: calc(0.1s * var(--i, 1)); 
+/* Efeito Cascata Dinâmico: Usa o style="--i: X" do HTML */
+.reveal[style*="--i"] {
+    transition-delay: calc(0.1s * var(--i));
 }
 
 /* --- GERAL --- */
@@ -114,36 +114,54 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
 .sobre-foto:hover img { filter: grayscale(0%); transform: translate(-10px, -10px); }
 .sobre-foto:hover .foto-moldura { transform: translate(10px, 10px); }
 
-/* --- SKILLS (Ajustado) --- */
+/* --- SKILLS (Ajustado para mais itens) --- */
 #skills { text-align: center; }
 .skills-subtitle { opacity: 0.6; margin-bottom: 60px; font-size: 0.9rem; }
-.skills-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+.skills-container { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
 
 .skill-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 30px; border-radius: 20px;
-    flex: 1 1 150px; max-width: 180px;
-    display: flex; flex-direction: column; align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 25px; 
+    border-radius: 20px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
     transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.skill-card:hover { 
-    background: rgba(56, 189, 248, 0.1); border-color: var(--accent); 
-    transform: translateY(-10px); 
-}
-.skill-card img { width: 50px; height: 50px; margin-bottom: 15px; filter: grayscale(100%); transition: 0.3s; }
-.skill-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
-.skill-card span { font-size: 10px; font-weight: 900; opacity: 0.5; letter-spacing: 2px; }
 
-/* AJUSTE DO FOOTER DE SKILLS */
+.skill-card:hover { 
+    background: rgba(56, 189, 248, 0.08); 
+    border-color: var(--accent); 
+    transform: translateY(-8px); 
+}
+
+.skill-card img { 
+    width: 45px; 
+    height: 45px; 
+    margin-bottom: 15px; 
+    filter: grayscale(100%); 
+    transition: 0.3s; 
+    object-fit: contain;
+}
+.skill-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+.skill-card span { font-size: 9px; font-weight: 900; opacity: 0.5; letter-spacing: 2px; }
+
 .skills-footer {
-    margin-top: 60px; /* Espaço entre os cards e o texto */
-    font-size: 0.8rem;
+    margin-top: 80px;
+    font-size: 0.75rem;
     font-weight: 900;
     letter-spacing: 4px;
     color: var(--accent);
-    opacity: 0.6;
+    opacity: 0.5;
     text-transform: uppercase;
+    line-height: 2;
 }
 
 /* --- PROJETOS --- */
@@ -205,8 +223,9 @@ footer { padding: 40px; text-align: center; font-size: 10px; opacity: 0.3; lette
 html { scroll-behavior: smooth; }
 
 @media (max-width: 768px) {
+    .skills-container { grid-template-columns: repeat(2, 1fr); }
     .sobre-wrapper { grid-template-columns: 1fr; text-align: center; }
-    .sobre-foto { order: -1; margin-bottom: 40px; width: 240px; height: 300px; }
+    .sobre-foto { order: -1; margin-bottom: 40px; width: 220px; height: 280px; }
     .hero h1 { font-size: 12vw; }
-    .navbar { width: 100%; justify-content: center; right: 0; top: 20px; }
+    .navbar { width: 100%; justify-content: center; right: 0; top: 20px; gap: 15px; }
 }
