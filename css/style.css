@@ -63,7 +63,7 @@ body {
 section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
 .section-title { color: var(--accent); font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 50px; font-weight: 900; }
 
-/* --- SEÇÃO SOBRE (NITIDEZ E ALINHAMENTO) --- */
+/* --- SEÇÃO SOBRE (FOTO E ALINHAMENTO FIXO) --- */
 .sobre-wrapper {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -93,6 +93,7 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     width: 320px;
     height: 400px;
     justify-self: center;
+    background: transparent;
 }
 
 .sobre-foto img {
@@ -105,11 +106,9 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     filter: grayscale(100%);
     transition: 0.5s ease;
     
-    /* CORREÇÃO DE NITIDEZ RADICAL */
-    image-rendering: -webkit-optimize-contrast; 
-    image-rendering: high-quality;
-    transform: translateZ(0); /* Força uso da GPU */
-    backface-visibility: hidden;
+    /* NITIDEZ EQUILIBRADA - Sem quebrar a imagem */
+    image-rendering: -webkit-optimize-contrast;
+    transform: translateZ(0); 
 }
 
 .foto-moldura {
@@ -125,8 +124,10 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
 .sobre-foto:hover img { filter: grayscale(0%); transform: translate(-10px, -10px); }
 .sobre-foto:hover .foto-moldura { transform: translate(10px, 10px); }
 
-/* --- SEÇÃO SKILLS (RESTAURADO IGUAL À IMAGEM 1) --- */
+/* --- SEÇÃO SKILLS (RESTAURADO E CENTRALIZADO) --- */
 #skills { 
+    display: flex;
+    flex-direction: column;
     align-items: center; 
     text-align: center; 
 }
@@ -135,18 +136,16 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     opacity: 0.6; 
     margin-bottom: 60px; 
     font-size: 0.9rem; 
-    text-align: center; 
     width: 100%;
 }
 
 .skills-container { 
     display: flex; 
     flex-wrap: wrap; 
-    justify-content: center; /* Volta a centralizar os cards */
-    gap: 30px; /* Espaçamento idêntico à imagem 1 */
+    justify-content: center; 
+    gap: 30px; 
     width: 100%;
     max-width: 1100px;
-    margin: 0 auto;
 }
 
 .skill-card {
@@ -154,13 +153,13 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 25px;
     border-radius: 15px;
-    width: 120px; /* Tamanho restaurado */
+    width: 120px; 
     height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: all 0.4s ease;
+    transition: 0.4s ease;
 }
 
 .skill-card img { 
@@ -168,7 +167,6 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     height: 40px; 
     margin-bottom: 12px; 
     filter: grayscale(100%); 
-    transition: 0.3s; 
 }
 
 .skill-card span { font-size: 9px; font-weight: 900; opacity: 0.4; letter-spacing: 1px; }
@@ -178,15 +176,14 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     border-color: var(--accent); 
     transform: translateY(-8px); 
 }
-.skill-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+.skill-card:hover img { filter: grayscale(0%); }
 
 .skills-footer { 
     font-size: 10px; 
     letter-spacing: 3px; 
     opacity: 0.3; 
     margin-top: 50px; 
-    text-align: center; 
-    width: 100%;
+    text-align: center;
 }
 
 /* CURSOR E FOOTER */
