@@ -1,140 +1,124 @@
-/**
- * Blanco Nimai Portfolio - Script Otimizado
- */
+checkea meu script /**
+ * Blanco Nimai Portfolio - Script Refinado Completo
+ */
 
 const cursor = document.getElementById('cursor');
 
-// 1. MOVIMENTAÇÃO DO CURSOR (LERP)
+// 1. MOVIMENTAÇÃO DO CURSOR (LERP - Linear Interpolation)
+// Criamos um atraso suave para o cursor seguir o mouse com elegância
 let mouseX = 0, mouseY = 0;
 let ballX = 0, ballY = 0;
-const speed = 0.15; 
+const speed = 0.15; // Ajuste para mais ou menos suavidade
 
-// Detecção de Touch (Evita bugs em tablets e celulares)
-const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
 
-if (!isTouchDevice && cursor) {
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        // Garante que o cursor apareça no primeiro movimento
-        cursor.style.opacity = "1";
-    });
-
-    // Esconde o cursor quando o mouse sai da janela (ex: mudar de aba)
-    document.addEventListener('mouseleave', () => {
-        cursor.style.opacity = "0";
-    });
-
-    function updateCursor() {
-        // Lógica de interpolação suavizada
-        ballX += (mouseX - ballX) * speed;
-        ballY += (mouseY - ballY) * speed;
-        
-        // Melhoria de performance: evita usar calc() dentro do JS
-        // O translate(-50%, -50%) é melhor gerenciado no CSS inicial
-        cursor.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate(-50%, -50%)`;
-        
-        requestAnimationFrame(updateCursor);
-    }
-    requestAnimationFrame(updateCursor);
-} else if (cursor) {
-    cursor.style.display = 'none'; // Desativa em dispositivos móveis
+function updateCursor() {
+    if (cursor) {
+        // Lógica de interpolação: a posição atual "anda" 15% em direção ao mouse a cada frame
+        ballX += (mouseX - ballX) * speed;
+        ballY += (mouseY - ballY) * speed;
+        
+        // Usamos translate3d para forçar aceleração por hardware (GPU)
+        // Isso evita que o cursor fique "tremido" ou com lag
+        cursor.style.transform = `translate3d(calc(${ballX}px - 50%), calc(${ballY}px - 50%), 0)`;
+    }
+    requestAnimationFrame(updateCursor);
 }
+requestAnimationFrame(updateCursor);
 
-// 2. EFEITOS DE HOVER (Delegación)
+// 2. EFEITOS DE HOVER (Delegación optimizada)
+// Lista de elementos que fazem o cursor reagir
 const hoverSelectors = '.hover-trigger, .skill-card, .project-card, .btn-contato, .social-icons-minimal a, .contact-links a, .navbar a, .sobre-foto';
 
-if (!isTouchDevice) {
-    document.addEventListener('mouseover', (e) => {
-        const target = e.target.closest(hoverSelectors);
-        
-        if (target) {
-            cursor.classList.add('active');
-            
-            // Efeito especial para a foto
-            if (target.classList.contains('sobre-foto')) {
-                cursor.style.width = '120px';
-                cursor.style.height = '120px';
-                cursor.style.backgroundColor = 'transparent';
-                cursor.style.borderColor = 'var(--accent)';
-            }
-        }
-    });
+document.addEventListener('mouseover', (e) => {
+    const target = e.target.closest(hoverSelectors);
+    
+    if (target) {
+        cursor.classList.add('active');
+        
+        // Efeito Especial: Se for a foto de perfil, o cursor vira uma lente maior (Raio-X)
+        if (target.classList.contains('sobre-foto')) {
+            cursor.style.width = '120px';
+            cursor.style.height = '120px';
+        }
+    }
+});
 
-    document.addEventListener('mouseout', (e) => {
-        const target = e.target.closest(hoverSelectors);
-        if (target) {
-            cursor.classList.remove('active');
-            cursor.style.width = ''; 
-            cursor.style.height = '';
-            cursor.style.backgroundColor = '';
-            cursor.style.borderColor = '';
-        }
-    });
-}
+document.addEventListener('mouseout', (e) => {
+    const target = e.target.closest(hoverSelectors);
+    if (target) {
+        cursor.classList.remove('active');
+        cursor.style.width = ''; // Volta ao tamanho original do CSS
+        cursor.style.height = '';
+    }
+});
 
 // 3. SCROLL REVEAL (Intersection Observer)
+// Faz os elementos surgirem com fade-in enquanto você desce a página
 const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, { 
-    threshold: 0.15, 
-    rootMargin: "0px 0px -50px 0px" 
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Uma vez revelado, paramos de observar o elemento para poupar memória
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { 
+    threshold: 0.1, 
+    rootMargin: "0px 0px -50px 0px" // Dispara um pouco antes de entrar totalmente na tela
 });
 
-// 4. INICIALIZAÇÃO E PARTÍCULAS
+// 4. INICIALIZAÇÃO SEGURA E PARTÍCULAS
 document.addEventListener('DOMContentLoaded', () => {
-    // Reveal
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-    
-    // Particles.js
-    if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 50, "density": { "enable": true, "value_area": 1000 } },
-                "color": { "value": "#38bdf8" },
-                "opacity": { "value": 0.2 },
-                "size": { "value": 1.5 },
-                "line_linked": { 
-                    "enable": true, 
-                    "distance": 150, 
-                    "color": "#38bdf8", 
-                    "opacity": 0.05, 
-                    "width": 1 
-                },
-                "move": { "enable": true, "speed": 0.8 }
-            },
-            "interactivity": { 
-                "events": { 
-                    "onhover": { "enable": !isTouchDevice, "mode": "grab" } 
-                } 
-            },
-            "retina_detect": true
-        });
-    }
+    // Inicializar Revelações (classes .reveal)
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    
+    // Configuração do Particles.js
+    if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#38bdf8" }, // Cor azul accent
+                "opacity": { "value": 0.3 },
+                "size": { "value": 2 },
+                "line_linked": { 
+                    "enable": true, 
+                    "distance": 150, 
+                    "color": "#38bdf8", 
+                    "opacity": 0.1, 
+                    "width": 1 
+                },
+                "move": { "enable": true, "speed": 1.2 }
+            },
+            "interactivity": { 
+                "events": { "onhover": { "enable": true, "mode": "grab" } },
+                "modes": { "grab": { "distance": 200, "line_linked": { "opacity": 0.4 } } }
+            },
+            "retina_detect": true
+        });
+    }
 });
 
-// 5. SCROLL SUAVE (Fix para browsers antigos e offset)
+// 5. SCROLL SUAVE PARA LINKS INTERNOS
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            e.preventDefault();
-            const headerOffset = 100;
-            const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-            
-            window.scrollTo({
-                top: elementPosition - headerOffset,
-                behavior: 'smooth'
-            });
-        }
-    });
+    anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            e.preventDefault();
+            const headerOffset = 80; // Espaço para não cobrir o título com a navbar
+            const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
 });
