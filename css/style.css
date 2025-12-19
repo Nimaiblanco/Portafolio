@@ -77,7 +77,7 @@ body.site-loaded #main-wrapper {
 section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
 .section-title { color: var(--accent); font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 50px; font-weight: 900; }
 
-/* --- SEÇÃO SOBRE (CORREÇÃO FOTO E MARCO) --- */
+/* --- SEÇÃO SOBRE --- */
 .sobre-wrapper {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -107,7 +107,7 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     width: 320px;
     height: 400px;
     justify-self: center;
-    z-index: 5; /* Container pai com z-index baixo */
+    z-index: 5;
 }
 
 .sobre-foto img {
@@ -115,7 +115,7 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     object-fit: cover;
     border-radius: 12px;
     position: relative;
-    z-index: 10; /* FOTO NA FRENTE */
+    z-index: 10;
     filter: grayscale(100%);
     transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
 }
@@ -126,34 +126,82 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     width: 100%; height: 100%;
     border: 2px solid var(--accent);
     border-radius: 12px;
-    z-index: 1; /* MARCO ATRÁS */
+    z-index: 1;
     transition: 0.5s ease;
 }
 
 .sobre-foto:hover img { filter: grayscale(0%); transform: translate(-10px, -10px); }
 .sobre-foto:hover .foto-moldura { transform: translate(10px, 10px); }
 
-/* --- SEÇÃO SKILLS --- */
-#skills { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.skills-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+/* --- SEÇÃO SKILLS (SOLUÇÃO PARA O APERTO) --- */
+#skills { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+}
+
+.skills-subtitle { 
+    opacity: 0.6; 
+    margin-bottom: 60px; 
+    font-size: 0.9rem; 
+    max-width: 600px;
+}
+
+.skills-container { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 40px; /* Aumentado de 30px para 40px para mais respiro */
+    width: 100%;
+    max-width: 1100px;
+}
 
 .skill-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 15px;
-    width: 120px; height: 120px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    transition: 0.4s ease;
+    padding: 30px; /* Mais preenchimento interno */
+    border-radius: 20px;
+    width: 140px; /* Aumentado levemente */
+    height: 140px; /* Aumentado levemente */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.skill-card img {
+    width: 50px; /* Ícones levemente maiores */
+    height: 50px;
+    margin-bottom: 15px;
+    filter: grayscale(100%);
+    transition: 0.3s ease;
+}
+
+.skill-card span { 
+    font-size: 10px; 
+    font-weight: 900; 
+    opacity: 0.4; 
+    letter-spacing: 2px; 
 }
 
 .skill-card:hover { 
     background: rgba(56, 189, 248, 0.1); 
     border-color: var(--accent); 
-    transform: translateY(-8px); 
+    transform: translateY(-10px); 
 }
 
-/* --- SEÇÃO CONTATO (BOTÕES CIRCULARES) --- */
+.skill-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+
+.skills-footer {
+    margin-top: 60px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    opacity: 0.3;
+}
+
+/* --- SEÇÃO CONTATO --- */
 .contact-wrapper {
     display: flex;
     flex-direction: column;
@@ -170,7 +218,7 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     color: #ffffff;
     font-size: 1.5rem;
     text-decoration: none;
-    width: 60px; /* Levemente maior para os ícones ficarem confortáveis */
+    width: 60px;
     height: 60px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
@@ -188,7 +236,7 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     background: rgba(56, 189, 248, 0.1);
 }
 
-/* --- CURSOR COM EFEITO DE CONTRASTE --- */
+/* --- CURSOR --- */
 #cursor { 
     position: fixed; 
     width: 25px; height: 25px; 
@@ -210,4 +258,6 @@ html { scroll-behavior: smooth; }
 @media (max-width: 768px) {
     .sobre-wrapper { grid-template-columns: 1fr; text-align: center; }
     .sobre-foto { order: -1; margin-bottom: 40px; width: 260px; height: 320px; }
+    .skills-container { gap: 20px; } /* Ajuste de gap para mobile */
+    .skill-card { width: 120px; height: 120px; }
 }
