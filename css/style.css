@@ -13,6 +13,21 @@
     cursor: none !important; 
 }
 
+/* --- CURSOR (CORREÇÃO DE Z-INDEX E RAIO-X) --- */
+#cursor { 
+    position: fixed; 
+    width: 25px; 
+    height: 25px; 
+    border: 2px solid #fff; 
+    border-radius: 50%; 
+    pointer-events: none; 
+    z-index: 10000; /* Aumentado para ficar acima da foto */
+    transform: translate(-50%, -50%); 
+    mix-blend-mode: difference; /* Efeito Raio-X */
+    background-color: #fff; 
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
 /* --- EFEITO DE REVELAÇÃO --- */
 .reveal {
     opacity: 0;
@@ -101,7 +116,14 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     transition: 0.3s;
 }
 
-.sobre-foto { position: relative; width: 320px; height: 400px; justify-self: center; }
+/* CORREÇÃO NA FOTO PARA PERMITIR O CURSOR EM CIMA */
+.sobre-foto { 
+    position: relative; 
+    width: 320px; 
+    height: 400px; 
+    justify-self: center; 
+    z-index: 5; /* Menor que o cursor (10000) */
+}
 .sobre-foto img { 
     width: 100%; height: 100%; object-fit: cover; border-radius: 12px; 
     position: relative; z-index: 10; filter: grayscale(100%); transition: 0.5s; 
@@ -148,17 +170,6 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
 .skill-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
 .skill-card span { font-size: 9px; font-weight: 900; opacity: 0.5; letter-spacing: 2px; }
 
-.skills-footer {
-    margin-top: 80px;
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 4px;
-    color: var(--accent);
-    opacity: 0.5;
-    text-transform: uppercase;
-    line-height: 2;
-}
-
 /* --- PROJETOS --- */
 .projects-grid {
     display: grid;
@@ -178,26 +189,7 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.project-card:hover {
-    background: rgba(56, 189, 248, 0.05);
-    border-color: var(--accent);
-    transform: translateY(-10px);
-}
-
-.project-category { font-size: 10px; letter-spacing: 2px; color: var(--accent); font-weight: 900; margin-bottom: 15px; text-transform: uppercase; }
-.project-card h3 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 900; }
-.project-card p { font-size: 0.95rem; line-height: 1.6; opacity: 0.6; margin-bottom: 25px; }
-
-.project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.project-tags span { 
-    font-size: 9px; padding: 4px 10px; background: rgba(255, 255, 255, 0.05); 
-    border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1); font-weight: 700;
-}
-
-.github-link-icon { position: absolute; top: 30px; right: 30px; font-size: 1.2rem; opacity: 0.2; }
-.project-card:hover .github-link-icon { opacity: 1; color: var(--accent); }
-
-/* --- NOVO LAYOUT DE CONTATO (ESTILO COLUNAS) --- */
+/* --- NOVO LAYOUT DE CONTATO --- */
 .footer-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -235,18 +227,6 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     text-decoration: none;
 }
 
-.social-icons-minimal a:hover {
-    color: var(--accent);
-    transform: translateY(-5px);
-}
-
-/* --- CURSOR E FOOTER --- */
-#cursor { 
-    position: fixed; width: 25px; height: 25px; border: 2px solid #fff; border-radius: 50%; 
-    pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); 
-    mix-blend-mode: difference; background-color: #fff; transition: width 0.3s, height 0.3s;
-}
-
 footer { padding: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 footer p { font-size: 10px; opacity: 0.4; letter-spacing: 2px; font-weight: 700; }
 
@@ -260,5 +240,4 @@ html { scroll-behavior: smooth; }
     .sobre-foto { order: -1; margin-bottom: 40px; width: 240px; height: 300px; }
     .skills-container { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr; text-align: center; }
-    .social-icons-minimal { justify-content: center; }
 }
