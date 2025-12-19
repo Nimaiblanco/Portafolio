@@ -1,6 +1,6 @@
 /**
- * Blanco Nimai Portfolio - Script Otimizado
- * Alterações: Velocidade do mouse aumentada e seletores de hover atualizados.
+ * Blanco Nimai Portfolio - Script Otimizado Final
+ * Ajustes: Prioridade de renderização e suavização de hover.
  */
 
 const cursor = document.getElementById('cursor');
@@ -8,7 +8,6 @@ const cursor = document.getElementById('cursor');
 // 1. MOVIMENTAÇÃO DO CURSOR (LERP)
 let mouseX = 0, mouseY = 0;
 let ballX = 0, ballY = 0;
-// Aumentado de 0.15 para 0.35 para o mouse ficar muito mais rápido e responsivo
 const speed = 0.35; 
 
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
@@ -28,9 +27,9 @@ if (!isTouchDevice && cursor) {
         ballX += (mouseX - ballX) * speed;
         ballY += (mouseY - ballY) * speed;
         
-        // pointer-events: none é vital para que o clique passe através da bolinha do cursor
         cursor.style.pointerEvents = "none";
-        cursor.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate(-50%, -50%)`;
+        // Adicionado translateZ(0) para forçar aceleração de hardware (GPU)
+        cursor.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate(-50%, -50%) translateZ(0)`;
         
         requestAnimationFrame(updateCursor);
     }
@@ -39,10 +38,12 @@ if (!isTouchDevice && cursor) {
     cursor.style.display = 'none'; 
 }
 
-// 2. EFEITOS DE HOVER (Atualizado com .btn-contato e ícones)
+// 2. EFEITOS DE HOVER
+// Mantendo todos os seletores que você definiu
 const hoverSelectors = '.hover-trigger, .skill-card, .project-card, .btn-contato, .social-icons a, .contact-info a, .navbar a, .sobre-foto, .github-link-icon';
 
 if (!isTouchDevice) {
+    // Usamos 'mouseover' com delegação para garantir que novos elementos também funcionem
     document.addEventListener('mouseover', (e) => {
         const target = e.target.closest(hoverSelectors);
         if (target) {
