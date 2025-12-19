@@ -185,7 +185,7 @@ section {
     transform: translateY(-8px); 
 }
 
-/* --- PROJETOS (Ajuste del icono de GitHub) --- */
+/* --- PROJETOS --- */
 .projects-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -204,7 +204,7 @@ section {
     height: 100%; 
     backdrop-filter: blur(10px);
     transition: 0.5s var(--ease);
-    position: relative; /* Importante para el icono */
+    position: relative; 
 }
 
 .project-card:hover { 
@@ -220,13 +220,12 @@ section {
     color: var(--accent); 
 }
 
-/* Etiquetas de tecnologías */
 .project-tags { 
     display: flex; 
     gap: 8px; 
     flex-wrap: wrap; 
     margin-top: auto; 
-    padding-right: 40px; /* Deja espacio para que las tags no choquen con el icono */
+    padding-right: 45px; /* Evita choque con el icono */
 }
 
 .project-tags span { 
@@ -240,10 +239,9 @@ section {
     text-transform: uppercase;
 }
 
-/* ICONO GITHUB (Separado y posicionado) */
 .github-link-icon { 
     position: absolute; 
-    bottom: 35px; /* Lo bajamos para alinearlo mejor */
+    bottom: 35px; 
     right: 35px; 
     font-size: 1.5rem; 
     opacity: 0.4; 
@@ -257,6 +255,82 @@ section {
     transform: scale(1.2) rotate(10deg); 
 }
 
+/* --- NUEVO FOOTER ESTILO IMAGEN --- */
+.site-footer {
+    background-color: #eeeeee; /* Gris claro de la imagen */
+    color: #000000;
+    padding: 100px 0 0 0;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center; 
+    gap: 120px; 
+    padding-bottom: 80px;
+}
+
+.footer-column h4 {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Círculo negro en CONTATO */
+.footer-column:first-child h4::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    background: #000;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.footer-column:first-child h4 {
+    color: #fff;
+    padding-left: 8px;
+}
+
+.contact-info a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: 0.3s;
+}
+
+.contact-info a:hover { color: var(--accent); }
+
+.social-icons { display: flex; gap: 25px; }
+.social-icons a { color: #000; font-size: 20px; transition: 0.3s; }
+.social-icons a:hover { transform: translateY(-5px); color: var(--accent); }
+
+.footer-bottom {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 25px 0;
+}
+
+.footer-bottom p {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    opacity: 0.6;
+    text-transform: uppercase;
+}
+
 /* --- RESPONSIVIDADE --- */
 @media (max-width: 992px) {
     .sobre-wrapper { grid-template-columns: 1fr; text-align: center; }
@@ -265,4 +339,6 @@ section {
 @media (max-width: 600px) {
     .navbar { width: 100%; right: 0; justify-content: center; top: 20px; background: rgba(12, 12, 12, 0.8); padding: 10px; }
     .skills-container { grid-template-columns: repeat(2, 1fr); }
+    .footer-container { flex-direction: column; gap: 50px; text-align: center; }
+    .social-icons { justify-content: center; }
 }
