@@ -1,14 +1,22 @@
 const cursor = document.getElementById('cursor');
 
-// Movimentação do cursor customizado
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+// 1. EFEITO DE CARREGAMENTO (FADE-IN INICIAL)
+window.addEventListener('load', () => {
+    // Adiciona a classe no body que dispara a transição definida no CSS
+    document.body.classList.add('site-loaded');
 });
 
-// Efeito de expansão do cursor em elementos interativos
+// 2. MOVIMENTAÇÃO DO CURSOR CUSTOMIZADO
+document.addEventListener('mousemove', (e) => {
+    // Usando requestAnimationFrame para o movimento ser mais fluido (60fps)
+    requestAnimationFrame(() => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+});
+
+// 3. EFEITO DE EXPANSÃO DO CURSOR EM ELEMENTOS INTERATIVOS
 document.addEventListener('mouseover', (e) => {
-    // Adicionei a classe 'skill-card' e 'btn-contato' para o cursor reagir a eles também
     if (
         e.target.classList.contains('hover-trigger') || 
         e.target.closest('.skill-card') || 
@@ -30,7 +38,7 @@ document.addEventListener('mouseout', (e) => {
     }
 });
 
-// Configuração do Particles.js (Fundo Dinâmico)
+// 4. CONFIGURAÇÃO DO PARTICLES.JS
 particlesJS('particles-js', {
     "particles": {
         "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
@@ -44,14 +52,14 @@ particlesJS('particles-js', {
     "interactivity": { 
         "detect_on": "canvas", 
         "events": { 
-            "onhover": { "enable": true, "mode": "grab" }, // As linhas seguem o mouse levemente
+            "onhover": { "enable": true, "mode": "grab" },
             "resize": true 
         } 
     },
     "retina_detect": true
 });
 
-// Scroll Suave para os links da Navbar
+// 5. SCROLL SUAVE PARA OS LINKS DA NAVBAR
 document.querySelectorAll('.navbar a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
