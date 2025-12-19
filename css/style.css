@@ -207,9 +207,29 @@ section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: 
     text-align: center;
 }
 
-/* CURSOR E FOOTER */
-#cursor { position: fixed; width: 25px; height: 25px; border: 1.5px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: background 0.3s, transform 0.2s; }
-#cursor.active { background: rgba(56, 189, 248, 0.3); transform: translate(-50%, -50%) scale(1.5); }
+/* --- CURSOR COM EFEITO DE CONTRASTE --- */
+#cursor { 
+    position: fixed; 
+    width: 25px; 
+    height: 25px; 
+    border: 2px solid #ffffff; 
+    border-radius: 50%; 
+    pointer-events: none; 
+    z-index: 9999; 
+    transform: translate(-50%, -50%); 
+    transition: width 0.3s, height 0.3s, background 0.3s;
+    
+    /* O SEGREDO DO CONTRASTE */
+    mix-blend-mode: difference; 
+    background-color: #ffffff; 
+}
+
+#cursor.active { 
+    width: 60px; 
+    height: 60px; 
+    background-color: #ffffff;
+    border: none;
+}
 
 footer { padding: 40px; text-align: center; font-size: 10px; opacity: 0.3; letter-spacing: 2px; }
 html { scroll-behavior: smooth; }
