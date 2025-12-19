@@ -2,13 +2,11 @@ const cursor = document.getElementById('cursor');
 
 // 1. EFEITO DE CARREGAMENTO (FADE-IN INICIAL)
 window.addEventListener('load', () => {
-    // Adiciona a classe no body que dispara a transição definida no CSS
     document.body.classList.add('site-loaded');
 });
 
 // 2. MOVIMENTAÇÃO DO CURSOR CUSTOMIZADO
 document.addEventListener('mousemove', (e) => {
-    // Usando requestAnimationFrame para o movimento ser mais fluido (60fps)
     requestAnimationFrame(() => {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
@@ -16,12 +14,13 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // 3. EFEITO DE EXPANSÃO DO CURSOR EM ELEMENTOS INTERATIVOS
-// Melhorado para usar delegação de eventos mais eficiente
 document.addEventListener('mouseover', (e) => {
     const target = e.target;
+    // Adicionado .social-icon e melhorado o uso de .closest() para ícones internos
     if (
         target.classList.contains('hover-trigger') || 
-        target.classList.contains('mail-link') || // Garante detecção no e-mail
+        target.classList.contains('mail-link') || 
+        target.closest('.social-icon') || 
         target.closest('.skill-card') || 
         target.closest('.btn-contato') ||
         target.tagName === 'A' ||
@@ -36,6 +35,7 @@ document.addEventListener('mouseout', (e) => {
     if (
         target.classList.contains('hover-trigger') || 
         target.classList.contains('mail-link') ||
+        target.closest('.social-icon') || 
         target.closest('.skill-card') || 
         target.closest('.btn-contato') ||
         target.tagName === 'A' ||
@@ -71,12 +71,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
-        if (targetId === '#') return; // Evita erro em links vazios
+        if (targetId === '#') return;
         
         const targetSection = document.querySelector(targetId);
         
         if (targetSection) {
-            // Ajuste leve para não colar exatamente no topo se tiver navbar fixa
             const offsetTop = targetSection.offsetTop;
             window.scrollTo({
                 top: offsetTop,
