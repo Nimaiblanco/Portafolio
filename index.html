@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <svg style="display:none;">
+      <filter id="sharpen">
+        <feConvolveMatrix order="3" preserveAlpha="true" kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
+      </filter>
+    </svg>
+
     <div id="particles-js"></div>
     <div id="cursor"></div>
 
@@ -44,8 +50,9 @@
                         <a href="#contato" class="btn-contato hover-trigger">VAMOS CONVERSAR?</a>
                     </div>
                 </div>
+                
                 <div class="sobre-foto hover-trigger">
-                    <img src="https://raw.githubusercontent.com/Nimaiblanco/Nimaiblanco/main/assets/perfil.jpg" alt="Blanco Nimai">
+                    <img src="https://cdn.staticaly.com/gh/Nimaiblanco/Nimaiblanco/main/assets/perfil.jpg?w=640" alt="Blanco Nimai">
                     <div class="foto-moldura"></div>
                 </div>
             </div>
@@ -66,7 +73,7 @@
                 </div>
                 <div class="skill-card hover-trigger">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS" />
-                    <span>JAVASCRIPT</span>
+                    <span>JS</span>
                 </div>
                 <div class="skill-card hover-trigger">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
