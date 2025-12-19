@@ -1,6 +1,5 @@
 /**
- * Blanco Nimai Portfolio - Script Corrigido e Otimizado
- * Ajustes: Partículas mais visíveis, brilho aumentado e interatividade melhorada.
+ * Blanco Nimai Portfolio - Script Optimizado con Interacción de Partículas
  */
 
 const cursor = document.getElementById('cursor');
@@ -27,6 +26,8 @@ if (!isTouchDevice && cursor) {
         ballX += (mouseX - ballX) * speed;
         ballY += (mouseY - ballY) * speed;
         
+        // Se añade pointer-events none para asegurar que las partículas sientan el mouse real
+        cursor.style.pointerEvents = "none";
         cursor.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate(-50%, -50%)`;
         
         requestAnimationFrame(updateCursor);
@@ -37,17 +38,13 @@ if (!isTouchDevice && cursor) {
 }
 
 // 2. EFEITOS DE HOVER (Corrigido para Rayos X)
-const hoverSelectors = '.hover-trigger, .skill-card, .project-card, .btn-contato, .social-icons-minimal a, .contact-links a, .navbar a, .sobre-foto';
+const hoverSelectors = '.hover-trigger, .skill-card, .project-card, .btn-contato, .social-icons a, .contact-info a, .navbar a, .sobre-foto';
 
 if (!isTouchDevice) {
     document.addEventListener('mouseover', (e) => {
         const target = e.target.closest(hoverSelectors);
-        
         if (target) {
             cursor.classList.add('active');
-            if (target.classList.contains('sobre-foto')) {
-                cursor.classList.add('cursor-large');
-            }
         }
     });
 
@@ -55,7 +52,6 @@ if (!isTouchDevice) {
         const target = e.target.closest(hoverSelectors);
         if (target) {
             cursor.classList.remove('active');
-            cursor.classList.remove('cursor-large');
         }
     });
 }
@@ -73,7 +69,7 @@ const revealObserver = new IntersectionObserver((entries) => {
     rootMargin: "0px 0px -50px 0px" 
 });
 
-// 4. INICIALIZAÇÃO E PARTÍCULAS (Configuración de Alta Visibilidad)
+// 4. INICIALIZAÇÃO E PARTÍCULAS (Con Interacción Activada)
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     
@@ -81,56 +77,56 @@ document.addEventListener('DOMContentLoaded', () => {
         particlesJS('particles-js', {
             "particles": {
                 "number": { 
-                    "value": 80, // Más cantidad para llenar el espacio
+                    "value": 90, 
                     "density": { "enable": true, "value_area": 800 } 
                 },
-                "color": { "value": "#38bdf8" }, // Tu color acento
+                "color": { "value": "#38bdf8" },
                 "opacity": { 
-                    "value": 0.8, // ¡MUCHO MÁS FUERTE! (Antes 0.2/0.5)
-                    "random": false,
-                    "anim": { 
-                        "enable": true, 
-                        "speed": 1, 
-                        "opacity_min": 0.4, 
-                        "sync": false 
-                    }
+                    "value": 0.7, 
+                    "random": true,
+                    "anim": { "enable": true, "speed": 1, "opacity_min": 0.3, "sync": false }
                 },
                 "size": { 
-                    "value": 3, // Partículas más grandes y notables
+                    "value": 3, 
                     "random": true,
-                    "anim": { "enable": true, "speed": 2, "size_min": 1, "sync": false }
+                    "anim": { "enable": true, "speed": 2, "size_min": 0.5, "sync": false }
                 },
                 "line_linked": { 
                     "enable": true, 
                     "distance": 150, 
                     "color": "#38bdf8", 
-                    "opacity": 0.5, // Líneas mucho más visibles (Antes 0.05)
-                    "width": 1.5 // Líneas un poco más gruesas
+                    "opacity": 0.4, 
+                    "width": 1.2
                 },
                 "move": { 
                     "enable": true, 
-                    "speed": 2, // Movimiento más dinámico
+                    "speed": 1.5, 
                     "direction": "none",
-                    "random": false,
+                    "random": true,
                     "straight": false,
                     "out_mode": "out",
                     "bounce": false
                 }
             },
             "interactivity": { 
-                "detect_on": "canvas",
+                "detect_on": "window", // Cambiado a window para mejor respuesta
                 "events": { 
                     "onhover": { 
                         "enable": !isTouchDevice, 
-                        "mode": "grab" 
+                        "mode": "grab" // Las partículas se conectan al cursor
                     },
-                    "onclick": { "enable": true, "mode": "push" }
+                    "onclick": { 
+                        "enable": true, 
+                        "mode": "push" 
+                    },
+                    "resize": true
                 },
                 "modes": {
                     "grab": { 
-                        "distance": 250, 
-                        "line_linked": { "opacity": 1 } // Al tocar el mouse, la línea brilla al 100%
+                        "distance": 200, 
+                        "line_linked": { "opacity": 1 } 
                     },
+                    "repulse": { "distance": 100, "duration": 0.4 },
                     "push": { "particles_nb": 4 }
                 }
             },
@@ -138,7 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-// 5. SCROLL SUAVE (Melhorado com Offset dinâmico)
+
+// 5. SCROLL SUAVE (Offset dinâmico)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
