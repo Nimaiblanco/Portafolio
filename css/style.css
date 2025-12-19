@@ -1,12 +1,11 @@
 :root {
-    /* Ajustado para um tom levemente acima do preto para destacar o fundo */
-    --bg: #050505; 
+    --bg: #000000;
     --accent: #38bdf8;
     --text-main: #ffffff;
     --text-dim: rgba(255, 255, 255, 0.6);
-    --card-bg: rgba(255, 255, 255, 0.04);
-    --card-border: rgba(255, 255, 255, 0.1);
-    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --ease-custom: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* RESET E BASE */
@@ -16,7 +15,7 @@
     box-sizing: border-box; 
 }
 
-/* Cursor customizado apenas para dispositivos com mouse */
+/* Esconde o cursor padrão apenas em dispositivos que possuem ponteiro (Mouse) */
 @media (pointer: fine) {
     * { cursor: none !important; }
 }
@@ -35,17 +34,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- BACKGROUND & PARTICLES --- */
-#particles-js {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 1;
-    /* Aumentado para garantir que o movimento seja visível */
-    opacity: 0.6; 
-}
-
-/* --- CURSOR --- */
+/* --- CURSOR (GPU OPTIMIZED) --- */
 #cursor { 
     position: fixed; 
     width: 20px; 
@@ -57,14 +46,21 @@ body {
     transform: translate3d(-50%, -50%, 0); 
     mix-blend-mode: difference; 
     background-color: #fff; 
-    transition: width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s ease;
+    transition: width 0.3s var(--ease-custom), 
+                height 0.3s var(--ease-custom),
+                background-color 0.3s ease;
     will-change: transform;
 }
 
 #cursor.active {
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Desativa o cursor customizado em telas touch para evitar ghosting */
+@media (pointer: coarse) {
+    #cursor { display: none; }
 }
 
 /* --- EFEITO DE REVELAÇÃO --- */
@@ -72,7 +68,8 @@ body {
     opacity: 0;
     transform: translateY(30px); 
     visibility: hidden;
-    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    transition: opacity 0.8s var(--ease-custom), 
+                transform 0.8s var(--ease-custom);
 }
 
 .reveal.active {
@@ -87,6 +84,14 @@ body {
 
 /* ESTRUTURA GERAL */
 #main-wrapper { position: relative; z-index: 10; width: 100%; }
+
+#particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none; /* Garante que partículas não bloqueiem cliques */
+}
 
 /* NAVBAR */
 .navbar { 
@@ -116,12 +121,18 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
 
 /* HERO */
 .hero { height: 100vh; text-align: center; }
-.hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 9vw; line-height: 0.85; text-transform: uppercase; letter-spacing: -2px; }
+.hero h1 { 
+    font-family: 'Archivo Narrow', sans-serif; 
+    font-size: clamp(3rem, 9vw, 12rem); /* Fonte fluida */
+    line-height: 0.85; 
+    text-transform: uppercase; 
+    letter-spacing: -2px; 
+}
 .software-dev { color: var(--accent); letter-spacing: 8px; margin-top: 20px; font-weight: 900; font-size: 0.8rem; opacity: 0.8; }
 
 /* --- SOBRE --- */
 .sobre-wrapper { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: center; }
-.sobre-texto h3 { font-size: 2.8rem; font-weight: 900; margin-bottom: 30px; line-height: 1.1; }
+.sobre-texto h3 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: 30px; line-height: 1.1; }
 .sobre-texto p { font-size: 1.05rem; opacity: 0.7; margin-bottom: 25px; max-width: 600px; }
 .sobre-texto strong { color: var(--accent); font-weight: 900; }
 
@@ -135,7 +146,7 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
     text-decoration: none;
     border-bottom: 2px solid var(--accent);
     padding-bottom: 6px;
-    transition: 0.3s var(--ease);
+    transition: 0.3s var(--ease-custom);
 }
 .btn-contato:hover { letter-spacing: 4px; border-color: #fff; color: #fff; }
 
@@ -148,11 +159,14 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
 }
 .sobre-foto img { 
     width: 100%; height: 100%; object-fit: cover; border-radius: 4px; 
-    position: relative; z-index: 10; filter: grayscale(100%); transition: 0.6s var(--ease); 
+    position: relative; z-index: 10; filter: grayscale(100%); 
+    transition: 0.6s var(--ease-custom); 
+    backface-visibility: hidden;
 }
 .foto-moldura { 
     position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; 
-    border: 1.5px solid var(--accent); border-radius: 4px; z-index: 1; transition: 0.6s var(--ease); 
+    border: 1.5px solid var(--accent); border-radius: 4px; z-index: 1; 
+    transition: 0.6s var(--ease-custom); 
 }
 .sobre-foto:hover img { filter: grayscale(0%); transform: translate(-10px, -10px); }
 .sobre-foto:hover .foto-moldura { transform: translate(10px, 10px); }
@@ -160,7 +174,7 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
 /* --- SKILLS --- */
 .skills-container { 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 25px;
     max-width: 1200px;
     margin: 0 auto;
@@ -171,7 +185,7 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
     padding: 30px 20px; 
     border-radius: 12px;
     display: flex; flex-direction: column; align-items: center;
-    transition: 0.4s var(--ease);
+    transition: 0.4s var(--ease-custom);
     backdrop-filter: blur(5px);
 }
 .skill-card:hover { 
@@ -198,18 +212,17 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
     text-decoration: none;
     color: inherit;
     position: relative;
-    transition: 0.5s var(--ease);
+    transition: 0.5s var(--ease-custom);
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: hidden;
-    backdrop-filter: blur(10px);
 }
 
 .project-card:hover {
     border-color: var(--accent);
     background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-12px);
+    transform: translateY(-10px);
 }
 
 .project-content { flex-grow: 1; }
@@ -231,18 +244,17 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
     border-radius: 4px; 
     font-weight: 700; 
     border: 1px solid rgba(255,255,255,0.1); 
-    white-space: nowrap;
     transition: 0.3s;
 }
 
 .github-link-icon { 
     position: absolute; top: 35px; right: 35px; 
     font-size: 1.4rem; opacity: 0.2; 
-    transition: 0.4s var(--ease); 
+    transition: 0.4s var(--ease-custom); 
 }
-
 .project-card:hover .github-link-icon { 
-    opacity: 1; color: var(--accent); transform: rotate(15deg) scale(1.2); 
+    opacity: 1; color: var(--accent); 
+    transform: rotate(15deg) scale(1.2); 
 }
 
 /* --- CONTATO E RODAPÉ --- */
@@ -258,7 +270,7 @@ section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: 
 .contact-links a:hover { color: var(--accent); transform: translateX(10px); }
 
 .social-icons-minimal { display: flex; gap: 30px; }
-.social-icons-minimal a { color: #fff; font-size: 1.6rem; transition: 0.3s var(--ease); }
+.social-icons-minimal a { color: #fff; font-size: 1.6rem; transition: 0.3s var(--ease-custom); }
 .social-icons-minimal a:hover { color: var(--accent); transform: translateY(-5px) scale(1.1); }
 
 footer { padding: 60px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -266,14 +278,27 @@ footer p { font-size: 9px; opacity: 0.3; letter-spacing: 3px; text-transform: up
 
 /* --- RESPONSIVIDADE --- */
 @media (max-width: 992px) {
-    .hero h1 { font-size: 12vw; }
     .sobre-wrapper { grid-template-columns: 1fr; gap: 50px; }
     .footer-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
+    .social-icons-minimal { justify-content: center; }
 }
 
 @media (max-width: 600px) {
-    .navbar { width: 100%; right: 0; justify-content: center; top: 20px; padding: 0 20px; }
-    .hero h1 { font-size: 16vw; }
+    .navbar { 
+        width: 100%; right: 0; justify-content: center; top: 20px; padding: 0 20px; 
+    }
+    .navbar a { font-size: 8px; letter-spacing: 1.5px; }
     section { padding: 80px 5%; }
+    .project-card { padding: 30px; }
     .sobre-texto h3 { font-size: 2rem; }
+}
+
+/* Respeita usuários que preferem animações reduzidas */
+@media (prefers-reduced-motion: reduce) {
+    .reveal, .project-card, .skill-card, #cursor {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
 }
