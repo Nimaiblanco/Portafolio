@@ -19,7 +19,6 @@ body {
     overflow-x: hidden; 
 }
 
-/* PARTICULAS NO FUNDO */
 #particles-js {
     position: fixed;
     top: 0; left: 0;
@@ -28,14 +27,12 @@ body {
     background-color: #000000;
 }
 
-/* CONTEÚDO NA FRENTE */
 #main-wrapper { 
     position: relative; 
     z-index: 10; 
     width: 100%; 
 }
 
-/* NAVBAR */
 .navbar { 
     position: fixed; 
     top: 40px; 
@@ -57,50 +54,40 @@ body {
 }
 .navbar a:hover { opacity: 1; color: var(--accent); }
 
-/* HERO */
 .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
 .hero h1 { font-family: 'Archivo Narrow', sans-serif; font-size: 8vw; line-height: 0.85; text-transform: uppercase; }
 .software-dev { color: var(--accent); letter-spacing: 6px; margin-top: 15px; font-weight: 900; font-size: 0.8rem; }
 
-/* SEÇÕES GERAIS */
 section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
 .section-title { color: var(--accent); font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 50px; font-weight: 900; }
-.skill-item h3 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 900; }
-.skill-item p { opacity: 0.6; line-height: 1.6; font-size: 1.1rem; max-width: 600px; }
 
-/* SEÇÃO DE CONTATO (EMAIL PEQUENO) */
-#contato { 
-    align-items: center; 
-    text-align: center; 
-    min-height: 60vh; /* Reduzido para não ficar um vácuo muito grande */
+/* ESTILO SKILLS (ADICIONADO) */
+.skills-subtitle { opacity: 0.6; margin-bottom: 40px; font-size: 0.9rem; }
+.skills-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.skill-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s ease;
 }
-.contact-links { margin-top: 20px; }
+.skill-card img { width: 40px; height: 40px; margin-bottom: 15px; filter: grayscale(100%); transition: 0.3s; }
+.skill-card span { font-size: 9px; font-weight: 900; opacity: 0.4; letter-spacing: 1px; }
+.skill-card:hover { background: rgba(56, 189, 248, 0.1); border-color: var(--accent); transform: translateY(-8px); }
+.skill-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+.skill-card:hover span { opacity: 1; color: var(--accent); }
+.skills-footer { font-size: 10px; letter-spacing: 3px; opacity: 0.3; margin-top: 30px; text-align: center; }
 
-.contact-links a { 
-    font-size: 1.2rem; /* Email pequeno e discreto conforme solicitado */
-    color: var(--text-main);
-    text-decoration: none;
-    font-weight: 700;
-    letter-spacing: 1px;
-    transition: 0.3s;
-    pointer-events: auto;
-}
+#contato { align-items: center; text-align: center; min-height: 60vh; }
+.contact-links a { font-size: 1.2rem; color: var(--text-main); text-decoration: none; font-weight: 700; letter-spacing: 1px; transition: 0.3s; pointer-events: auto; }
 .contact-links a:hover { color: var(--accent); letter-spacing: 3px; }
 
-/* CURSOR */
-#cursor {
-    position: fixed;
-    width: 25px; height: 25px;
-    border: 1.5px solid var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: background 0.3s, transform 0.2s, border-color 0.3s;
-}
+#cursor { position: fixed; width: 25px; height: 25px; border: 1.5px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: background 0.3s, transform 0.2s; }
 #cursor.active { background: rgba(56, 189, 248, 0.3); transform: translate(-50%, -50%) scale(1.5); }
 
-/* FOOTER */
 footer { padding: 40px; text-align: center; font-size: 10px; opacity: 0.3; letter-spacing: 2px; }
-
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
