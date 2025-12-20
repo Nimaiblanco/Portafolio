@@ -1,53 +1,58 @@
 <div align="center">
 
-# Blanco Nimai | Personal Portfolio
-### FULL STACK DEVELOPER
+# 🚀 Blanco Nimai | Software Developer
+### FULL STACK DEVELOPER | FIAP GRADUATE
 
 <br>
 
-<a href="https://nimaiblanco.github.io/Portafolio/">
-  <img src="https://raw.githubusercontent.com/Nimaiblanco/Nimaiblanco/main/assets/Apocalipsis.jpg" width="100%" style="border-radius: 10px; border: 2px solid #38bdf8;" alt="Visitar Portafólio" />
+<a href="https://nimaiblanco.github.io/Portafolio/" target="_blank">
+  <p align="center">
+    <img src="https://raw.githubusercontent.com/Nimaiblanco/Nimaiblanco/main/assets/Apocalipsis.jpg" width="100%" style="border-radius: 10px; border: 2px solid #38bdf8;" alt="Visitar Portafólio Interativo" />
+    <br>
+    <sub><b>✨ Clique na imagem acima para abrir o Portfólio Interativo</b></sub>
+  </p>
 </a>
 
 ---
 
-## 🌐 [CLIQUE AQUI PARA VISITAR O PORTFÓLIO](https://nimaiblanco.github.io/Portafolio/)
+## 🌐 [CLIQUE AQUI PARA VISITAR O PORTFÓLIO AO VIVO](https://nimaiblanco.github.io/Portafolio/)
 
 <br>
 
 [![LinkedIn](https://img.shields.io/badge/LINKEDIN-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/blanconimai/)
 [![GitHub](https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Nimaiblanco/)
+[![Portfolio](https://img.shields.io/badge/PORTFOLIO-38bdf8?style=for-the-badge&logo=google-chrome&logoColor=white)](https://nimaiblanco.github.io/Portafolio/)
 
 <br>
 
-Este é o repositório do meu portfólio pessoal, desenvolvido com foco em performance, interatividade e design moderno. O site serve como um hub central para exibir meus projetos de software e competências técnicas.
+Este repositório contém o código do meu portfólio pessoal, projetado para demonstrar minhas habilidades em **Java, Kotlin e Spring Boot** através de uma interface moderna e performática.
 
 </div>
 
 ---
 
-## 💻 Tecnologias Utilizadas
+## 💻 Tecnologias & Habilidades
 
-* **Frontend:** HTML5, CSS3 (Modern Flexbox/Grid), JavaScript (ES6+).
-* **Animações:** `Particles.js` para o fundo dinâmico e `Intersection Observer API` para efeitos de scroll.
-* **Design:** Arquitetura *Mobile-first* com foco em UX/UI minimalista.
-
----
-
-## 🛠️ Destaques Técnicos
-
-* **Cursor Personalizado:** Implementado com `requestAnimationFrame` para suavidade total no rastreamento.
-* **Scroll Reveal:** Animações otimizadas que ativam apenas quando o elemento entra no viewport, economizando recursos de processamento.
-* **Design Responsivo:** Adaptável a qualquer tamanho de tela sem perder a identidade visual.
+* **Backend & JVM:** Java, Kotlin, Spring Boot (Security/JWT/Data).
+* **Frontend:** JavaScript Puro (ES6+), HTML5 Semântico, CSS3 Moderno.
+* **Animações:** `Particles.js` para partículas interativas e `Intersection Observer` para scroll reveal.
+* **DevOps & Data:** Oracle SQL, Docker, Arquitetura MVC e REST APIs.
 
 ---
 
-## 📁 Estrutura do Projeto
+## 🛠️ Destaques do Projeto
 
-* `index.html`: Estrutura principal e conteúdo semântico.
-* `css/style.css`: Estilização detalhada e variáveis de design.
-* `script.js`: Lógica de interatividade e controle de animações.
-* `assets/`: Repositório de imagens e mídias.
+* **Performance Otimizada:** Uso de `requestAnimationFrame` para garantir que o cursor personalizado rode a 60fps sem lag.
+* **Interatividade Imersiva:** Fundo dinâmico que reage ao movimento do mouse, criando uma experiência visual única.
+* **Arquitetura Limpa:** Código organizado para facilitar a manutenção e escalabilidade.
+
+---
+
+## 📁 Principais Projetos Exibidos
+
+1.  **BioPulse:** API REST de saúde com Spring Security e JWT.
+2.  **Fintech System:** Sistema de gestão financeira integrado ao Oracle SQL.
+3.  **MindCare:** App de bem-estar desenvolvido com Kotlin.
 
 ---
 
@@ -59,10 +64,9 @@ Este é o repositório do meu portfólio pessoal, desenvolvido com foco em perfo
 
 ---
 
-## 📩 Contato
+## 📩 Vamos conectar?
 
 * **LinkedIn:** [linkedin.com/in/blanconimai](https://linkedin.com/in/blanconimai)
-* **GitHub:** [github.com/Nimaiblanco](https://github.com/Nimaiblanco)
 * **Email:** Blanconimai@gmail.com
 
 ---
