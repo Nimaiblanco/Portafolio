@@ -7,15 +7,15 @@
 
 <a href="https://nimaiblanco.github.io/Portafolio/" target="_blank">
   <p align="center">
-    <video src="https://github.com/Nimaiblanco/Portafolio/raw/main/assets/portafolio-animado.mp4" width="100%" style="border-radius: 10px; border: 2px solid #38bdf8;" autoplay muted loop playsinline></video>
+    <img src="assets/Apocalipsis.jpg" width="100%" style="border-radius: 12px; border: 3px solid #38bdf8;" alt="Clique para ver o Portfólio" />
     <br>
-    <sub><b>✨ Experiência Interativa: Clique na imagem para abrir o site ao vivo</b></sub>
+    <img src="https://img.shields.io/badge/▶_CLIQUE_AQUI_PARA_VER_A_EXPERIÊNCIA_AO_VIVO-38bdf8?style=for-the-badge" style="margin-top: 10px;" />
   </p>
 </a>
 
 ---
 
-## 🌐 [CLIQUE AQUI PARA VISITAR O PORTFÓLIO AO VIVO](https://nimaiblanco.github.io/Portafolio/)
+## 🌐 [VISITAR PORTFÓLIO AO VIVO](https://nimaiblanco.github.io/Portafolio/)
 
 <br>
 
@@ -33,26 +33,26 @@ Este repositório contém o código do meu portfólio pessoal, projetado para de
 
 ## 💻 Tecnologias & Habilidades
 
-* **Backend & JVM:** Java, Kotlin, Spring Boot (Security/JWT/Data).
+* **Backend & JVM:** Java 17+, Kotlin, Spring Boot (Security/JWT/Data).
 * **Frontend:** JavaScript Puro (ES6+), HTML5 Semântico, CSS3 Moderno.
-* **Animações:** `Particles.js` para fundo interativo e `Intersection Observer` para efeitos de scroll.
+* **Animações:** `Particles.js` para fundo interativo e `Intersection Observer`.
 * **DevOps & Data:** Oracle SQL, Docker, Arquitetura MVC e REST APIs.
 
 ---
 
 ## 🛠️ Destaques do Projeto
 
-* **Performance Otimizada:** Implementação de `requestAnimationFrame` para garantir fluidez total nas animações.
-* **Interatividade Imersiva:** Canvas dinâmico que reage ao cursor, elevando a experiência do usuário.
-* **UX/UI Minimalista:** Foco em legibilidade e navegação intuitiva em qualquer dispositivo.
+* **Performance Otimizada:** Implementação de `requestAnimationFrame` para fluidez total.
+* **Interatividade:** Canvas dinâmico que reage ao cursor, elevando a experiência do usuário.
+* **UX/UI:** Design minimalista e responsivo focado em recrutadores de tech.
 
 ---
 
 ## 📁 Principais Projetos Exibidos
 
 1.  **BioPulse:** API REST de saúde com Spring Security e JWT.
-2.  **Fintech System:** Sistema de gestão financeira integrado ao Oracle SQL.
-3.  **MindCare:** App de bem-estar desenvolvido com Kotlin.
+2.  **Fintech System:** Sistema de gestão financeira com Oracle SQL.
+3.  **MindCare:** Aplicação mobile de bem-estar desenvolvida com Kotlin.
 
 ---
 
@@ -71,5 +71,5 @@ Este repositório contém o código do meu portfólio pessoal, projetado para de
 
 ---
 <div align="center">
-© 2025 Blanco Nimai. Desenvolvido com foco em qualidade de código e experiência do usuário.
+© 2025 Blanco Nimai.
 </div>
