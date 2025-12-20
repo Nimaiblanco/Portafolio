@@ -1,19 +1,15 @@
-<div align="center">
-
 # 🚀 Blanco Nimai | Software Developer
 ### FULL STACK DEVELOPER | FIAP GRADUATE
 
-<br>
+[![Portafolio Animado](https://nimaiblanco.github.io/Portafolio/assets/portafolio-animado.gif)](https://nimaiblanco.github.io/Portafolio/)
 
-<a href="https://nimaiblanco.github.io/Portafolio/" target="_blank">
-  <p align="center">
-    <img src="https://raw.githubusercontent.com/Nimaiblanco/Portafolio/main/assets/portafolio-animado.gif" width="100%" style="max-width: 900px; border-radius: 10px; border: 2px solid #38bdf8;" alt="Portafolio Animado" />
-    <br>
-    <sub><b>✨ Experiência Interativa: Clique na imagem para abrir o site ao vivo</b></sub>
-  </p>
-</a>
+<p align="center">
+  <sub><b>✨ Experiência Interativa: Clique na imagem para abrir o site ao vivo</b></sub>
+</p>
 
 ---
+
+## 🌐 [VISITAR PORTFÓLIO AO VIVO](https://nimaiblanco.github.io/Portafolio/)
 
 <br>
 
@@ -24,25 +20,23 @@
 
 Este repositório contém o código do meu portfólio pessoal, projetado para demonstrar minhas habilidades em **Java, Kotlin e Spring Boot**.
 
-</div>
-
 ---
 
 ## 💻 Tecnologias & Habilidades
 
 * **Backend & JVM:** Java, Kotlin, Spring Boot (Security/JWT/Data).
 * **Frontend:** JavaScript Puro (ES6+), HTML5 Semântico, CSS3 Moderno.
-* **DevOps:** Oracle SQL, Docker, Arquitetura MVC e REST APIs.
+* **Animações:** `Particles.js` para fundo interativo e `Intersection Observer`.
 
 ---
 
 ### 📊 GitHub Stats
-<div align="center">
+<p align="center">
   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Nimaiblanco&show_icons=true&theme=tokyonight&include_all_commits=true&hide_border=true"/>
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Nimaiblanco&layout=compact&theme=tokyonight&hide_border=true"/>
-</div>
+</p>
 
 ---
-<div align="center">
+<p align="center">
 © 2025 Blanco Nimai.
-</div>
+</p>
