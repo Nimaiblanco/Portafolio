@@ -5,8 +5,7 @@
 
 <br>
 
-<video src="https://github.com/Nimaiblanco/Portafolio/raw/main/assets/video-portafolio.mp4" width="100%" style="max-width: 900px; border-radius: 10px; border: 2px solid #38bdf8;" autoplay loop muted playsinline>
-</video>
+https://github.com/user-attachments/assets/a7087d76-f946-450d-9d4b-df8d66210316
 
 <br>
 
