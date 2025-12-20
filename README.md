@@ -1,11 +1,21 @@
-# Blanco Nimai | Software Developer
-### FULL STACK DEVELOPER 
+<div align="center">
 
-[![Portafolio Animado](https://nimaiblanco.github.io/Portafolio/assets/portafolio-animado.gif)](https://nimaiblanco.github.io/Portafolio/)
+# 🚀 Blanco Nimai | Software Developer
+### FULL STACK DEVELOPER
+
+<br>
+
+<a href="https://nimaiblanco.github.io/Portafolio/" target="_blank">
+  <img src="https://nimaiblanco.github.io/Portafolio/assets/portafolio-animado.gif" width="100%" style="max-width: 900px; border-radius: 10px; border: 2px solid #38bdf8;" alt="Portafolio Animado" />
+</a>
+
+<p align="center">
+  <sub><b>✨ Experiência Interativa: Clique na imagem para abrir o site ao vivo</b></sub>
+</p>
 
 ---
 
-## (https://nimaiblanco.github.io/Portafolio/)
+## 🌐 [VISITAR PORTFÓLIO AO VIVO](https://nimaiblanco.github.io/Portafolio/)
 
 <br>
 
@@ -28,11 +38,13 @@ Este repositório contém o código do meu portfólio pessoal, projetado para de
 
 ### 📊 GitHub Stats
 <p align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Nimaiblanco&show_icons=true&theme=tokyonight&include_all_commits=true&hide_border=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Nimaiblanco&layout=compact&theme=tokyonight&hide_border=true"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Nimaiblanco&show_icons=true&theme=tokyonight&include_all_commits=true&hide_border=true"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Nimaiblanco&layout=compact&theme=tokyonight&hide_border=true"/>
 </p>
 
 ---
 <p align="center">
 © 2025 Blanco Nimai.
-</p>  centra el gif, e deixa ele rodando como loop
+</p>
+
+</div>
