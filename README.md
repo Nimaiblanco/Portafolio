@@ -7,9 +7,9 @@
 
 <a href="https://nimaiblanco.github.io/Portafolio/" target="_blank">
   <p align="center">
-    <img src="https://raw.githubusercontent.com/Nimaiblanco/Nimaiblanco/main/assets/Apocalipsis.jpg" width="100%" style="border-radius: 10px; border: 2px solid #38bdf8;" alt="Visitar Portafólio Interativo" />
+    <img src="https://raw.githubusercontent.com/Nimaiblanco/Nimaiblanco/main/assets/portfolio-animado.gif" width="100%" style="border-radius: 10px; border: 2px solid #38bdf8;" alt="Visitar Portfólio Interativo" />
     <br>
-    <sub><b>✨ Clique na imagem acima para abrir o Portfólio Interativo</b></sub>
+    <sub><b>✨ Experiência Interativa: Clique na imagem para abrir o site ao vivo</b></sub>
   </p>
 </a>
 
@@ -35,16 +35,16 @@ Este repositório contém o código do meu portfólio pessoal, projetado para de
 
 * **Backend & JVM:** Java, Kotlin, Spring Boot (Security/JWT/Data).
 * **Frontend:** JavaScript Puro (ES6+), HTML5 Semântico, CSS3 Moderno.
-* **Animações:** `Particles.js` para partículas interativas e `Intersection Observer` para scroll reveal.
+* **Animações:** `Particles.js` para fundo interativo e `Intersection Observer` para efeitos de scroll.
 * **DevOps & Data:** Oracle SQL, Docker, Arquitetura MVC e REST APIs.
 
 ---
 
 ## 🛠️ Destaques do Projeto
 
-* **Performance Otimizada:** Uso de `requestAnimationFrame` para garantir que o cursor personalizado rode a 60fps sem lag.
-* **Interatividade Imersiva:** Fundo dinâmico que reage ao movimento do mouse, criando uma experiência visual única.
-* **Arquitetura Limpa:** Código organizado para facilitar a manutenção e escalabilidade.
+* **Performance Otimizada:** Implementação de `requestAnimationFrame` para garantir fluidez total nas animações.
+* **Interatividade Imersiva:** Canvas dinâmico que reage ao cursor, elevando a experiência do usuário.
+* **UX/UI Minimalista:** Foco em legibilidade e navegação intuitiva em qualquer dispositivo.
 
 ---
 
