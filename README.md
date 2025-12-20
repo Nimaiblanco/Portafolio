@@ -9,10 +9,6 @@
   <img src="https://nimaiblanco.github.io/Portafolio/assets/portafolio-animado.gif" width="100%" style="max-width: 900px; border-radius: 10px; border: 2px solid #38bdf8;" alt="Portafolio Animado" />
 </a>
 
-<p align="center">
-  <sub><b>✨ Experiência Interativa: Clique na imagem para abrir o site ao vivo</b></sub>
-</p>
-
 ---
 
 ## 🌐 [VISITAR PORTFÓLIO AO VIVO](https://nimaiblanco.github.io/Portafolio/)
