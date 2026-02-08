@@ -1,6 +1,6 @@
 /**
  * Blanco Nimai Portfolio - Script Otimizado Final
- * Ajustes: Prioridade de renderização e suavização de hover.
+ * Ajustes: Remoção de interação do fundo e manutenção do cursor customizado.
  */
 
 const cursor = document.getElementById('cursor');
@@ -28,7 +28,7 @@ if (!isTouchDevice && cursor) {
         ballY += (mouseY - ballY) * speed;
         
         cursor.style.pointerEvents = "none";
-        // Adicionado translateZ(0) para forçar aceleração de hardware (GPU)
+        // Forçar aceleração de hardware (GPU)
         cursor.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate(-50%, -50%) translateZ(0)`;
         
         requestAnimationFrame(updateCursor);
@@ -38,12 +38,10 @@ if (!isTouchDevice && cursor) {
     cursor.style.display = 'none'; 
 }
 
-// 2. EFEITOS DE HOVER
-// Mantendo todos os seletores que você definiu
+// 2. EFEITOS DE HOVER DO CURSOR
 const hoverSelectors = '.hover-trigger, .skill-card, .project-card, .btn-contato, .social-icons a, .contact-info a, .navbar a, .sobre-foto, .github-link-icon';
 
 if (!isTouchDevice) {
-    // Usamos 'mouseover' com delegação para garantir que novos elementos também funcionem
     document.addEventListener('mouseover', (e) => {
         const target = e.target.closest(hoverSelectors);
         if (target) {
@@ -72,7 +70,7 @@ const revealObserver = new IntersectionObserver((entries) => {
     rootMargin: "0px 0px -50px 0px" 
 });
 
-// 4. INICIALIZAÇÃO E PARTÍCULAS
+// 4. INICIALIZAÇÃO E PARTÍCULAS (INTERAÇÃO DESATIVADA)
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     
@@ -98,15 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             },
             "interactivity": { 
-                "detect_on": "window", 
+                "detect_on": "canvas", 
                 "events": { 
-                    "onhover": { "enable": !isTouchDevice, "mode": "grab" },
-                    "onclick": { "enable": true, "mode": "push" },
+                    "onhover": { "enable": false }, // <--- INTERAÇÃO DESATIVADA AQUI
+                    "onclick": { "enable": false }, // <--- INTERAÇÃO DESATIVADA AQUI
                     "resize": true
-                },
-                "modes": {
-                    "grab": { "distance": 200, "line_linked": { "opacity": 1 } },
-                    "push": { "particles_nb": 4 }
                 }
             },
             "retina_detect": true
