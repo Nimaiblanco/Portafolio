@@ -3,12 +3,6 @@
 # Blanco Nimai | Software Developer
 ### FULL STACK DEVELOPER
 
-<br>
-
-<a href="https://nimaiblanco.github.io/Portafolio/" target="_blank">
-  <img src="https://nimaiblanco.github.io/Portafolio/assets/portafolio-animado.gif" width="100%" style="max-width: 900px; border-radius: 10px; border: 2px solid #38bdf8;" alt="Portafolio Animado" />
-</a>
-
 ---
 
 ## 🌐 [CLICK AQUI](https://nimaiblanco.github.io/Portafolio/)
