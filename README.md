@@ -5,7 +5,7 @@
 
 ---
 
-## 🌐 [CLICK AQUI](https://nimaiblanco.github.io/Portafolio/)
+## 🌐 [VISUALIZAR PORTFÓLIO](https://nimaiblanco.github.io/Portafolio/)
 
 <br>
 
@@ -14,15 +14,16 @@
 
 <br>
 
-Este repositório contém o código do meu portfólio pessoal, projetado para demonstrar minhas habilidades em **Java, Kotlin e Spring Boot**.
+Este repositório contém o código do meu portfólio pessoal, projetado para demonstrar minhas habilidades em **desenvolvimento de interfaces modernas, responsividade e experiência do usuário (UX)**.
 
 ---
 
 ## 💻 Tecnologias & Habilidades
 
-* **Backend & JVM:** Java, Kotlin, Spring Boot (Security/JWT/Data).
-* **Frontend:** JavaScript Puro (ES6+), HTML5 Semântico, CSS3 Moderno.
-* **Animações:** `Particles.js` para fundo interativo e `Intersection Observer`.
+* **Core Frontend:** React, JavaScript (ES6+), TypeScript.
+* **Estilização:** CSS3 Moderno, SASS, Tailwind CSS e HTML5 Semântico.
+* **Ferramentas & Design:** UI/UX (Figma), Git/GitHub e Mobile First.
+* **Animações:** `Particles.js` para fundo interativo, `GSAP` e `Intersection Observer`.
 
 ---
 
@@ -34,7 +35,7 @@ Este repositório contém o código do meu portfólio pessoal, projetado para de
 
 ---
 <p align="center">
-© 2025 Blanco Nimai.
+© 2026 Blanco Nimai.
 </p>
 
 </div>
