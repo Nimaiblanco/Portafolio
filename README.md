@@ -1,7 +1,7 @@
 <div align="center">
 
 # Blanco Nimai | Software Developer
-### FULL STACK DEVELOPER
+### FRONT-END DEVELOPER
 
 ---
 
