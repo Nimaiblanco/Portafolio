@@ -1,7 +1,7 @@
 <div align="center">
 
-# Blanco Nimai | Software Developer
-### FRONT-END DEVELOPER
+# Blanco Nimai | Front-end Developer
+### ESPECIALISTA EM INTERFACES MODERNAS & UX
 
 ---
 
@@ -14,7 +14,7 @@
 
 <br>
 
-Este repositório contém o código do meu portfólio pessoal, projetado para demonstrar minhas habilidades em **desenvolvimento de interfaces modernas, responsividade e experiência do usuário (UX)**.
+Este repositório contém o código do meu portfólio pessoal, focado em demonstrar o uso de tecnologias de ponta para a criação de experiências digitais responsivas e intuitivas.
 
 ---
 
@@ -23,7 +23,7 @@ Este repositório contém o código do meu portfólio pessoal, projetado para de
 * **Core Frontend:** React, JavaScript (ES6+), TypeScript.
 * **Estilização:** CSS3 Moderno, SASS, Tailwind CSS e HTML5 Semântico.
 * **Ferramentas & Design:** UI/UX (Figma), Git/GitHub e Mobile First.
-* **Animações:** `Particles.js` para fundo interativo, `GSAP` e `Intersection Observer`.
+* **Animações:** `Particles.js`, `GSAP` e `Intersection Observer` para interfaces interativas.
 
 ---
 
